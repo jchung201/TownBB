@@ -16,7 +16,7 @@ export class JobsService {
     },
   ];
 
-  getAllJobs() {
+  getAllJobs(): Job[] {
     return this.jobs;
   }
 
@@ -36,5 +36,11 @@ export class JobsService {
     };
     this.jobs.push(job);
     return job;
+  }
+
+  deleteJob(id: string): void {
+    this.jobs = this.jobs.filter(job => {
+      return job.id !== id;
+    });
   }
 }

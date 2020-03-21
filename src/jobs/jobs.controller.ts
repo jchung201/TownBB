@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { Job } from './jobs.model';
 import { CreateJobDTO } from './dtos/create-job.dto';
@@ -13,12 +13,17 @@ export class JobsController {
   }
 
   @Get('/:id')
-  getTaskById(@Param('id') id: string) {
+  getJobById(@Param('id') id: string): Job {
     return this.jobsService.getJobById(id);
   }
 
   @Post()
-  createJob(@Body() CreateJobDTO: CreateJobDTO) {
+  createJob(@Body() CreateJobDTO: CreateJobDTO): Job {
     return this.jobsService.createJob(CreateJobDTO);
+  }
+
+  @Delete('/:id')
+  deleteJob(@Param('id') id: string): void {
+    return this.jobsService.deleteJob(id);
   }
 }
