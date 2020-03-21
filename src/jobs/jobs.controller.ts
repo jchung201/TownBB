@@ -6,17 +6,22 @@ import {
   Param,
   Delete,
   Patch,
+  Query,
 } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { Job } from './jobs.model';
 import { CreateJobDTO } from './dtos/create-job.dto';
+import { GetJobsFilterDTO } from './dtos/get-jobs-filter.dto';
 
 @Controller('jobs')
 export class JobsController {
   constructor(private jobsService: JobsService) {}
 
   @Get()
-  getAllJobs(): Job[] {
+  getJobs(@Query() filterDTO: GetJobsFilterDTO): Job[] {
+    if (Object.keys(filterDTO).length) {
+      return this.jobsService.getJobsWithFilters(filterDTO);
+    }
     return this.jobsService.getAllJobs();
   }
 

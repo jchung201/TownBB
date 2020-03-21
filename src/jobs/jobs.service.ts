@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Job, JobCategory } from './jobs.model';
 import * as uuid from 'uuid/v1';
 import { CreateJobDTO } from './dtos/create-job.dto';
+import { GetJobsFilterDTO } from './dtos/get-jobs-filter.dto';
 
 @Injectable()
 export class JobsService {
@@ -18,6 +19,25 @@ export class JobsService {
 
   getAllJobs(): Job[] {
     return this.jobs;
+  }
+
+  getJobsWithFilters(filterDTO: GetJobsFilterDTO) {
+    const { category, search } = filterDTO;
+    let jobs = this.getAllJobs();
+    if (category) {
+      jobs = jobs.filter(job => job.category === category);
+    }
+    if (search) {
+      jobs = jobs.filter(job => {
+        return (
+          job.title.includes(search) ||
+          job.company.includes(search) ||
+          job.location.includes(search)
+        );
+      });
+    }
+
+    return jobs;
   }
 
   getJobById(id: string): Job {
@@ -45,7 +65,6 @@ export class JobsService {
   }
   updateJob(id: string, title: string): Job {
     const job = this.getJobById(id);
-    console.log(job);
     job.title = title;
     return job;
   }
