@@ -43,4 +43,10 @@ export class JobsService {
       return job.id !== id;
     });
   }
+  updateJob(id: string, title: string): Job {
+    const job = this.getJobById(id);
+    console.log(job);
+    job.title = title;
+    return job;
+  }
 }
