@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Job, JobCategory } from './jobs.model';
 import * as uuid from 'uuid/v1';
+import { CreateJobDTO } from './dtos/create-job.dto';
 
 @Injectable()
 export class JobsService {
@@ -19,12 +20,8 @@ export class JobsService {
     return this.jobs;
   }
 
-  createJob(
-    title: string,
-    company: string,
-    rate: string,
-    location: string,
-  ): Job {
+  createJob(createJobDTO: CreateJobDTO): Job {
+    const { title, company, rate, location } = createJobDTO;
     const job: Job = {
       id: uuid(),
       title,
