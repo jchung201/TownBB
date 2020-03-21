@@ -20,6 +20,10 @@ export class JobsService {
     return this.jobs;
   }
 
+  getJobById(id: string): Job {
+    return this.jobs.find(job => job.id === id);
+  }
+
   createJob(createJobDTO: CreateJobDTO): Job {
     const { title, company, rate, location } = createJobDTO;
     const job: Job = {
