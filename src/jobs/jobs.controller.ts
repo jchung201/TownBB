@@ -21,7 +21,7 @@ export class JobsController {
   constructor(private jobsService: JobsService) {}
 
   @Get()
-  getJobs(@Query() filterDTO: GetJobsFilterDTO): Job[] {
+  getJobs(@Query(ValidationPipe) filterDTO: GetJobsFilterDTO): Job[] {
     if (Object.keys(filterDTO).length) {
       return this.jobsService.getJobsWithFilters(filterDTO);
     }
