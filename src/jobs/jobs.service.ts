@@ -61,13 +61,15 @@ export class JobsService {
   }
 
   deleteJob(id: string): void {
+    const foundJob = this.getJobById(id);
     this.jobs = this.jobs.filter(job => {
-      return job.id !== id;
+      return job.id !== foundJob.id;
     });
   }
-  updateJob(id: string, title: string): Job {
+  updateJob(id: string, title: string, category: JobCategory): Job {
     const job = this.getJobById(id);
     job.title = title;
+    job.category = category;
     return job;
   }
 }
