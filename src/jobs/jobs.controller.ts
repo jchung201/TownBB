@@ -11,7 +11,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { JobsService } from './jobs.service';
-import { Job, JobCategory } from './jobs.model';
+import { Job, JobCategory } from './job.model';
 import { CreateJobDTO } from './dtos/create-job.dto';
 import { GetJobsFilterDTO } from './dtos/get-jobs-filter.dto';
 import { JobEnumsValidationPipe } from './pipes/job-enums-validation.pipe';

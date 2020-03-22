@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Job, JobCategory } from './jobs.model';
+import { Job, JobCategory } from './job.model';
 import * as uuid from 'uuid/v1';
 import { CreateJobDTO } from './dtos/create-job.dto';
 import { GetJobsFilterDTO } from './dtos/get-jobs-filter.dto';
