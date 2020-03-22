@@ -11,9 +11,10 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { JobsService } from './jobs.service';
-import { Job } from './jobs.model';
+import { Job, JobCategory } from './jobs.model';
 import { CreateJobDTO } from './dtos/create-job.dto';
 import { GetJobsFilterDTO } from './dtos/get-jobs-filter.dto';
+import { JobEnumsValidationPipe } from './pipes/job-enums-validation.pipe';
 
 @Controller('jobs')
 export class JobsController {
@@ -44,7 +45,11 @@ export class JobsController {
   }
 
   @Patch('/:id')
-  updateJob(@Param('id') id: string, @Body('title') title: string): Job {
-    return this.jobsService.updateJob(id, title);
+  updateJob(
+    @Param('id') id: string,
+    @Body('title') title: string,
+    @Body('category', JobEnumsValidationPipe) category: JobCategory,
+  ): Job {
+    return this.jobsService.updateJob(id, title, category);
   }
 }
