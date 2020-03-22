@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Job, JobCategory } from './jobs.model';
 import * as uuid from 'uuid/v1';
 import { CreateJobDTO } from './dtos/create-job.dto';
@@ -41,7 +41,9 @@ export class JobsService {
   }
 
   getJobById(id: string): Job {
-    return this.jobs.find(job => job.id === id);
+    const foundJob = this.jobs.find(job => job.id === id);
+    if (!foundJob) throw new NotFoundException(`Job with id:${id} not found!`);
+    return foundJob;
   }
 
   createJob(createJobDTO: CreateJobDTO): Job {
