@@ -3,7 +3,7 @@ import { JobCategory } from './models/job-category.enum';
 import * as uuid from 'uuid/v1';
 import { CreateJobDTO } from './dtos/create-job.dto';
 import { GetJobsFilterDTO } from './dtos/get-jobs-filter.dto';
-import { JobRepository } from './job.repository';
+import { JobRepository } from './models/job.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Job } from './models/job.entity';
 
@@ -40,19 +40,9 @@ export class JobsService {
   //   return jobs;
   // }
 
-  // createJob(createJobDTO: CreateJobDTO): Job {
-  //   const { title, company, rate, location } = createJobDTO;
-  //   const job: Job = {
-  //     id: uuid(),
-  //     title,
-  //     company,
-  //     rate,
-  //     location,
-  //     category: JobCategory.LABOR,
-  //   };
-  //   this.jobs.push(job);
-  //   return job;
-  // }
+  async createJob(createJobDTO: CreateJobDTO): Promise<Job> {
+    return this.jobRepository.createJob(createJobDTO);
+  }
 
   // deleteJob(id: string): void {
   //   const foundJob = this.getJobById(id);

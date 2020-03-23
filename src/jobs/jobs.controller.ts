@@ -34,11 +34,11 @@ export class JobsController {
     return this.jobsService.getJobById(id);
   }
 
-  // @Post()
-  // @UsePipes(ValidationPipe)
-  // createJob(@Body() CreateJobDTO: CreateJobDTO): Job {
-  //   return this.jobsService.createJob(CreateJobDTO);
-  // }
+  @Post()
+  @UsePipes(ValidationPipe)
+  createJob(@Body() CreateJobDTO: CreateJobDTO): Promise<Job> {
+    return this.jobsService.createJob(CreateJobDTO);
+  }
 
   // @Delete('/:id')
   // deleteJob(@Param('id') id: string): void {
