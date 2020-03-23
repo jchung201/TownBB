@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { JobCategory } from './models/job-category.enum';
-import * as uuid from 'uuid/v1';
 import { CreateJobDTO } from './dtos/create-job.dto';
 import { GetJobsFilterDTO } from './dtos/get-jobs-filter.dto';
 import { JobRepository } from './models/job.repository';
@@ -9,7 +8,10 @@ import { Job } from './models/job.entity';
 
 @Injectable()
 export class JobsService {
-  constructor(private jobRepository: JobRepository) {}
+  constructor(
+    @InjectRepository(JobRepository)
+    private jobRepository: JobRepository,
+  ) {}
 
   async getJobById(id: number): Promise<Job> {
     const foundJob = await this.jobRepository.findOne(id);

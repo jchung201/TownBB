@@ -34,8 +34,8 @@ export class JobsController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  createJob(@Body() CreateJobDTO: CreateJobDTO): Promise<Job> {
-    return this.jobsService.createJob(CreateJobDTO);
+  createJob(@Body() createJobDTO: CreateJobDTO): Promise<Job> {
+    return this.jobsService.createJob(createJobDTO);
   }
 
   @Delete('/:id')
