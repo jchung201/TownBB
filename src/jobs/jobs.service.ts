@@ -12,9 +12,10 @@ export class JobsService {
   constructor(private jobRepository: JobRepository) {}
 
   async getJobById(id: number): Promise<Job> {
-    const found = await this.jobRepository.findOne(id);
-    if (!found) throw new NotFoundException(`Job with ID "${id}" not found!`);
-    return found;
+    const foundJob = await this.jobRepository.findOne(id);
+    if (!foundJob)
+      throw new NotFoundException(`Job with ID "${id}" not found!`);
+    return foundJob;
   }
 
   // getAllJobs(): Job[] {
@@ -44,12 +45,11 @@ export class JobsService {
     return this.jobRepository.createJob(createJobDTO);
   }
 
-  // deleteJob(id: string): void {
-  //   const foundJob = this.getJobById(id);
-  //   this.jobs = this.jobs.filter(job => {
-  //     return job.id !== foundJob.id;
-  //   });
-  // }
+  async deleteJob(id: number): Promise<void> {
+    const result = await this.jobRepository.delete(id);
+    if (result.affected === 0)
+      throw new NotFoundException(`Job with ID "${id}" not found!`);
+  }
   // updateJob(id: string, title: string, category: JobCategory): Job {
   //   const job = this.getJobById(id);
   //   job.title = title;

@@ -40,10 +40,10 @@ export class JobsController {
     return this.jobsService.createJob(CreateJobDTO);
   }
 
-  // @Delete('/:id')
-  // deleteJob(@Param('id') id: string): void {
-  //   return this.jobsService.deleteJob(id);
-  // }
+  @Delete('/:id')
+  deleteJob(@Param('id', ParseIntPipe) id: number): Promise<void> {
+    return this.jobsService.deleteJob(id);
+  }
 
   // @Patch('/:id')
   // updateJob(
