@@ -3,6 +3,7 @@ import { Job } from './job.entity';
 import { CreateJobDTO } from '../dtos/create-job.dto';
 import { JobCategory } from './job-category.enum';
 import { GetJobsFilterDTO } from '../dtos/get-jobs-filter.dto';
+import { User } from 'src/auth/models/user.entity';
 
 @EntityRepository(Job)
 export class JobRepository extends Repository<Job> {
@@ -19,7 +20,7 @@ export class JobRepository extends Repository<Job> {
     return jobs;
   }
 
-  async createJob(createJobDTO: CreateJobDTO): Promise<Job> {
+  async createJob(createJobDTO: CreateJobDTO, user: User): Promise<Job> {
     const { title, company, rate, location } = createJobDTO;
     const job = new Job();
     job.title = title;
@@ -27,7 +28,9 @@ export class JobRepository extends Repository<Job> {
     job.rate = rate;
     job.location = location;
     job.category = JobCategory.LABOR;
+    job.user = user;
     await job.save();
+    delete job.user;
     return job;
   }
 }

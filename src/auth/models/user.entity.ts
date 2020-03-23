@@ -4,8 +4,10 @@ import {
   PrimaryGeneratedColumn,
   Column,
   Unique,
+  OneToMany,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { Job } from 'src/jobs/models/job.entity';
 
 @Entity()
 @Unique(['username'])
@@ -21,6 +23,13 @@ export class User extends BaseEntity {
 
   @Column()
   salt: string;
+
+  @OneToMany(
+    type => Job,
+    job => job.user,
+    { eager: true },
+  )
+  jobs: Job[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

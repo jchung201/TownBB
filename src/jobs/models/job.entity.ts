@@ -1,4 +1,11 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+} from 'typeorm';
+import { User } from 'src/auth/models/user.entity';
 
 @Entity()
 export class Job extends BaseEntity {
@@ -19,4 +26,14 @@ export class Job extends BaseEntity {
 
   @Column()
   category: string;
+
+  @ManyToOne(
+    type => User,
+    user => user.jobs,
+    { eager: false },
+  )
+  user: User;
+
+  @Column()
+  userId: number;
 }
