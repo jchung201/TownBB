@@ -4,9 +4,12 @@ import { CreateJobDTO } from '../dtos/create-job.dto';
 import { JobCategory } from './job-category.enum';
 import { GetJobsFilterDTO } from '../dtos/get-jobs-filter.dto';
 import { User } from 'src/auth/models/user.entity';
+import { Logger, InternalServerErrorException } from '@nestjs/common';
 
 @EntityRepository(Job)
 export class JobRepository extends Repository<Job> {
+  private logger = new Logger('Job Repository');
+
   async getJobs(filterDTO: GetJobsFilterDTO): Promise<Job[]> {
     const { category, search } = filterDTO;
     const query = this.createQueryBuilder('job');
@@ -16,8 +19,16 @@ export class JobRepository extends Repository<Job> {
         'job.title LIKE :search OR job.company LIKE :search OR job.location LIKE :search',
         { search: `%${search}%` },
       );
-    const jobs = await query.getMany();
-    return jobs;
+    try {
+      const jobs = await query.getMany();
+      return jobs;
+    } catch (error) {
+      this.logger.error(
+        `Failed to fetch jobs. Filters: ${JSON.stringify(filterDTO)}`,
+        error.stack,
+      );
+      throw new InternalServerErrorException();
+    }
   }
 
   async createJob(createJobDTO: CreateJobDTO, user: User): Promise<Job> {
