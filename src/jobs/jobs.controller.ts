@@ -16,6 +16,7 @@ import { CreateJobDTO } from './dtos/create-job.dto';
 import { GetJobsFilterDTO } from './dtos/get-jobs-filter.dto';
 import { JobEnumsValidationPipe } from './pipes/job-enums-validation.pipe';
 import { Job } from './models/job.entity';
+import { JobCategory } from './models/job-category.enum';
 
 @Controller('jobs')
 export class JobsController {
@@ -45,12 +46,12 @@ export class JobsController {
     return this.jobsService.deleteJob(id);
   }
 
-  // @Patch('/:id')
-  // updateJob(
-  //   @Param('id') id: string,
-  //   @Body('title') title: string,
-  //   @Body('category', JobEnumsValidationPipe) category: JobCategory,
-  // ): Job {
-  //   return this.jobsService.updateJob(id, title, category);
-  // }
+  @Patch('/:id')
+  updateJob(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('title') title: string,
+    @Body('category', JobEnumsValidationPipe) category: JobCategory,
+  ): Promise<Job> {
+    return this.jobsService.updateJob(id, title, category);
+  }
 }

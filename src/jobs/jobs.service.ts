@@ -50,10 +50,16 @@ export class JobsService {
     if (result.affected === 0)
       throw new NotFoundException(`Job with ID "${id}" not found!`);
   }
-  // updateJob(id: string, title: string, category: JobCategory): Job {
-  //   const job = this.getJobById(id);
-  //   job.title = title;
-  //   job.category = category;
-  //   return job;
-  // }
+
+  async updateJob(
+    id: number,
+    title: string,
+    category: JobCategory,
+  ): Promise<Job> {
+    const job = await this.getJobById(id);
+    job.title = title;
+    job.category = category;
+    await job.save();
+    return job;
+  }
 }
