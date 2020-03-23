@@ -18,28 +18,9 @@ export class JobsService {
     return foundJob;
   }
 
-  // getAllJobs(): Job[] {
-  //   return this.jobs;
-  // }
-
-  // getJobsWithFilters(filterDTO: GetJobsFilterDTO) {
-  //   const { category, search } = filterDTO;
-  //   let jobs = this.getAllJobs();
-  //   if (category) {
-  //     jobs = jobs.filter(job => job.category === category);
-  //   }
-  //   if (search) {
-  //     jobs = jobs.filter(job => {
-  //       return (
-  //         job.title.includes(search) ||
-  //         job.company.includes(search) ||
-  //         job.location.includes(search)
-  //       );
-  //     });
-  //   }
-
-  //   return jobs;
-  // }
+  async getJobs(filterDTO: GetJobsFilterDTO): Promise<Job[]> {
+    return this.jobRepository.getJobs(filterDTO);
+  }
 
   async createJob(createJobDTO: CreateJobDTO): Promise<Job> {
     return this.jobRepository.createJob(createJobDTO);

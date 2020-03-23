@@ -22,13 +22,10 @@ import { JobCategory } from './models/job-category.enum';
 export class JobsController {
   constructor(private jobsService: JobsService) {}
 
-  // @Get()
-  // getJobs(@Query(ValidationPipe) filterDTO: GetJobsFilterDTO): Job[] {
-  //   if (Object.keys(filterDTO).length) {
-  //     return this.jobsService.getJobsWithFilters(filterDTO);
-  //   }
-  //   return this.jobsService.getAllJobs();
-  // }
+  @Get()
+  getJobs(@Query(ValidationPipe) filterDTO: GetJobsFilterDTO): Promise<Job[]> {
+    return this.jobsService.getJobs(filterDTO);
+  }
 
   @Get('/:id')
   getJobById(@Param('id', ParseIntPipe) id: number): Promise<Job> {
