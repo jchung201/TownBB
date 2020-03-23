@@ -1,4 +1,4 @@
-import { JobCategory } from '../job.model';
+import { JobCategory } from '../models/job-category.enum';
 import { IsOptional, IsIn, IsNotEmpty } from 'class-validator';
 
 export class GetJobsFilterDTO {

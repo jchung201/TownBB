@@ -1,5 +1,5 @@
 import { PipeTransform, BadRequestException } from '@nestjs/common';
-import { JobCategory } from '../job.model';
+import { JobCategory } from '../models/job-category.enum';
 
 export class JobEnumsValidationPipe implements PipeTransform {
   readonly allowedStatuses = [JobCategory.LABOR, JobCategory.SERVICE];
