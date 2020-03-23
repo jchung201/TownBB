@@ -9,11 +9,13 @@ import {
   Query,
   UsePipes,
   ValidationPipe,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { CreateJobDTO } from './dtos/create-job.dto';
 import { GetJobsFilterDTO } from './dtos/get-jobs-filter.dto';
 import { JobEnumsValidationPipe } from './pipes/job-enums-validation.pipe';
+import { Job } from './models/job.entity';
 
 @Controller('jobs')
 export class JobsController {
@@ -27,10 +29,10 @@ export class JobsController {
   //   return this.jobsService.getAllJobs();
   // }
 
-  // @Get('/:id')
-  // getJobById(@Param('id') id: string): Job {
-  //   return this.jobsService.getJobById(id);
-  // }
+  @Get('/:id')
+  getJobById(@Param('id', ParseIntPipe) id: number): Promise<Job> {
+    return this.jobsService.getJobById(id);
+  }
 
   // @Post()
   // @UsePipes(ValidationPipe)

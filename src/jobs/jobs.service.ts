@@ -5,16 +5,17 @@ import { CreateJobDTO } from './dtos/create-job.dto';
 import { GetJobsFilterDTO } from './dtos/get-jobs-filter.dto';
 import { JobRepository } from './job.repository';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Job } from './models/job.entity';
 
 @Injectable()
 export class JobsService {
   constructor(private jobRepository: JobRepository) {}
 
-  // getJobById(id: number) {
-  //   const foundJob = this.jobs.find(job => job.id === id);
-  //   if (!foundJob) throw new NotFoundException(`Job with id:${id} not found!`);
-  //   return foundJob;
-  // }
+  async getJobById(id: number): Promise<Job> {
+    const found = await this.jobRepository.findOne(id);
+    if (!found) throw new NotFoundException(`Job with ID "${id}" not found!`);
+    return found;
+  }
 
   // getAllJobs(): Job[] {
   //   return this.jobs;
