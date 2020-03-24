@@ -3,10 +3,11 @@ import { JobsService } from './jobs.service';
 import { JobRepository } from './models/job.repository';
 import { GetJobsFilterDTO } from './dtos/get-jobs-filter.dto';
 import { JobCategory } from './models/job-category.enum';
+import { NotFoundException } from '@nestjs/common';
 
-const mockUser = { username: 'Test user' };
 const mockJobRepository = () => ({
   getJobs: jest.fn(),
+  findOne: jest.fn(),
 });
 
 describe('JobsService', () => {
@@ -35,6 +36,21 @@ describe('JobsService', () => {
       const result = await jobsService.getJobs(filters);
       expect(jobRepository.getJobs).toHaveBeenCalled();
       expect(result).toEqual('Some Value');
+    });
+  });
+  describe('getJobById', () => {
+    it('calls jobRepository.findOne() and succesffuly retrieve and return the job', async () => {
+      const mockJob = { title: 'Test job', description: 'Test desc' };
+      jobRepository.findOne.mockResolvedValue(mockJob);
+
+      const result = await jobsService.getJobById(1);
+      expect(result).toEqual(mockJob);
+
+      expect(jobRepository.findOne).toHaveBeenCalledWith(1);
+    });
+    it('throws an error as job is not found', () => {
+      jobRepository.findOne.mockResolvedValue(null);
+      expect(jobsService.getJobById(1)).rejects.toThrow(NotFoundException);
     });
   });
 });
