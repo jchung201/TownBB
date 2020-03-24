@@ -5,7 +5,7 @@ import {
   Column,
   ManyToOne,
 } from 'typeorm';
-import { User } from 'src/auth/models/user.entity';
+import { User } from '../../auth/models/user.entity';
 
 @Entity()
 export class Job extends BaseEntity {

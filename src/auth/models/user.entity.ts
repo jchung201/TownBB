@@ -7,7 +7,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
-import { Job } from 'src/jobs/models/job.entity';
+import { Job } from '../../jobs/models/job.entity';
 
 @Entity()
 @Unique(['username'])
