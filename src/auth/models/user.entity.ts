@@ -7,7 +7,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
-import { Job } from '../../jobs/models/job.entity';
+import { Ad } from '../../ads/models/ad.entity';
 
 @Entity()
 @Unique(['username'])
@@ -25,11 +25,11 @@ export class User extends BaseEntity {
   salt: string;
 
   @OneToMany(
-    type => Job,
-    job => job.user,
+    type => Ad,
+    ad => ad.user,
     { eager: true },
   )
-  jobs: Job[];
+  ads: Ad[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

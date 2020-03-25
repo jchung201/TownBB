@@ -1,8 +1,8 @@
 import { PipeTransform, BadRequestException } from '@nestjs/common';
-import { JobCategory } from '../models/job-category.enum';
+import { AdCategory } from '../models/ad-category.enum';
 
-export class JobEnumsValidationPipe implements PipeTransform {
-  readonly allowedStatuses = [JobCategory.LABOR, JobCategory.SERVICE];
+export class AdEnumsValidationPipe implements PipeTransform {
+  readonly allowedStatuses = [AdCategory.LABOR, AdCategory.SERVICE];
   transform(value: any) {
     value = value.toUpperCase();
     if (!this.isCategoryVALID(value)) {

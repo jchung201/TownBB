@@ -1,4 +1,4 @@
-export enum JobCategory {
+export enum AdCategory {
   SERVICE = 'SERVICE',
   LABOR = 'LABOR',
 }

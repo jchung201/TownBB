@@ -8,7 +8,7 @@ import {
 import { User } from '../../auth/models/user.entity';
 
 @Entity()
-export class Job extends BaseEntity {
+export class Ad extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -29,7 +29,7 @@ export class Job extends BaseEntity {
 
   @ManyToOne(
     type => User,
-    user => user.jobs,
+    user => user.ads,
     { eager: false },
   )
   user: User;
