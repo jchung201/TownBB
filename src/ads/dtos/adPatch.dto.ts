@@ -16,6 +16,8 @@ export class AdPatchDTO {
   contactWebsite: string;
 
   // Auth
+  @IsNotEmpty()
   hash: string;
+  @IsNotEmpty()
   password: string;
 }

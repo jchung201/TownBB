@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, Length, IsEmail } from 'class-validator';
 
 export class AdPostDTO {
   // Meta
@@ -13,10 +13,14 @@ export class AdPostDTO {
   company: string;
 
   // Contact
+  @IsNotEmpty()
+  @IsEmail()
   contactEmail: string;
   contactPhone: string;
   contactWebsite: string;
 
   // Auth
+  @IsNotEmpty()
+  @Length(5, 20)
   password: string;
 }
