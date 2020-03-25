@@ -18,6 +18,5 @@ export class AdPostDTO {
   contactWebsite: string;
 
   // Auth
-  hash: string;
   password: string;
 }

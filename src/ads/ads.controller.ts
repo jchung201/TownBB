@@ -15,6 +15,7 @@ import { AdsService } from './ads.service';
 import { AdPostDTO } from './dtos/adPost.dto';
 import { AdsGetDTO } from './dtos/adsGet.dto';
 import { Ad } from './models/ad.entity';
+import { AdPatchDTO } from './dtos/adPatch.dto';
 
 @Controller('ads')
 export class AdsController {
@@ -44,7 +45,7 @@ export class AdsController {
   @Patch('/:id')
   updateAd(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateAdDTO: AdPostDTO,
+    @Body() updateAdDTO: AdPatchDTO,
   ): Promise<Ad> {
     return this.adsService.updateAd(id, updateAdDTO);
   }
