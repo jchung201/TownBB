@@ -12,18 +12,16 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { AdsService } from './ads.service';
-import { CreateAdDTO } from './dtos/create-ad.dto';
-import { GetAdsFilterDTO } from './dtos/get-ads-filter.dto';
-import { AdEnumsValidationPipe } from './pipes/ad-enums-validation.pipe';
+import { AdPostDTO } from './dtos/adPost.dto';
+import { AdsGetDTO } from './dtos/adsGet.dto';
 import { Ad } from './models/ad.entity';
-import { AdCategory } from './models/ad-category.enum';
 
 @Controller('ads')
 export class AdsController {
   constructor(private adsService: AdsService) {}
 
   @Get()
-  getAds(@Query(ValidationPipe) filterDTO: GetAdsFilterDTO): Promise<Ad[]> {
+  getAds(@Query(ValidationPipe) filterDTO: AdsGetDTO): Promise<Ad[]> {
     return this.adsService.getAds(filterDTO);
   }
 
@@ -34,7 +32,7 @@ export class AdsController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  createAd(@Body() createAdDTO: CreateAdDTO): Promise<Ad> {
+  createAd(@Body() createAdDTO: AdPostDTO): Promise<Ad> {
     return this.adsService.createAd(createAdDTO);
   }
 
@@ -46,9 +44,8 @@ export class AdsController {
   @Patch('/:id')
   updateAd(
     @Param('id', ParseIntPipe) id: number,
-    @Body('title') title: string,
-    @Body('category', AdEnumsValidationPipe) category: AdCategory,
+    @Body() updateAdDTO: AdPostDTO,
   ): Promise<Ad> {
-    return this.adsService.updateAd(id, title, category);
+    return this.adsService.updateAd(id, updateAdDTO);
   }
 }

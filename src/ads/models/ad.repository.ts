@@ -1,15 +1,14 @@
 import { Repository, EntityRepository } from 'typeorm';
 import { Ad } from './ad.entity';
-import { CreateAdDTO } from '../dtos/create-ad.dto';
-import { AdCategory } from './ad-category.enum';
-import { GetAdsFilterDTO } from '../dtos/get-ads-filter.dto';
+import { AdPostDTO } from '../dtos/adPost.dto';
+import { AdsGetDTO } from '../dtos/adsGet.dto';
 import { Logger, InternalServerErrorException } from '@nestjs/common';
 
 @EntityRepository(Ad)
 export class AdRepository extends Repository<Ad> {
   private logger = new Logger('Ad Repository');
 
-  async getAds(filterDTO: GetAdsFilterDTO): Promise<Ad[]> {
+  async getAds(filterDTO: AdsGetDTO): Promise<Ad[]> {
     const { category, search } = filterDTO;
     const query = this.createQueryBuilder('ad');
     if (category) query.andWhere('ad.category = :category', { category });
@@ -30,14 +29,30 @@ export class AdRepository extends Repository<Ad> {
     }
   }
 
-  async createAd(createAdDTO: CreateAdDTO): Promise<Ad> {
-    const { title, company, rate, location } = createAdDTO;
+  async createAd(createAdDTO: AdPostDTO): Promise<Ad> {
+    const {
+      title,
+      description,
+      location,
+      value,
+      categories,
+      images,
+      company,
+      contactEmail,
+      contactPhone,
+      contactWebsite,
+    } = createAdDTO;
     const ad = new Ad();
-    ad.title = title;
-    ad.company = company;
-    ad.rate = rate;
-    ad.location = location;
-    ad.category = AdCategory.LABOR;
+    if (title) ad.title = title;
+    if (description) ad.description = description;
+    if (location) ad.location = location;
+    if (value) ad.value = value;
+    if (categories) ad.categories = categories;
+    if (images) ad.images = images;
+    if (company) ad.company = company;
+    if (contactEmail) ad.contactEmail = contactEmail;
+    if (contactPhone) ad.contactPhone = contactPhone;
+    if (contactWebsite) ad.contactWebsite = contactWebsite;
     await ad.save();
     delete ad.user;
     return ad;

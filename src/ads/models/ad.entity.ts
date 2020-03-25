@@ -12,28 +12,43 @@ export class Ad extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  // Meta
   @Column()
   title: string;
-
-  @Column()
-  company: string;
-
-  @Column()
-  rate: string;
-
+  @Column({ nullable: true })
+  description: string;
   @Column()
   location: string;
+  @Column({ nullable: true })
+  value: string;
+  @Column('text', { array: true })
+  categories: string[];
+  @Column('text', { array: true })
+  images: string[];
+  @Column({ nullable: true })
+  company: string;
 
-  @Column()
-  category: string;
+  // Contact
+  @Column({ nullable: true })
+  contactEmail: string;
+  @Column({ nullable: true })
+  contactPhone: string;
+  @Column({ nullable: true })
+  contactWebsite: string;
 
+  // Auth
+  @Column({ nullable: true })
+  hash: string;
+  @Column({ nullable: true })
+  password: string;
+
+  // Nullable user value
   @ManyToOne(
     type => User,
     user => user.ads,
-    { eager: false },
+    { eager: false, nullable: true },
   )
   user: User;
-
-  @Column()
+  @Column({ nullable: true })
   userId: number;
 }
