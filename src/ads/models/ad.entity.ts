@@ -8,7 +8,7 @@ export class Ad extends BaseEntity {
   // Meta
   @Column()
   title: string;
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   description: string;
   @Column()
   location: string;
@@ -18,26 +18,26 @@ export class Ad extends BaseEntity {
   categories: string[];
   @Column('text', { array: true })
   images: string[];
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   company: string;
 
   // Contact
-  @Column({ nullable: true })
+  @Column()
   contactEmail: string;
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   contactPhone: string;
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   contactWebsite: string;
 
   // Auth
-  @Column({ nullable: true })
+  @Column()
   hash: string;
-  @Column({ nullable: true })
+  @Column()
   password: string;
 
   // deleted
-  @Column({ default: true })
+  @Column({ default: false })
   deleted: boolean;
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   deletedAt: string;
 }
