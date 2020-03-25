@@ -16,6 +16,7 @@ import { AdPostDTO } from './dtos/adPost.dto';
 import { AdsGetDTO } from './dtos/adsGet.dto';
 import { Ad } from './models/ad.entity';
 import { AdPatchDTO } from './dtos/adPatch.dto';
+import { AdDeleteDTO } from './dtos/adDelete.dto';
 
 @Controller('ads')
 export class AdsController {
@@ -38,8 +39,11 @@ export class AdsController {
   }
 
   @Delete('/:id')
-  deleteAd(@Param('id', ParseIntPipe) id: number): Promise<void> {
-    return this.adsService.deleteAd(id);
+  deleteAd(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() adDeleteDTO: AdDeleteDTO,
+  ): Promise<Ad> {
+    return this.adsService.deleteAd(id, adDeleteDTO);
   }
 
   @Patch('/:id')

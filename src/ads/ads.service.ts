@@ -9,6 +9,7 @@ import { AdRepository } from './models/ad.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Ad } from './models/ad.entity';
 import { AdPatchDTO } from './dtos/adPatch.dto';
+import { AdDeleteDTO } from './dtos/adDelete.dto';
 
 @Injectable()
 export class AdsService {
@@ -31,9 +32,14 @@ export class AdsService {
     return this.adRepository.createAd(createAdDTO);
   }
 
-  async deleteAd(id: number): Promise<void> {
-    const ad = await this.getAdById(id);
-    if (true) throw new UnauthorizedException('You do not own this Ad!');
+  async deleteAd(id: number, adDeleteDTO: AdDeleteDTO): Promise<Ad> {
+    const { hash, password } = adDeleteDTO;
+    const foundAd = await this.adRepository.findOne({ id, hash, password });
+    if (!foundAd) throw new UnauthorizedException('Inccorect ad credentials!');
+    foundAd.deleted = true;
+    foundAd.deletedAt = new Date();
+    const deletedAd = await foundAd.save();
+    return deletedAd;
   }
 
   async updateAd(id: number, updateAdDTO: AdPatchDTO): Promise<Ad> {

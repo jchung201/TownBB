@@ -38,6 +38,6 @@ export class Ad extends BaseEntity {
   // deleted
   @Column({ default: false })
   deleted: boolean;
-  @Column('text', { nullable: true })
-  deletedAt: string;
+  @Column('date', { nullable: true })
+  deletedAt: Date;
 }
