@@ -1,4 +1,5 @@
 import { Repository, EntityRepository } from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
 import { Ad } from './ad.entity';
 import { AdPostDTO } from '../dtos/adPost.dto';
 import { AdsGetDTO } from '../dtos/adsGet.dto';
@@ -9,12 +10,16 @@ export class AdRepository extends Repository<Ad> {
   private logger = new Logger('Ad Repository');
 
   async getAds(filterDTO: AdsGetDTO): Promise<Ad[]> {
-    const { category, search } = filterDTO;
+    const { categories, search } = filterDTO;
     const query = this.createQueryBuilder('ad');
-    if (category) query.andWhere('ad.category = :category', { category });
+    if (categories) {
+      categories.forEach(category =>
+        query.andWhere(':category=ANY(categories)', { category }),
+      );
+    }
     if (search)
       query.andWhere(
-        'ad.title LIKE :search OR ad.company LIKE :search OR ad.location LIKE :search',
+        'ad.title ILIKE :search OR ad.description ILIKE :search OR ad.location ILIKE :search OR ad.value ILIKE :search OR ad.company ILIKE :search OR ad.contactEmail ILIKE :search OR ad.contactPhone ILIKE :search OR ad.contactWebsite ILIKE :search',
         { search: `%${search}%` },
       );
     try {
@@ -41,6 +46,7 @@ export class AdRepository extends Repository<Ad> {
       contactEmail,
       contactPhone,
       contactWebsite,
+      password,
     } = createAdDTO;
     const ad = new Ad();
     if (title) ad.title = title;
@@ -53,8 +59,14 @@ export class AdRepository extends Repository<Ad> {
     if (contactEmail) ad.contactEmail = contactEmail;
     if (contactPhone) ad.contactPhone = contactPhone;
     if (contactWebsite) ad.contactWebsite = contactWebsite;
+    // hash ad and password
+    ad.hash = uuidv4();
+    // email hash to email
+    ad.password = password;
+
     await ad.save();
-    delete ad.user;
+    delete ad.hash;
+    delete ad.password;
     return ad;
   }
 }
