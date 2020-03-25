@@ -1,11 +1,4 @@
-import {
-  Entity,
-  BaseEntity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-} from 'typeorm';
-import { User } from '../../auth/models/user.entity';
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Ad extends BaseEntity {
@@ -42,13 +35,9 @@ export class Ad extends BaseEntity {
   @Column({ nullable: true })
   password: string;
 
-  // Nullable user value
-  @ManyToOne(
-    type => User,
-    user => user.ads,
-    { eager: false, nullable: true },
-  )
-  user: User;
+  // deleted
+  @Column({ default: true })
+  deleted: boolean;
   @Column({ nullable: true })
-  userId: number;
+  deletedAt: string;
 }
