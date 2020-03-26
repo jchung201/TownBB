@@ -3,7 +3,6 @@ import { SubPostDTO } from './dtos/subPost.dto';
 import { SubRepository } from './models/sub.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Sub } from './models/sub.entity';
-import { SubDeleteDTO } from './dtos/subDelete.dto';
 
 @Injectable()
 export class SubsService {
@@ -27,8 +26,7 @@ export class SubsService {
     return this.subRepository.createSub(createSubDTO);
   }
 
-  async deleteSub(id: number, subDeleteDTO: SubDeleteDTO): Promise<Sub> {
-    const { hash } = subDeleteDTO;
+  async deleteSub(id: number, hash: string): Promise<Sub> {
     const foundSub = await this.subRepository.findOne({ id, hash });
     if (!foundSub)
       throw new UnauthorizedException('Inccorect sub credentials!');

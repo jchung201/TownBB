@@ -7,11 +7,11 @@ import {
   ParseIntPipe,
   UsePipes,
   ValidationPipe,
+  Query,
 } from '@nestjs/common';
 import { SubsService } from './subs.service';
 import { SubPostDTO } from './dtos/subPost.dto';
 import { Sub } from './models/sub.entity';
-import { SubDeleteDTO } from './dtos/subDelete.dto';
 
 @Controller('ads')
 export class SubsController {
@@ -27,8 +27,8 @@ export class SubsController {
   @Delete('/:id')
   deleteAd(
     @Param('id', ParseIntPipe) id: number,
-    @Body() subDeleteDTO: SubDeleteDTO,
+    @Query('hash') hash: string,
   ): Promise<Sub> {
-    return this.subsService.deleteSub(id, subDeleteDTO);
+    return this.subsService.deleteSub(id, hash);
   }
 }
