@@ -1,21 +1,22 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
-import * as config from 'config';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const logger = new Logger('bootstrap');
   const app = await NestFactory.create(AppModule);
 
-  const serverConfig = config.get('server');
-
+  const configService = app.get(ConfigService);
   if (process.env.NODE_ENV === 'development') app.enableCors();
   else {
-    app.enableCors({ origin: serverConfig.origin });
-    logger.log(`Accepting requests from origin ${serverConfig.origin}`);
+    app.enableCors({ origin: configService.get('WEB_URL') });
+    logger.log(
+      `Accepting requests from origin ${configService.get('WEB_URL')}`,
+    );
   }
 
-  const port = process.env.PORT || serverConfig.port;
+  const port = process.env.PORT || configService.get('PORT');
   await app.listen(port);
   logger.log(`Application listening on port ${port}`);
 }
