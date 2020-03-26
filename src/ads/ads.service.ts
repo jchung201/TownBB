@@ -3,6 +3,7 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import * as sgMail from '@sendgrid/mail';
 import { AdPostDTO } from './dtos/adPost.dto';
 import { AdsGetDTO } from './dtos/adsGet.dto';
@@ -19,6 +20,7 @@ export class AdsService {
     @InjectRepository(AdRepository)
     private adRepository: AdRepository,
     private readonly subsService: SubsService,
+    private configService: ConfigService,
   ) {}
 
   async getAds(filterDTO: AdsGetDTO): Promise<Ad[]> {
@@ -47,10 +49,15 @@ export class AdsService {
     const msg = {
       to: createdAd.contactEmail,
       from: 'noreply@townbb.com',
-      subject: `Congrats on making a posting! ${createdAd.hash}`,
-      text: `${createdAd.hash}`,
-      html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+      templateId: 'd-372939afe8db4caeb693f179ea0f33a2',
+      dynamic_template_data: {
+        title: createdAd.title,
+        editUrl: `${this.configService.get('WEB_URL')}/${createdAd.id}?hash=${
+          createdAd.hash
+        }`,
+      },
     };
+    console.log(msg);
     sgMail.send(msg);
     return createdAd;
   }
