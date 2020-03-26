@@ -28,7 +28,6 @@ export class AdsController {
 
   @Get()
   getAds(@Query(ValidationPipe) filterDTO: AdsGetDTO): Promise<Ad[]> {
-    console.log(this.configService.get('WEB_URL'));
     return this.adsService.getAds(filterDTO);
   }
 
@@ -49,7 +48,6 @@ export class AdsController {
   @Post()
   @UsePipes(ValidationPipe)
   createAd(@Body() createAdDTO: AdPostDTO): Promise<Ad> {
-    // TODO: Send email with change hash
     return this.adsService.createAd(createAdDTO);
   }
 
