@@ -32,18 +32,20 @@ export class AdsController {
     return this.adsService.getAdById(id);
   }
 
+  @Get('/:id/check')
+  checkAdAccess(
+    @Param('id', ParseIntPipe) id: number,
+    @Query('hash') hash: string,
+    @Query('password') password: string,
+  ): Promise<Ad> {
+    return this.adsService.checkAdAccess(id, hash, password);
+  }
+
   @Post()
   @UsePipes(ValidationPipe)
   createAd(@Body() createAdDTO: AdPostDTO): Promise<Ad> {
+    // TODO: Send email with change hash
     return this.adsService.createAd(createAdDTO);
-  }
-
-  @Delete('/:id')
-  deleteAd(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() adDeleteDTO: AdDeleteDTO,
-  ): Promise<Ad> {
-    return this.adsService.deleteAd(id, adDeleteDTO);
   }
 
   @Patch('/:id')
@@ -52,5 +54,13 @@ export class AdsController {
     @Body() updateAdDTO: AdPatchDTO,
   ): Promise<Ad> {
     return this.adsService.updateAd(id, updateAdDTO);
+  }
+
+  @Delete('/:id')
+  deleteAd(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() adDeleteDTO: AdDeleteDTO,
+  ): Promise<Ad> {
+    return this.adsService.deleteAd(id, adDeleteDTO);
   }
 }

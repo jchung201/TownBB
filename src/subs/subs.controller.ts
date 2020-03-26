@@ -20,6 +20,7 @@ export class SubsController {
   @Post()
   @UsePipes(ValidationPipe)
   createSub(@Body() createSubDTO: SubPostDTO): Promise<Sub> {
+    // TODO: Send email with change hash
     return this.subsService.createSub(createSubDTO);
   }
 
