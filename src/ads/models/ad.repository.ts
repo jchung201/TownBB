@@ -65,7 +65,6 @@ export class AdRepository extends Repository<Ad> {
     ad.password = password;
 
     await ad.save();
-    delete ad.hash;
     delete ad.password;
     return ad;
   }

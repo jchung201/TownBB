@@ -3,6 +3,7 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
+import * as sgMail from '@sendgrid/mail';
 import { AdPostDTO } from './dtos/adPost.dto';
 import { AdsGetDTO } from './dtos/adsGet.dto';
 import { AdRepository } from './models/ad.repository';
@@ -41,7 +42,17 @@ export class AdsService {
     const { categories } = createAdDTO;
     this.subsService.notifySubs(categories);
     // create ad
-    return this.adRepository.createAd(createAdDTO);
+    const createdAd = await this.adRepository.createAd(createAdDTO);
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    const msg = {
+      to: createdAd.contactEmail,
+      from: 'noreply@townbb.com',
+      subject: `Congrats on making a posting! ${createdAd.hash}`,
+      text: `${createdAd.hash}`,
+      html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    };
+    sgMail.send(msg);
+    return createdAd;
   }
 
   async updateAd(id: number, updateAdDTO: AdPatchDTO): Promise<Ad> {
@@ -78,7 +89,7 @@ export class AdsService {
   async deleteAd(id: number, adDeleteDTO: AdDeleteDTO): Promise<Ad> {
     const { hash, password } = adDeleteDTO;
     const foundAd = await this.adRepository.findOne({ id, hash, password });
-    if (!foundAd) throw new UnauthorizedException('Inccorect ad credentials!');
+    if (!foundAd) throw new UnauthorizedException('Incorect ad credentials!');
     foundAd.deleted = true;
     foundAd.deletedAt = new Date();
     const deletedAd = await foundAd.save();
