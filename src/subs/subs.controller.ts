@@ -7,7 +7,6 @@ import {
   ParseIntPipe,
   UsePipes,
   ValidationPipe,
-  Query,
 } from '@nestjs/common';
 import { SubsService } from './subs.service';
 import { SubPostDTO } from './dtos/subPost.dto';

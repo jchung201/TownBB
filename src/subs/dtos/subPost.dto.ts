@@ -7,7 +7,4 @@ export class SubPostDTO {
   @IsNotEmpty()
   @IsEmail()
   email: string;
-
-  hash: string;
-  deleted: boolean;
 }
