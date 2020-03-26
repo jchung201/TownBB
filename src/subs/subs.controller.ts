@@ -13,7 +13,7 @@ import { SubsService } from './subs.service';
 import { SubPostDTO } from './dtos/subPost.dto';
 import { Sub } from './models/sub.entity';
 
-@Controller('ads')
+@Controller('subs')
 export class SubsController {
   constructor(private subsService: SubsService) {}
 
@@ -27,7 +27,7 @@ export class SubsController {
   @Delete('/:id')
   deleteAd(
     @Param('id', ParseIntPipe) id: number,
-    @Query('hash') hash: string,
+    @Body('hash') hash: string,
   ): Promise<Sub> {
     return this.subsService.deleteSub(id, hash);
   }

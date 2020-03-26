@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+  ConflictException,
+} from '@nestjs/common';
 import { SubPostDTO } from './dtos/subPost.dto';
 import { SubRepository } from './models/sub.repository';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -16,12 +20,15 @@ export class SubsService {
     const foundSub = await this.subRepository.findOne({
       category,
       email,
-      deleted: true,
     });
     if (foundSub) {
-      foundSub.deleted = false;
-      const updatedSub = await foundSub.save();
-      return updatedSub;
+      if (foundSub.deleted) {
+        foundSub.deleted = false;
+        const updatedSub = await foundSub.save();
+        return updatedSub;
+      } else {
+        throw new ConflictException('Sub already exists');
+      }
     }
     return this.subRepository.createSub(createSubDTO);
   }
