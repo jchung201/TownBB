@@ -17,16 +17,18 @@ import { AdsGetDTO } from './dtos/adsGet.dto';
 import { Ad } from './models/ad.entity';
 import { AdPatchDTO } from './dtos/adPatch.dto';
 import { AdDeleteDTO } from './dtos/adDelete.dto';
-import { EmailService } from '../common/emailService';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('ads')
 export class AdsController {
-  constructor(private adsService: AdsService) {}
+  constructor(
+    private adsService: AdsService,
+    private configService: ConfigService,
+  ) {}
 
   @Get()
   getAds(@Query(ValidationPipe) filterDTO: AdsGetDTO): Promise<Ad[]> {
-    const email = new EmailService();
-    email.send();
+    console.log(this.configService.get('WEB_URL'));
     return this.adsService.getAds(filterDTO);
   }
 
