@@ -3,6 +3,7 @@ import {
   UnauthorizedException,
   ConflictException,
 } from '@nestjs/common';
+import * as sgMail from '@sendgrid/mail';
 import { SubPostDTO } from './dtos/subPost.dto';
 import { SubRepository } from './models/sub.repository';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -31,6 +32,25 @@ export class SubsService {
       }
     }
     return this.subRepository.createSub(createSubDTO);
+  }
+  async notifySubs(categories: string[]): Promise<void> {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+    for (let i = 0; i < categories.length; i++) {
+      const foundSubs = await this.subRepository.find({
+        category: categories[i],
+      });
+      for (let j = 0; j < foundSubs.length; j++) {
+        const msg = {
+          to: foundSubs[j].email,
+          from: 'noreply@townbb.com',
+          subject: `TownBB: New Posting in ${categories[i]}`,
+          text: 'Job Description',
+          html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+        };
+        sgMail.send(msg);
+      }
+    }
   }
 
   async deleteSub(id: number, hash: string): Promise<Sub> {

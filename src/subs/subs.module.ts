@@ -8,5 +8,6 @@ import { SubRepository } from './models/sub.repository';
   imports: [TypeOrmModule.forFeature([SubRepository])],
   controllers: [SubsController],
   providers: [SubsService],
+  exports: [SubsService],
 })
 export class SubsModule {}
