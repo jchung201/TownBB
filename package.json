@@ -1,8 +1,8 @@
 {
-  "name": "helpwanted",
+  "name": "townbb",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Local postings.",
+  "author": "jchung201",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
