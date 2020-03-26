@@ -1,7 +1,9 @@
 import { Repository, EntityRepository } from 'typeorm';
+import { Logger, InternalServerErrorException } from '@nestjs/common';
+import { v4 as uuidv4 } from 'uuid';
+
 import { Sub } from './sub.entity';
 import { SubPostDTO } from '../dtos/subPost.dto';
-import { Logger, InternalServerErrorException } from '@nestjs/common';
 
 @EntityRepository(Sub)
 export class SubRepository extends Repository<Sub> {
@@ -13,7 +15,9 @@ export class SubRepository extends Repository<Sub> {
     sub.category = category;
     sub.email = email;
     sub.deleted = deleted || false;
+    sub.hash = uuidv4();
     await sub.save();
+    delete sub.hash;
     return sub;
   }
 }

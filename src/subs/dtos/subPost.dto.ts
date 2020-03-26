@@ -8,5 +8,6 @@ export class SubPostDTO {
   @IsEmail()
   email: string;
 
+  hash: string;
   deleted: boolean;
 }
