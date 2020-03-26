@@ -33,7 +33,7 @@ export class SubsService {
     }
     return this.subRepository.createSub(createSubDTO);
   }
-  async notifySubs(categories: string[]): Promise<void> {
+  async notifySubs(categories: string[], id: number): Promise<void> {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
     for (let i = 0; i < categories.length; i++) {
@@ -44,7 +44,7 @@ export class SubsService {
         const msg = {
           to: foundSubs[j].email,
           from: 'noreply@townbb.com',
-          subject: `TownBB: New Posting in ${categories[i]}, hash: ${foundSubs[i].hash}`,
+          subject: `TownBB: New Posting in ${categories[i]}, hash: ${foundSubs[i].hash}, id:${id}`,
           text: 'Job Description',
           html: '<strong>and easy to do anywhere, even with Node.js</strong>',
         };

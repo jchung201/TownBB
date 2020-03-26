@@ -40,9 +40,6 @@ export class AdsService {
   }
 
   async createAd(createAdDTO: AdPostDTO): Promise<Ad> {
-    // send emails
-    const { categories } = createAdDTO;
-    this.subsService.notifySubs(categories);
     // create ad
     const createdAd = await this.adRepository.createAd(createAdDTO);
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -50,15 +47,18 @@ export class AdsService {
       to: createdAd.contactEmail,
       from: 'noreply@townbb.com',
       templateId: 'd-372939afe8db4caeb693f179ea0f33a2',
+      // eslint-disable-next-line @typescript-eslint/camelcase
       dynamic_template_data: {
         title: createdAd.title,
-        editUrl: `${this.configService.get('WEB_URL')}/${createdAd.id}?hash=${
-          createdAd.hash
-        }`,
+        editUrl: `https://${this.configService.get('WEB_URL')}/${
+          createdAd.id
+        }?hash=${createdAd.hash}`,
       },
     };
-    console.log(msg);
     sgMail.send(msg);
+    // send emails
+    const { categories } = createAdDTO;
+    this.subsService.notifySubs(categories, createdAd.id);
     return createdAd;
   }
 
