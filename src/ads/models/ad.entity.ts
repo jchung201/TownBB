@@ -1,4 +1,11 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Ad extends BaseEntity {
@@ -35,9 +42,16 @@ export class Ad extends BaseEntity {
   @Column()
   password: string;
 
-  // deleted
+  // Deleted
   @Column({ default: false })
   deleted: boolean;
   @Column('date', { nullable: true })
   deletedAt: Date;
+
+  // TimeStamps
+  @CreateDateColumn()
+  created: Date;
+
+  @UpdateDateColumn()
+  updated: Date;
 }

@@ -1,4 +1,11 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Sub extends BaseEntity {
@@ -11,9 +18,17 @@ export class Sub extends BaseEntity {
   @Column('text', { nullable: true })
   email: string;
 
-  // deleted
+  // Deleted
+  @Column()
+  hash: string;
   @Column({ default: false })
   deleted: boolean;
   @Column('date', { nullable: true })
   deletedAt: Date;
+
+  // TimeStamps
+  @CreateDateColumn()
+  created: Date;
+  @UpdateDateColumn()
+  updated: Date;
 }
