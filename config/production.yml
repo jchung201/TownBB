@@ -1,5 +1,8 @@
 server:
   origin: 'https://www.google.com'
 
+web:
+  url: 'https://townbb.com/'
+
 db:
   synchronize: false

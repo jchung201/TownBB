@@ -17,6 +17,7 @@ import { AdsGetDTO } from './dtos/adsGet.dto';
 import { Ad } from './models/ad.entity';
 import { AdPatchDTO } from './dtos/adPatch.dto';
 import { AdDeleteDTO } from './dtos/adDelete.dto';
+import { EmailService } from '../common/emailService';
 
 @Controller('ads')
 export class AdsController {
@@ -24,6 +25,8 @@ export class AdsController {
 
   @Get()
   getAds(@Query(ValidationPipe) filterDTO: AdsGetDTO): Promise<Ad[]> {
+    const email = new EmailService();
+    email.send();
     return this.adsService.getAds(filterDTO);
   }
 
