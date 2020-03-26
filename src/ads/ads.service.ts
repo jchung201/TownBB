@@ -10,12 +10,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Ad } from './models/ad.entity';
 import { AdPatchDTO } from './dtos/adPatch.dto';
 import { AdDeleteDTO } from './dtos/adDelete.dto';
+import { SubsService } from 'src/subs/subs.service';
 
 @Injectable()
 export class AdsService {
   constructor(
     @InjectRepository(AdRepository)
     private adRepository: AdRepository,
+    private readonly subsService: SubsService,
   ) {}
 
   async getAds(filterDTO: AdsGetDTO): Promise<Ad[]> {
@@ -35,6 +37,10 @@ export class AdsService {
   }
 
   async createAd(createAdDTO: AdPostDTO): Promise<Ad> {
+    // send emails
+    const { categories } = createAdDTO;
+    this.subsService.notifySubs(categories);
+    // create ad
     return this.adRepository.createAd(createAdDTO);
   }
 
