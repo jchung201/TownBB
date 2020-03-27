@@ -4,7 +4,6 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import * as sgMail from '@sendgrid/mail';
 import { AdPostDTO } from './dtos/adPost.dto';
 import { AdsGetDTO } from './dtos/adsGet.dto';
 import { AdRepository } from './models/ad.repository';
@@ -13,6 +12,7 @@ import { Ad } from './models/ad.entity';
 import { AdPatchDTO } from './dtos/adPatch.dto';
 import { AdDeleteDTO } from './dtos/adDelete.dto';
 import { SubsService } from 'src/subs/subs.service';
+import { CommonService } from 'src/common/common.service';
 
 @Injectable()
 export class AdsService {
@@ -21,6 +21,7 @@ export class AdsService {
     private adRepository: AdRepository,
     private readonly subsService: SubsService,
     private configService: ConfigService,
+    private readonly commonService: CommonService,
   ) {}
 
   async getAds(filterDTO: AdsGetDTO): Promise<Ad[]> {
@@ -43,20 +44,15 @@ export class AdsService {
     // Create Ad
     const createdAd = await this.adRepository.createAd(createAdDTO);
     // Call Email Service
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    const msg = {
+    this.commonService.emailOwner({
       to: createdAd.contactEmail,
       from: 'noreply@townbb.com',
       templateId: 'd-372939afe8db4caeb693f179ea0f33a2',
-      // eslint-disable-next-line @typescript-eslint/camelcase
-      dynamic_template_data: {
-        title: createdAd.title,
-        editUrl: `${this.configService.get('WEB_URL')}/${createdAd.id}?hash=${
-          createdAd.hash
-        }`,
-      },
-    };
-    sgMail.send(msg);
+      title: createdAd.title,
+      editUrl: `${this.configService.get('WEB_URL')}/${createdAd.id}?hash=${
+        createdAd.hash
+      }`,
+    });
     // Send subs emails
     const { categories } = createAdDTO;
     this.subsService.notifySubs(categories, createdAd);
