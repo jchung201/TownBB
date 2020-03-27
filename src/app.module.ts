@@ -5,6 +5,7 @@ import { AdsModule } from './ads/ads.module';
 import { typeOrmConfig } from './config/typeorm.config';
 import configuration from './config/configuration';
 import { SubsModule } from './subs/subs.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { SubsModule } from './subs/subs.module';
     TypeOrmModule.forRoot(typeOrmConfig),
     AdsModule,
     SubsModule,
+    CommonModule,
   ],
 })
 export class AppModule {}
