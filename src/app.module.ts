@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AdsModule } from './ads/ads.module';
-import { retrieveOrmConfig } from './Config/typeorm.config';
+import { retrieveOrmConfig } from './config/typeorm.config';
 import configuration from './config/configuration';
 import { SubsModule } from './subs/subs.module';
 import { CommonModule } from './common/common.module';
