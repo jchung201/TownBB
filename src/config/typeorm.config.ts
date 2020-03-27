@@ -12,6 +12,7 @@ export const retrieveOrmConfig = (): TypeOrmModuleOptions => {
 
   switch (process.env.NODE_ENV) {
     case 'production':
+      RDS_TYPE = 'postgres';
       TYPEORM_SYNC = false;
       break;
     case 'development':
