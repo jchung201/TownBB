@@ -58,8 +58,8 @@ export class CommonService {
     this.sgMail.send(msg);
   }
 
-  async uploadImage(file: Image): Promise<S3Response> {
-    const { mimetype, buffer, size, originalname } = file;
+  async uploadImage(image: Image): Promise<S3Response> {
+    const { mimetype, buffer, size, originalname } = image;
     if (!mimetype.startsWith('image'))
       throw new BadRequestException('Incorrect fle type.');
     if (Number(size) > 10100640002)

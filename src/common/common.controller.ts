@@ -13,8 +13,8 @@ export class CommonController {
   constructor(private commonService: CommonService) {}
 
   @Post('/upload/image')
-  @UseInterceptors(FileInterceptor('file'))
-  async uploadFile(@UploadedFile() file): Promise<S3Response> {
-    return this.commonService.uploadImage(file);
+  @UseInterceptors(FileInterceptor('image'))
+  async uploadFile(@UploadedFile() image): Promise<S3Response> {
+    return this.commonService.uploadImage(image);
   }
 }
