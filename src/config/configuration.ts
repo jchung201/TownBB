@@ -8,10 +8,10 @@ switch (process.env.NODE_ENV) {
     WEB_URL = 'https://townbb.com';
   case 'development':
     PORT = 3000;
-    WEB_URL = 'localhost:4000';
+    WEB_URL = 'http://localhost:4000';
   default:
     PORT = 3000;
-    WEB_URL = 'localhost:4000';
+    WEB_URL = 'http://localhost:4000';
 }
 export default () => ({
   PORT,

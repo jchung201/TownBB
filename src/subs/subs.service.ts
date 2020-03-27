@@ -8,12 +8,15 @@ import { SubPostDTO } from './dtos/subPost.dto';
 import { SubRepository } from './models/sub.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Sub } from './models/sub.entity';
+import { Ad } from 'src/ads/models/ad.entity';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class SubsService {
   constructor(
     @InjectRepository(SubRepository)
     private subRepository: SubRepository,
+    private configService: ConfigService,
   ) {}
 
   async createSub(createSubDTO: SubPostDTO): Promise<Sub> {
@@ -33,20 +36,28 @@ export class SubsService {
     }
     return this.subRepository.createSub(createSubDTO);
   }
-  async notifySubs(categories: string[], id: number): Promise<void> {
+  async notifySubs(categories: string[], createdAd: Ad): Promise<void> {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
     for (let i = 0; i < categories.length; i++) {
+      // Find all subs for each category
       const foundSubs = await this.subRepository.find({
         category: categories[i],
       });
       for (let j = 0; j < foundSubs.length; j++) {
         const msg = {
-          to: foundSubs[j].email,
+          to: createdAd.contactEmail,
           from: 'noreply@townbb.com',
-          subject: `TownBB: New Posting in ${categories[i]}, hash: ${foundSubs[i].hash}, id:${id}`,
-          text: 'Job Description',
-          html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+          templateId: 'd-b12a36f355e2431392f5e2b129b62ee2',
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          dynamic_template_data: {
+            title: createdAd.title,
+            viewUrl: `${this.configService.get('WEB_URL')}/ads/${createdAd.id}`,
+            unsubUrl: `${this.configService.get('WEB_URL')}/subs/${
+              createdAd.id
+            }?hash=${foundSubs[j].hash}`,
+            category: categories[i],
+          },
         };
         sgMail.send(msg);
       }
