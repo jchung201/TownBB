@@ -64,7 +64,6 @@ export class CommonService {
       throw new BadRequestException('Incorrect fle type.');
     if (Number(size) > 10100640002)
       throw new BadRequestException('File too big!');
-
     const params = {
       Bucket: this.configService.get('S3_BUCKET_NAME'),
       Key: `images/${originalname}+${new Date()}`,

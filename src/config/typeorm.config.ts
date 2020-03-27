@@ -13,6 +13,7 @@ export const retrieveOrmConfig = (): TypeOrmModuleOptions => {
   switch (process.env.NODE_ENV) {
     case 'production':
       TYPEORM_SYNC = false;
+      break;
     case 'development':
       RDS_TYPE = 'postgres';
       RDS_HOSTNAME = 'localhost';
@@ -21,6 +22,7 @@ export const retrieveOrmConfig = (): TypeOrmModuleOptions => {
       RDS_PASSWORD = 'postgres';
       RDS_DB_NAME = 'helpwanted';
       TYPEORM_SYNC = true;
+      break;
     default:
       RDS_TYPE = 'postgres';
       RDS_HOSTNAME = 'localhost';
