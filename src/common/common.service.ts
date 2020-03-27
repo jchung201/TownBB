@@ -4,7 +4,7 @@ import * as AWS from 'aws-sdk';
 import { ConfigService } from '@nestjs/config';
 import { EmailOwnerDTO } from './dtos/emailOwner.dto';
 import { EmailSubDTO } from './dtos/emailSub.dto';
-import { Image } from './models/Image';
+import { Image } from './models/image';
 import { S3Response } from './models/imageLink';
 
 @Injectable()
