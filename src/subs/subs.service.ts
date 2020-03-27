@@ -61,8 +61,7 @@ export class SubsService {
 
   async deleteSub(id: number, hash: string): Promise<Sub> {
     const foundSub = await this.subRepository.findOne({ id, hash });
-    if (!foundSub)
-      throw new UnauthorizedException('Inccorect sub credentials!');
+    if (!foundSub) throw new UnauthorizedException('Incorect sub credentials!');
     foundSub.deleted = true;
     foundSub.deletedAt = new Date();
     const deletedSub = await foundSub.save();
