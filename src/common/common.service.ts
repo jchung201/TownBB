@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import * as sgMail from '@sendgrid/mail';
 import { ConfigService } from '@nestjs/config';
-import { EmailCreateAdDTO } from './dtos/emailCreateAd.dto';
+import { EmailOwnerDTO } from './dtos/emailOwner.dto';
+import { EmailSubDTO } from './dtos/emailSub.dto';
 
 @Injectable()
 export class CommonService {
@@ -11,8 +12,8 @@ export class CommonService {
     this.sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   }
 
-  emailOwner(emailCreateAd: EmailCreateAdDTO) {
-    const { to, from, templateId, title, editUrl } = emailCreateAd;
+  emailOwner(emailOwnerDTO: EmailOwnerDTO) {
+    const { to, from, templateId, title, editUrl } = emailOwnerDTO;
     const msg = {
       to,
       from,
@@ -21,6 +22,30 @@ export class CommonService {
       dynamic_template_data: {
         title,
         editUrl,
+      },
+    };
+    this.sgMail.send(msg);
+  }
+  emailSub(emailSubDTO: EmailSubDTO) {
+    const {
+      to,
+      from,
+      templateId,
+      title,
+      viewUrl,
+      unsubUrl,
+      category,
+    } = emailSubDTO;
+    const msg = {
+      to,
+      from,
+      templateId,
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      dynamic_template_data: {
+        title,
+        viewUrl,
+        unsubUrl,
+        category,
       },
     };
     this.sgMail.send(msg);

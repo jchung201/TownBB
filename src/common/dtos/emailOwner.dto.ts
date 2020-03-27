@@ -1,5 +1,4 @@
-export class EmailCreateAdDTO {
-  // Auth
+export class EmailOwnerDTO {
   to: string;
   from: string;
   templateId: string;
