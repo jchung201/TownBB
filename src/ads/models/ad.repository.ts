@@ -39,6 +39,8 @@ export class AdRepository extends Repository<Ad> {
       title,
       description,
       location,
+      longitude,
+      latitude,
       value,
       categories,
       images,
@@ -52,6 +54,10 @@ export class AdRepository extends Repository<Ad> {
     if (title) ad.title = title;
     if (description) ad.description = description;
     if (location) ad.location = location;
+    if (latitude && longitude) {
+      ad.latitude = latitude;
+      ad.longitude = longitude;
+    }
     if (value) ad.value = value;
     if (categories) ad.categories = categories;
     if (images) ad.images = images;

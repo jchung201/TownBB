@@ -19,6 +19,11 @@ export class Ad extends BaseEntity {
   description: string;
   @Column()
   location: string;
+  @Column()
+  longitude: number;
+  @Column()
+  latitude: number;
+
   @Column({ nullable: true })
   value: string;
   @Column('text', { array: true })

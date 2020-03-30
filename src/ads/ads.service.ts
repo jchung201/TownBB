@@ -64,6 +64,8 @@ export class AdsService {
       title,
       description,
       location,
+      longitude,
+      latitude,
       value,
       categories,
       images,
@@ -79,6 +81,10 @@ export class AdsService {
     if (title) foundAd.title = title;
     if (description) foundAd.description = description;
     if (location) foundAd.location = location;
+    if (longitude && latitude) {
+      foundAd.longitude = longitude;
+      foundAd.latitude = latitude;
+    }
     if (value) foundAd.value = value;
     if (categories) foundAd.categories = categories;
     if (images) foundAd.images = images;

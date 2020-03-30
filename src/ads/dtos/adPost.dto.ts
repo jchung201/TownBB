@@ -7,6 +7,8 @@ export class AdPostDTO {
   description: string;
   @IsNotEmpty()
   location: string;
+  longitude: number;
+  latitude: number;
   value: string;
   categories: string[];
   images: string[];
