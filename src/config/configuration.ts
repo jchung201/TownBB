@@ -9,7 +9,7 @@ export default () => {
       WEB_URL = 'https://townbb.com';
       S3_BUCKET_NAME = 'townbbproduction';
       break;
-    case 'development':
+    case 'staging':
       WEB_URL = 'https://townbb-staging.com';
       S3_BUCKET_NAME = 'townbbstaging';
       break;
@@ -23,6 +23,7 @@ export default () => {
       WEB_URL = 'http://localhost:4000';
       S3_BUCKET_NAME = 'townbbdevelopment';
   }
+  console.log('WHY', PORT);
   return {
     PORT,
     WEB_URL,
