@@ -6,6 +6,7 @@ import { EmailOwnerDTO } from './dtos/emailOwner.dto';
 import { EmailSubDTO } from './dtos/emailSub.dto';
 import { Image } from './models/image';
 import { S3Response } from './models/s3Response';
+import { Client } from '@googlemaps/google-maps-services-js';
 
 @Injectable()
 export class CommonService {
@@ -19,7 +20,7 @@ export class CommonService {
       secretAccessKey: process.env.AWS_ACCESS_KEY,
     });
   }
-  emailOwner(emailOwnerDTO: EmailOwnerDTO) {
+  emailOwner(emailOwnerDTO: EmailOwnerDTO): void {
     const { to, from, templateId, title, editUrl } = emailOwnerDTO;
     const msg = {
       to,
@@ -79,7 +80,23 @@ export class CommonService {
     // this.AWS.upload(file);
   }
 
-  async getLocation(location: string): Promise<void> {
-    await console.log(location);
+  async getLocation(location: string): Promise<any> {
+    const client = new Client({});
+    const response = await client.geocode({
+      params: {
+        address: location,
+        key: process.env.GOOGLE_MAPS_KEY,
+      },
+      timeout: 1000, // milliseconds
+    });
+    if (response.data.status === 'ZERO_RESULTS') {
+      throw new BadRequestException('Address not found!');
+    }
+    const foundAddress = response.data.results[0];
+    return {
+      formattedAddress: foundAddress.formatted_address,
+      latitude: foundAddress.geometry.location.lat,
+      longitude: foundAddress.geometry.location.lng,
+    };
   }
 }
