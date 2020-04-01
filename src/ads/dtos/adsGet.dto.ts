@@ -11,6 +11,4 @@ export class AdsGetDTO {
   latitude: string;
   @IsOptional()
   longitude: string;
-  @IsOptional()
-  radius: string;
 }

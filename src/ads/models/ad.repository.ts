@@ -14,16 +14,19 @@ export class AdRepository extends Repository<Ad> {
   private logger = new Logger('Ad Repository');
 
   async getAds(filterDTO: AdsGetDTO): Promise<Ad[]> {
-    const { categories, search, latitude, longitude, radius } = filterDTO;
+    const { categories, search, latitude, longitude } = filterDTO;
     let query;
     if (typeof categories === 'string')
       throw new BadRequestException('Categories must be an array of strings!');
-    if (latitude && longitude && radius) {
+    if (latitude && longitude) {
+      // Arbitrary radius... hard coded
+      const radius = 300;
       query = `
       SELECT *, point(${longitude}, ${latitude}) <@> point(longitude, latitude)::point as distance 
-    FROM ad
-    WHERE (point(${longitude}, ${latitude}) <@> point(longitude, latitude)) < ${radius}
-    `;
+      FROM ad
+      WHERE ad.deleted=false
+      AND (point(${longitude}, ${latitude}) <@> point(longitude, latitude)) < ${radius}
+      `;
       if (search) {
         query += ` AND ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%'`;
       }
@@ -36,8 +39,9 @@ export class AdRepository extends Repository<Ad> {
           }
         }
       }
+      query += ' ORDER BY distance';
     } else if (search) {
-      query = `SELECT * from ad WHERE ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%'`;
+      query = `SELECT * from ad WHERE ad.deleted=false AND ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%'`;
       if (categories) {
         for (let i = 0; i < categories.length; i++) {
           if (i === 0) {
@@ -48,20 +52,16 @@ export class AdRepository extends Repository<Ad> {
         }
       }
     } else if (categories) {
-      query = `SELECT * from ad`;
+      query = `SELECT * from ad WHERE ad.deleted=false`;
       for (let i = 0; i < categories.length; i++) {
-        if (i === 0) {
-          query += ` WHERE '${categories[i]}'=ANY(ad.categories)`;
-        } else {
-          query += ` OR '${categories[i]}'=ANY(ad.categories)`;
-        }
+        query += ` OR '${categories[i]}'=ANY(ad.categories)`;
       }
     } else {
-      query = `SELECT * from ad`;
+      query = `SELECT * from ad WHERE ad.deleted=false`;
     }
 
     try {
-      return await this.query(query + ';');
+      return await this.query(query);
     } catch (error) {
       this.logger.error(
         `Failed to fetch ads. Filters: ${JSON.stringify(filterDTO)}`,

@@ -5,6 +5,8 @@ export class AdPatchDTO {
   title: string;
   description: string;
   location: string;
+  latitude: number;
+  longitude: number;
   value: string;
   categories: string[];
   images: string[];
