@@ -5,8 +5,6 @@ export class AdPatchDTO {
   title: string;
   description: string;
   location: string;
-  latitude: number;
-  longitude: number;
   value: string;
   categories: string[];
   images: string[];
@@ -16,10 +14,4 @@ export class AdPatchDTO {
   contactEmail: string;
   contactPhone: string;
   contactWebsite: string;
-
-  // Auth
-  @IsNotEmpty()
-  hash: string;
-  @IsNotEmpty()
-  password: string;
 }

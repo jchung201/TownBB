@@ -16,7 +16,6 @@ import { AdPostDTO } from './dtos/adPost.dto';
 import { AdsGetDTO } from './dtos/adsGet.dto';
 import { Ad } from './models/ad.entity';
 import { AdPatchDTO } from './dtos/adPatch.dto';
-import { AdDeleteDTO } from './dtos/adDelete.dto';
 import { ConfigService } from '@nestjs/config';
 
 @Controller('ads')
@@ -40,15 +39,6 @@ export class AdsController {
     return this.adsService.getAdById(id);
   }
 
-  @Get('/:id/check')
-  checkAdAccess(
-    @Param('id', ParseIntPipe) id: number,
-    @Query('hash') hash: string,
-    @Query('password') password: string,
-  ): Promise<Ad> {
-    return this.adsService.checkAdAccess(id, hash, password);
-  }
-
   @Post()
   @UsePipes(ValidationPipe)
   async createAd(@Body() createAdDTO: AdPostDTO): Promise<Ad> {
@@ -58,17 +48,18 @@ export class AdsController {
   @Patch('/:id')
   updateAd(
     @Param('id', ParseIntPipe) id: number,
+    @Query('hash') hash: string,
     @Body() updateAdDTO: AdPatchDTO,
   ): Promise<Ad> {
-    return this.adsService.updateAd(id, updateAdDTO);
+    return this.adsService.updateAd(id, hash, updateAdDTO);
   }
 
   @Delete('/:id')
   @UsePipes(ValidationPipe)
   deleteAd(
     @Param('id', ParseIntPipe) id: number,
-    @Body() adDeleteDTO: AdDeleteDTO,
+    @Query('hash') hash: string,
   ): Promise<Ad> {
-    return this.adsService.deleteAd(id, adDeleteDTO);
+    return this.adsService.deleteAd(id, hash);
   }
 }

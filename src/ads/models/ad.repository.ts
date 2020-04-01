@@ -100,7 +100,6 @@ export class AdRepository extends Repository<Ad> {
       contactEmail,
       contactPhone,
       contactWebsite,
-      password,
     } = createAdDTO;
     const ad = new Ad();
     if (title) ad.title = title;
@@ -121,11 +120,8 @@ export class AdRepository extends Repository<Ad> {
     if (contactWebsite) ad.contactWebsite = contactWebsite;
     // hash ad and password
     ad.hash = uuidv4();
-    // email hash to email
-    ad.password = password;
 
     await ad.save();
-    delete ad.password;
     delete ad.hash;
     return ad;
   }

@@ -10,7 +10,6 @@ import { AdRepository } from './models/ad.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Ad } from './models/ad.entity';
 import { AdPatchDTO } from './dtos/adPatch.dto';
-import { AdDeleteDTO } from './dtos/adDelete.dto';
 import { SubsService } from 'src/subs/subs.service';
 import { CommonService } from 'src/common/common.service';
 
@@ -33,12 +32,6 @@ export class AdsService {
 
   async getAdById(id: number): Promise<Ad> {
     const foundAd = await this.adRepository.findOne(id);
-    if (!foundAd) throw new NotFoundException(`Ad with ID "${id}" not found!`);
-    return foundAd;
-  }
-
-  async checkAdAccess(id: number, hash: string, password: string): Promise<Ad> {
-    const foundAd = await this.adRepository.findOne({ id, hash, password });
     if (!foundAd) throw new NotFoundException(`Ad with ID "${id}" not found!`);
     return foundAd;
   }
@@ -66,13 +59,15 @@ export class AdsService {
     return createdAd;
   }
 
-  async updateAd(id: number, updateAdDTO: AdPatchDTO): Promise<Ad> {
+  async updateAd(
+    id: number,
+    hash: string,
+    updateAdDTO: AdPatchDTO,
+  ): Promise<Ad> {
     const {
       title,
       description,
       location,
-      longitude,
-      latitude,
       value,
       categories,
       images,
@@ -80,17 +75,14 @@ export class AdsService {
       contactEmail,
       contactPhone,
       contactWebsite,
-      hash,
-      password,
     } = updateAdDTO;
-    const foundAd = await this.adRepository.findOne({ id, hash, password });
+    const foundAd = await this.adRepository.findOne({ id, hash });
     if (!foundAd) throw new UnauthorizedException('Incorrect credentials!');
     if (title) foundAd.title = title;
     if (description) foundAd.description = description;
-    if (location) foundAd.location = location;
-    if (longitude && latitude) {
-      foundAd.longitude = longitude;
-      foundAd.latitude = latitude;
+    if (location) {
+      //TODO: Get latitude/longitude
+      foundAd.location = location;
     }
     if (value) foundAd.value = value;
     if (categories) foundAd.categories = categories;
@@ -103,9 +95,8 @@ export class AdsService {
     return savedAd;
   }
 
-  async deleteAd(id: number, adDeleteDTO: AdDeleteDTO): Promise<Ad> {
-    const { hash, password } = adDeleteDTO;
-    const foundAd = await this.adRepository.findOne({ id, hash, password });
+  async deleteAd(id: number, hash: string): Promise<Ad> {
+    const foundAd = await this.adRepository.findOne({ id, hash });
     if (!foundAd) throw new UnauthorizedException('Incorect ad credentials!');
     foundAd.deleted = true;
     foundAd.deletedAt = new Date();

@@ -44,8 +44,6 @@ export class Ad extends BaseEntity {
   // Auth
   @Column()
   hash: string;
-  @Column()
-  password: string;
 
   // Deleted
   @Column({ default: false })
