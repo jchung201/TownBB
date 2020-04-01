@@ -6,4 +6,11 @@ export class AdsGetDTO {
 
   @IsOptional()
   search: string;
+
+  @IsOptional()
+  latitude: string;
+  @IsOptional()
+  longitude: string;
+  @IsOptional()
+  radius: string;
 }

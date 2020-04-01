@@ -10,7 +10,7 @@ export class AdRepository extends Repository<Ad> {
   private logger = new Logger('Ad Repository');
 
   async getAds(filterDTO: AdsGetDTO): Promise<Ad[]> {
-    const { categories, search } = filterDTO;
+    const { categories, search, latitude, longitude, radius } = filterDTO;
     const query = this.createQueryBuilder('ad');
     if (categories) {
       categories.forEach(category =>
@@ -22,6 +22,10 @@ export class AdRepository extends Repository<Ad> {
         'ad.title ILIKE :search OR ad.description ILIKE :search OR ad.location ILIKE :search OR ad.value ILIKE :search OR ad.company ILIKE :search OR ad.contactEmail ILIKE :search OR ad.contactPhone ILIKE :search OR ad.contactWebsite ILIKE :search',
         { search: `%${search}%` },
       );
+    if (latitude && longitude && radius)
+      query.andWhere('ad.latitude ILIKE :latitude', {
+        latitude: `%${latitude}%`,
+      });
     try {
       const ads = await query.getMany();
       return ads;
