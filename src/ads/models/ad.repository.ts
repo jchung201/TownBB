@@ -3,7 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { Ad } from './ad.entity';
 import { AdPostDTO } from '../dtos/adPost.dto';
 import { AdsGetDTO } from '../dtos/adsGet.dto';
-import { Logger, InternalServerErrorException } from '@nestjs/common';
+import {
+  Logger,
+  InternalServerErrorException,
+  BadRequestException,
+} from '@nestjs/common';
 
 @EntityRepository(Ad)
 export class AdRepository extends Repository<Ad> {
@@ -11,24 +15,53 @@ export class AdRepository extends Repository<Ad> {
 
   async getAds(filterDTO: AdsGetDTO): Promise<Ad[]> {
     const { categories, search, latitude, longitude, radius } = filterDTO;
-    const query = this.createQueryBuilder('ad');
-    if (categories) {
-      categories.forEach(category =>
-        query.andWhere(':category=ANY(categories)', { category }),
-      );
+    let query;
+    if (typeof categories === 'string')
+      throw new BadRequestException('Categories must be an array of strings!');
+    if (latitude && longitude && radius) {
+      query = `
+      SELECT *, point(${longitude}, ${latitude}) <@> point(longitude, latitude)::point as distance 
+    FROM ad
+    WHERE (point(${longitude}, ${latitude}) <@> point(longitude, latitude)) < ${radius}
+    `;
+      if (search) {
+        query += ` AND ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%'`;
+      }
+      if (categories) {
+        for (let i = 0; i < categories.length; i++) {
+          if (i === 0) {
+            query += ` AND '${categories[i]}'=ANY(ad.categories)`;
+          } else {
+            query += ` OR '${categories[i]}'=ANY(ad.categories)`;
+          }
+        }
+      }
+    } else if (search) {
+      query = `SELECT * from ad WHERE ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%'`;
+      if (categories) {
+        for (let i = 0; i < categories.length; i++) {
+          if (i === 0) {
+            query += ` AND '${categories[i]}'=ANY(ad.categories)`;
+          } else {
+            query += ` OR '${categories[i]}'=ANY(ad.categories)`;
+          }
+        }
+      }
+    } else if (categories) {
+      query = `SELECT * from ad`;
+      for (let i = 0; i < categories.length; i++) {
+        if (i === 0) {
+          query += ` WHERE '${categories[i]}'=ANY(ad.categories)`;
+        } else {
+          query += ` OR '${categories[i]}'=ANY(ad.categories)`;
+        }
+      }
+    } else {
+      query = `SELECT * from ad`;
     }
-    if (search)
-      query.andWhere(
-        'ad.title ILIKE :search OR ad.description ILIKE :search OR ad.location ILIKE :search OR ad.value ILIKE :search OR ad.company ILIKE :search OR ad.contactEmail ILIKE :search OR ad.contactPhone ILIKE :search OR ad.contactWebsite ILIKE :search',
-        { search: `%${search}%` },
-      );
-    if (latitude && longitude && radius)
-      query.andWhere('ad.latitude ILIKE :latitude', {
-        latitude: `%${latitude}%`,
-      });
+
     try {
-      const ads = await query.getMany();
-      return ads;
+      return await this.query(query + ';');
     } catch (error) {
       this.logger.error(
         `Failed to fetch ads. Filters: ${JSON.stringify(filterDTO)}`,
