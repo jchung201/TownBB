@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { EmailOwnerDTO } from './dtos/emailOwner.dto';
 import { EmailSubDTO } from './dtos/emailSub.dto';
 import { Image } from './models/image';
-import { S3Response } from './models/imageLink';
+import { S3Response } from './models/s3Response';
 
 @Injectable()
 export class CommonService {
@@ -77,5 +77,9 @@ export class CommonService {
     return response;
     // console.log(encoding, mimetype, buffer, size, originalname);
     // this.AWS.upload(file);
+  }
+
+  async getLocation(location: string): Promise<void> {
+    await console.log(location);
   }
 }
