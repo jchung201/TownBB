@@ -102,27 +102,24 @@ export class AdRepository extends Repository<Ad> {
       contactWebsite,
     } = createAdDTO;
     const ad = new Ad();
-    if (title) ad.title = title;
-    if (description) ad.description = description;
-
-    if (location) ad.location = location;
-    // check if latitude and logitude is within bounds
-    if (latitude && longitude) {
-      ad.latitude = latitude;
-      ad.longitude = longitude;
-    }
+    if (latitude < -90 || latitude > 90 || longitude < -180 || longitude > 180)
+      throw new BadRequestException('Incorrect location inputs!');
+    ad.title = title;
+    ad.description = description;
+    ad.location = location;
+    ad.latitude = latitude;
+    ad.longitude = longitude;
     if (value) ad.value = value;
-    if (categories) ad.categories = categories;
-    if (images) ad.images = images;
+    ad.categories = categories;
+    ad.images = images;
     if (company) ad.company = company;
-    if (contactEmail) ad.contactEmail = contactEmail;
+    ad.contactEmail = contactEmail;
     if (contactPhone) ad.contactPhone = contactPhone;
     if (contactWebsite) ad.contactWebsite = contactWebsite;
     // hash ad and password
     ad.hash = uuidv4();
 
     await ad.save();
-    delete ad.hash;
     return ad;
   }
 }

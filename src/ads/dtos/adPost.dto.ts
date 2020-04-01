@@ -4,6 +4,7 @@ export class AdPostDTO {
   // Meta
   @IsNotEmpty()
   title: string;
+  @IsNotEmpty()
   description: string;
   @IsNotEmpty()
   location: string;
@@ -12,7 +13,9 @@ export class AdPostDTO {
   @IsNotEmpty()
   latitude: number;
   value: string;
+  @IsNotEmpty()
   categories: string[];
+  @IsNotEmpty()
   images: string[];
   company: string;
 

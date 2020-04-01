@@ -2,6 +2,7 @@ import {
   Injectable,
   NotFoundException,
   UnauthorizedException,
+  BadRequestException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { AdPostDTO } from './dtos/adPost.dto';
@@ -79,8 +80,16 @@ export class AdsService {
     if (title) foundAd.title = title;
     if (description) foundAd.description = description;
     if (location && latitude && longitude) {
-      //TODO: Get latitude/longitude
+      if (
+        latitude < -90 ||
+        latitude > 90 ||
+        longitude < -180 ||
+        longitude > 180
+      )
+        throw new BadRequestException('Incorrect location inputs!');
       foundAd.location = location;
+      foundAd.latitude = latitude;
+      foundAd.longitude = longitude;
     }
     if (value) foundAd.value = value;
     if (categories) foundAd.categories = categories;
