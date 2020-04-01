@@ -5,10 +5,13 @@ import {
   UploadedFile,
   Get,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CommonService } from './common.service';
 import { S3Response } from './models/s3Response';
+import { GetLocationDTO } from './dtos/getLocation';
 
 @Controller('common')
 export class CommonController {
@@ -21,7 +24,8 @@ export class CommonController {
   }
 
   @Get('/location')
-  async getLocation(@Query('location') location: string): Promise<void> {
-    return this.commonService.getLocation(location);
+  @UsePipes(ValidationPipe)
+  async getLocation(@Query() getLocationDTO: GetLocationDTO): Promise<any> {
+    return this.commonService.getLocation(getLocationDTO);
   }
 }

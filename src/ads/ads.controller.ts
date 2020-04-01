@@ -60,6 +60,7 @@ export class AdsController {
   }
 
   @Delete('/:id')
+  @UsePipes(ValidationPipe)
   deleteAd(
     @Param('id', ParseIntPipe) id: number,
     @Body() adDeleteDTO: AdDeleteDTO,

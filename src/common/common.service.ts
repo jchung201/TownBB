@@ -7,18 +7,24 @@ import { EmailSubDTO } from './dtos/emailSub.dto';
 import { Image } from './models/image';
 import { S3Response } from './models/s3Response';
 import { Client } from '@googlemaps/google-maps-services-js';
+import { GetLocationDTO } from './dtos/getLocation';
 
 @Injectable()
 export class CommonService {
   private sgMail;
   private S3;
+  private googleClient;
   constructor(private configService: ConfigService) {
+    // Sendgrid SDK
     this.sgMail = sgMail;
     this.sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    // AWS SDK
     this.S3 = new AWS.S3({
       accessKeyId: process.env.AWS_SECRET,
       secretAccessKey: process.env.AWS_ACCESS_KEY,
     });
+    // Google SDK
+    this.googleClient = new Client({});
   }
   emailOwner(emailOwnerDTO: EmailOwnerDTO): void {
     const { to, from, templateId, title, editUrl } = emailOwnerDTO;
@@ -80,9 +86,9 @@ export class CommonService {
     // this.AWS.upload(file);
   }
 
-  async getLocation(location: string): Promise<any> {
-    const client = new Client({});
-    const response = await client.geocode({
+  async getLocation(getLocationDTO: GetLocationDTO): Promise<any> {
+    const { location } = getLocationDTO;
+    const response = await this.googleClient.geocode({
       params: {
         address: location,
         key: process.env.GOOGLE_MAPS_KEY,
