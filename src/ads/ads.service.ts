@@ -27,6 +27,9 @@ export class AdsService {
   async getAds(filterDTO: AdsGetDTO): Promise<Ad[]> {
     return this.adRepository.getAds(filterDTO);
   }
+  async getAdCategories(): Promise<string[]> {
+    return this.adRepository.getAdCategories();
+  }
 
   async getAdById(id: number): Promise<Ad> {
     const foundAd = await this.adRepository.findOne(id);

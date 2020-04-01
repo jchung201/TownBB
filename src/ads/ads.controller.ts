@@ -30,6 +30,10 @@ export class AdsController {
   getAds(@Query(ValidationPipe) filterDTO: AdsGetDTO): Promise<Ad[]> {
     return this.adsService.getAds(filterDTO);
   }
+  @Get('/categories')
+  async getAdCategories(): Promise<string[]> {
+    return this.adsService.getAdCategories();
+  }
 
   @Get('/:id')
   getAdById(@Param('id', ParseIntPipe) id: number): Promise<Ad> {

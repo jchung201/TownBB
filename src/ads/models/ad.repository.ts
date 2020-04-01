@@ -71,6 +71,21 @@ export class AdRepository extends Repository<Ad> {
     }
   }
 
+  async getAdCategories(): Promise<string[]> {
+    try {
+      const fetchedAds = await this.query(
+        'Select DISTINCT Categories from ad;',
+      );
+      const foundArray = [];
+      fetchedAds.forEach(ad => {
+        foundArray.push(...ad.categories);
+      });
+      return [...new Set(foundArray)];
+    } catch (error) {
+      throw new InternalServerErrorException();
+    }
+  }
+
   async createAd(createAdDTO: AdPostDTO): Promise<Ad> {
     const {
       title,
@@ -90,7 +105,9 @@ export class AdRepository extends Repository<Ad> {
     const ad = new Ad();
     if (title) ad.title = title;
     if (description) ad.description = description;
+
     if (location) ad.location = location;
+    // check if latitude and logitude is within bounds
     if (latitude && longitude) {
       ad.latitude = latitude;
       ad.longitude = longitude;
