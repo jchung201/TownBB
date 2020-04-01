@@ -39,7 +39,6 @@ export class AdRepository extends Repository<Ad> {
           }
         }
       }
-      query += ' ORDER BY distance';
     } else if (search) {
       query = `SELECT * from ad WHERE ad.deleted=false AND ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%'`;
       if (categories) {
@@ -59,6 +58,7 @@ export class AdRepository extends Repository<Ad> {
     } else {
       query = `SELECT * from ad WHERE ad.deleted=false`;
     }
+    query += 'ORDER BY ad.updated DESC';
 
     try {
       return await this.query(query);
