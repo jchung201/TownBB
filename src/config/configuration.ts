@@ -23,7 +23,6 @@ export default () => {
       WEB_URL = 'http://localhost:4000';
       S3_BUCKET_NAME = 'townbbdevelopment';
   }
-  console.log('WHY', PORT);
   return {
     PORT,
     WEB_URL,
