@@ -37,11 +37,13 @@ export class SubsService {
     }
     return this.subRepository.createSub(createSubDTO);
   }
+
   async notifySubs(categories: string[], createdAd: Ad): Promise<void> {
     for (let i = 0; i < categories.length; i++) {
       // Find all subs for each category
       const foundSubs = await this.subRepository.find({
         category: categories[i],
+        deleted: false,
       });
       for (let j = 0; j < foundSubs.length; j++) {
         this.commonService.emailSub({
@@ -52,7 +54,7 @@ export class SubsService {
           viewUrl: `${this.configService.get('WEB_URL')}/ads/${createdAd.id}`,
           unsubUrl: `${this.configService.get('WEB_URL')}/subs/${
             createdAd.id
-          }?hash=${foundSubs[j].hash}`,
+          }/unsub?hash=${foundSubs[j].hash}`,
           category: categories[i],
         });
       }
