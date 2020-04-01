@@ -41,6 +41,10 @@ export class AdsService {
   }
 
   async createAd(createAdDTO: AdPostDTO): Promise<Ad> {
+    const { location } = createAdDTO;
+    const foundLocation = await this.commonService.getLocation({ location });
+    createAdDTO.latitude = foundLocation.latitude;
+    createAdDTO.longitude = foundLocation.longitude;
     // Create Ad
     const createdAd = await this.adRepository.createAd(createAdDTO);
     // Call Email Service

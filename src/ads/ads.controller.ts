@@ -47,7 +47,7 @@ export class AdsController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  createAd(@Body() createAdDTO: AdPostDTO): Promise<Ad> {
+  async createAd(@Body() createAdDTO: AdPostDTO): Promise<Ad> {
     return this.adsService.createAd(createAdDTO);
   }
 
