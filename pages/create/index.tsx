@@ -1,5 +1,5 @@
 import Link from 'next/link';
-const GetPosts = () => (
+const CreatePost = () => (
   <ul>
     <li>
       <Link href="/">
@@ -33,9 +33,9 @@ const GetPosts = () => (
       </Link>
     </li>
     <li>
-      <h1>Get Posts</h1>
+      <h1>CreatePost</h1>
     </li>
   </ul>
 );
 
-export default GetPosts;
+export default CreatePost;
