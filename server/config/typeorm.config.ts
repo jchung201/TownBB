@@ -16,8 +16,9 @@ export const retrieveOrmConfig = (): TypeOrmModuleOptions => {
       TYPEORM_SYNC = false;
       break;
     case 'development':
+      // to do: use url parser? i want to pass simple string!
       RDS_TYPE = 'postgres';
-      RDS_HOSTNAME = 'localhost';
+      RDS_HOSTNAME = 'postgres';
       RDS_PORT = 5432;
       RDS_USERNAME = 'postgres';
       RDS_PASSWORD = 'postgres';
