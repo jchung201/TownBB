@@ -45,5 +45,13 @@ export class AppModule implements NestModule {
       path: 'favicon.ico',
       method: RequestMethod.GET,
     });
+    consumer.apply(NextMiddleware).forRoutes({
+      path: 'manifest.json',
+      method: RequestMethod.GET,
+    });
+    consumer.apply(NextMiddleware).forRoutes({
+      path: 'site.webmanifest',
+      method: RequestMethod.GET,
+    });
   }
 }

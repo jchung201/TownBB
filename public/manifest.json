@@ -1,0 +1,10 @@
+{
+  "name": "TownBB Local Classifieds",
+  "short_name": "TownBB",
+  "theme_color": "#528ef6",
+  "background_color": "#ffffff",
+  "display": "browser",
+  "Scope": "/",
+  "start_url": "/",
+  "splash_pages": null
+}
