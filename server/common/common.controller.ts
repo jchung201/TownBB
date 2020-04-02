@@ -13,7 +13,7 @@ import { CommonService } from './common.service';
 import { S3Response } from './models/s3Response';
 import { GetLocationDTO } from './dtos/getLocation';
 
-@Controller('common')
+@Controller('api/v1/common')
 export class CommonController {
   constructor(private commonService: CommonService) {}
 
