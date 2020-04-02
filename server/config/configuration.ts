@@ -15,12 +15,12 @@ export default () => {
       break;
     case 'development':
       PORT = 3000;
-      WEB_URL = 'http://localhost:4000';
+      WEB_URL = 'http://localhost:3000';
       S3_BUCKET_NAME = 'townbbdevelopment';
       break;
     default:
       PORT = 3000;
-      WEB_URL = 'http://localhost:4000';
+      WEB_URL = 'http://localhost:3000';
       S3_BUCKET_NAME = 'townbbdevelopment';
   }
   return {
