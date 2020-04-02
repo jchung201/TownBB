@@ -58,7 +58,7 @@ export class AdRepository extends Repository<Ad> {
     } else {
       query = `SELECT * from ad WHERE ad.deleted=false`;
     }
-    query += 'ORDER BY ad.updated DESC';
+    query += ' ORDER BY ad.updated DESC';
 
     try {
       return await this.query(query);
@@ -76,7 +76,7 @@ export class AdRepository extends Repository<Ad> {
       const fetchedAds = await this.query(
         'Select DISTINCT Categories from ad;',
       );
-      const foundArray = [];
+      const foundArray: string[] = [];
       fetchedAds.forEach(ad => {
         foundArray.push(...ad.categories);
       });

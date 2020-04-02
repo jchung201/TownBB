@@ -4,7 +4,7 @@ import { SubsService } from './subs.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SubRepository } from './models/sub.repository';
 import { ConfigModule } from '@nestjs/config';
-import { CommonService } from 'src/common/common.service';
+import { CommonService } from '../common/common.service';
 
 @Module({
   imports: [ConfigModule, TypeOrmModule.forFeature([SubRepository])],

@@ -1,5 +1,5 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-import * as sgMail from '@sendgrid/mail';
+import sgMail from '@sendgrid/mail';
 import * as AWS from 'aws-sdk';
 import { ConfigService } from '@nestjs/config';
 import { EmailOwnerDTO } from './dtos/emailOwner.dto';
@@ -26,6 +26,7 @@ export class CommonService {
     // Google SDK
     this.googleClient = new Client({});
   }
+
   emailOwner(emailOwnerDTO: EmailOwnerDTO): void {
     const { to, from, templateId, title, editUrl } = emailOwnerDTO;
     const msg = {
@@ -40,6 +41,7 @@ export class CommonService {
     };
     this.sgMail.send(msg);
   }
+
   emailSub(emailSubDTO: EmailSubDTO) {
     const {
       to,

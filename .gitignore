@@ -36,3 +36,22 @@ lerna-debug.log*
 # Environment Variables
 .env
 env
+
+# Git Ignore
+.next
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
