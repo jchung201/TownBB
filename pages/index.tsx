@@ -1,11 +1,9 @@
-import Head from 'next/head';
-
 const Home = () => (
   <div className="container">
-    <Head>
+    <header>
       <title>Create Next App</title>
       <link rel="icon" href="/favicon.ico" />
-    </Head>
+    </header>
 
     <main>
       <h1 className="title">

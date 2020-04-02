@@ -9,7 +9,7 @@ export default () => {
       WEB_URL = 'https://townbb.com';
       S3_BUCKET_NAME = 'townbbproduction';
       break;
-    case 'staging':
+    case 'test':
       WEB_URL = 'https://townbb-staging.com';
       S3_BUCKET_NAME = 'townbbstaging';
       break;
