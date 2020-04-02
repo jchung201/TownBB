@@ -9,18 +9,18 @@ export default () => {
       WEB_URL = 'https://townbb.com';
       S3_BUCKET_NAME = 'townbbproduction';
       break;
-    case 'staging':
+    case 'test':
       WEB_URL = 'https://townbb-staging.com';
       S3_BUCKET_NAME = 'townbbstaging';
       break;
     case 'development':
       PORT = 3000;
-      WEB_URL = 'http://localhost:4000';
+      WEB_URL = 'http://localhost:3000';
       S3_BUCKET_NAME = 'townbbdevelopment';
       break;
     default:
       PORT = 3000;
-      WEB_URL = 'http://localhost:4000';
+      WEB_URL = 'http://localhost:3000';
       S3_BUCKET_NAME = 'townbbdevelopment';
   }
   return {

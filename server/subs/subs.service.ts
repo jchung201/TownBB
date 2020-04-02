@@ -7,9 +7,9 @@ import { SubPostDTO } from './dtos/subPost.dto';
 import { SubRepository } from './models/sub.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Sub } from './models/sub.entity';
-import { Ad } from 'src/ads/models/ad.entity';
+import { Ad } from '../ads/models/ad.entity';
 import { ConfigService } from '@nestjs/config';
-import { CommonService } from 'src/common/common.service';
+import { CommonService } from '../common/common.service';
 
 @Injectable()
 export class SubsService {

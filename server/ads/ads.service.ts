@@ -11,8 +11,8 @@ import { AdRepository } from './models/ad.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Ad } from './models/ad.entity';
 import { AdPatchDTO } from './dtos/adPatch.dto';
-import { SubsService } from 'src/subs/subs.service';
-import { CommonService } from 'src/common/common.service';
+import { SubsService } from '../subs/subs.service';
+import { CommonService } from '../common/common.service';
 
 @Injectable()
 export class AdsService {
