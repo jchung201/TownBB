@@ -11,5 +11,6 @@ import { CommonService } from '../common/common.service';
   imports: [ConfigModule, TypeOrmModule.forFeature([AdRepository]), SubsModule],
   controllers: [AdsController],
   providers: [AdsService, CommonService],
+  exports: [AdsService],
 })
 export class AdsModule {}

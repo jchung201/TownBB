@@ -1,10 +1,14 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { Controller, Get, Req, Res } from '@nestjs/common';
 import { NextService } from '@nestpress/next';
+import { AdsService } from './ads/ads.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly next: NextService) {}
+  constructor(
+    private readonly next: NextService,
+    private readonly adsService: AdsService,
+  ) {}
 
   @Get()
   public async showHome(
@@ -19,7 +23,8 @@ export class AppController {
     @Req() req: IncomingMessage,
     @Res() res: ServerResponse,
   ) {
-    await this.next.render('/categories', req, res);
+    const categories = await this.adsService.getAdCategories();
+    await this.next.render('/categories', { categories }, req, res);
   }
 
   @Get('posts')

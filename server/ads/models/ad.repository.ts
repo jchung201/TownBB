@@ -74,7 +74,7 @@ export class AdRepository extends Repository<Ad> {
   async getAdCategories(): Promise<string[]> {
     try {
       const fetchedAds = await this.query(
-        'Select DISTINCT Categories from ad;',
+        'Select DISTINCT categories from ad;',
       );
       const foundArray: string[] = [];
       fetchedAds.forEach(ad => {
