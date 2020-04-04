@@ -1,12 +1,9 @@
 import React from 'react';
-import Layout from '../../components/Layout';
 
 const GetPosts = () => (
-  <Layout>
-    <div>
-      <h1>All Posts</h1>
-    </div>
-  </Layout>
+  <div>
+    <h1>All Posts</h1>
+  </div>
 );
 
 export default GetPosts;

@@ -1,12 +1,9 @@
 import React from 'react';
-import Layout from '../../components/Layout';
 
 const CreatePost = () => (
-  <Layout>
-    <div>
-      <h1>Create Post</h1>
-    </div>
-  </Layout>
+  <div>
+    <h1>Create Post</h1>
+  </div>
 );
 
 export default CreatePost;

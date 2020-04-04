@@ -4,6 +4,7 @@ import App from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import theme from '../components/styled/theme';
 import '../public/styles/main.css';
+import Layout from '../components/Layout';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -24,10 +25,13 @@ class MyApp extends App {
           <title>TownBB | Classifieds</title>
         </Head>
         <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </ThemeProvider>
       </React.Fragment>
     );
   }
 }
+
 export default MyApp;
