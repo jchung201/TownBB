@@ -6,11 +6,11 @@ export default () => {
   let S3_BUCKET_NAME;
   switch (process.env.NODE_ENV) {
     case 'production':
-      WEB_URL = 'https://townbb.com';
+      WEB_URL = 'https://www.townbb.com';
       S3_BUCKET_NAME = 'townbbproduction';
       break;
     case 'test':
-      WEB_URL = 'https://townbb-staging.com';
+      WEB_URL = 'https://staging.townbb.com';
       S3_BUCKET_NAME = 'townbbstaging';
       break;
     case 'development':

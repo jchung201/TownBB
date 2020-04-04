@@ -20,7 +20,12 @@ async function bootstrap() {
   const port = process.env.PORT || configService.get('PORT');
   app
     .get(NextModule)
-    .prepare()
+    .prepare({
+      dev: process.env.NODE_ENV !== 'production',
+      dir: process.cwd(),
+      quiet: false,
+      conf: {},
+    })
     .then(() => {
       app.listen(Number(port));
       logger.log(`Application listening on port ${port}`);
