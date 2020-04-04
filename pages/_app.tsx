@@ -22,6 +22,10 @@ class MyApp extends App {
           <link rel="manifest" href="/manifest.json" />
           <link rel="manifest" href="/site.webmanifest" />
           <link rel="shortcut icon" href="/favicon.ico" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+            rel="stylesheet"
+          />
           <title>TownBB | Classifieds</title>
         </Head>
         <ThemeProvider theme={theme}>

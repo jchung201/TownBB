@@ -2,35 +2,30 @@ import React from 'react';
 import Link from 'next/link';
 import {
   DesktopWrapper,
-  DesktopNav,
-  DesktopNavItem,
-  DesktopContent,
+  Nav,
+  LogoWrapper,
+  Logo,
+  CreateWrapper,
+  Create,
+  Content,
 } from './styled/layoutStyled';
 
 const Layout: React.FC = ({ children }) => {
   return (
     <DesktopWrapper>
-      <DesktopNav>
-        <Link href="/">
-          <DesktopNavItem>Home</DesktopNavItem>
-        </Link>
-        <Link href="/posts">
-          <DesktopNavItem>Posts</DesktopNavItem>
-        </Link>
-        <Link href="/posts/1">
-          <DesktopNavItem>Single Post</DesktopNavItem>
-        </Link>
-        <Link href="/categories">
-          <DesktopNavItem>Categories</DesktopNavItem>
-        </Link>
+      <Nav>
+        <LogoWrapper>
+          <Link href="/">
+            <Logo src="images/logo_main.png" />
+          </Link>
+        </LogoWrapper>
         <Link href="/create">
-          <DesktopNavItem>Create</DesktopNavItem>
+          <CreateWrapper>
+            <Create>Create Posting</Create>
+          </CreateWrapper>
         </Link>
-        <Link href="/edit/1">
-          <DesktopNavItem>Edit</DesktopNavItem>
-        </Link>
-      </DesktopNav>
-      <DesktopContent>{children}</DesktopContent>
+      </Nav>
+      <Content>{children}</Content>
     </DesktopWrapper>
   );
 };
