@@ -1,11 +1,6 @@
 import Link from 'next/link';
-import React, { ReactNode } from 'react';
 
-interface Props {
-  children: ReactNode;
-}
-
-export default ({ children }: Props) => {
+export default ({ children }) => {
   return (
     <div>
       <nav>

@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "ts-node --project tsconfig.server.json ./server/main.ts",
-    "dev:sever": "ts-node-dev --project tsconfig.server.json ./server/main.ts",
+    "dev:server": "ts-node-dev --project tsconfig.server.json ./server/main.ts",
     "build": "next build && tsc --project tsconfig.server.json",
     "start": "node .next/production-server/main.js",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -44,6 +44,7 @@
     "react-dom": "^16.13.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
+    "rxjs": "^6.5.5",
     "ts-node": "^8.6.2",
     "typeorm": "^0.2.24",
     "typescript": "^3.7.4",
