@@ -8,17 +8,17 @@ import {
   CreateWrapper,
   Create,
   Content,
-} from './styled/layoutStyled';
+} from './layoutStyled';
 
 const Layout: React.FC = ({ children }) => {
   return (
     <DesktopWrapper>
       <Nav>
-        <LogoWrapper>
-          <Link href="/">
+        <Link href="/">
+          <LogoWrapper>
             <Logo src="images/logo_main.png" />
-          </Link>
-        </LogoWrapper>
+          </LogoWrapper>
+        </Link>
         <Link href="/create">
           <CreateWrapper>
             <Create>Create Posting</Create>

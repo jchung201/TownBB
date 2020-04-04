@@ -2,9 +2,9 @@ import React from 'react';
 import Head from 'next/head';
 import App from 'next/app';
 import { ThemeProvider } from 'styled-components';
-import theme from '../components/styled/theme';
+import theme from '../utilities/theme';
 import '../public/styles/main.css';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

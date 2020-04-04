@@ -1,10 +1,6 @@
 import React from 'react';
+import HomeContainer from '../components/Home/HomeContainer/HomeContainer';
 
-const Home = () => (
-  <div>
-    <h1>Home</h1>
-    <img src="/images/logo.png"></img>
-  </div>
-);
+const Home = () => <HomeContainer />;
 
 export default Home;
