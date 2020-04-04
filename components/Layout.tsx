@@ -1,6 +1,7 @@
+import React from 'react';
 import Link from 'next/link';
 
-export default ({ children }) => {
+const Layout: React.FC = ({ children }) => {
   return (
     <div>
       <nav>
@@ -41,3 +42,5 @@ export default ({ children }) => {
     </div>
   );
 };
+
+export default Layout;
