@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrapper } from '../List/listStyled';
+import { Wrapper, Main, SideBar } from './homeContainerStyled';
 import FilterBar from '../FilterBar/FilterBar';
 import List from '../List/List';
 import Categories from '../Categories/Categories';
@@ -7,11 +7,13 @@ import Categories from '../Categories/Categories';
 const HomeContainer: React.FC = () => {
   return (
     <Wrapper>
-      <div>
+      <Main>
         <FilterBar />
         <List />
-      </div>
-      <Categories />
+      </Main>
+      <SideBar>
+        <Categories />
+      </SideBar>
     </Wrapper>
   );
 };

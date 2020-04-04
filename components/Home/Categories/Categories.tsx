@@ -1,11 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { Wrapper } from './categoriesStyled';
+import { Wrapper, Header, Title } from './categoriesStyled';
 
 const TopCategories: React.FC = () => {
   return (
     <Wrapper>
-      Categories List
+      <Header>
+        <Title>Popular Categories</Title>
+      </Header>
       <div>
         <Link href="/categories">
           <a href="/categories">categories</a>
