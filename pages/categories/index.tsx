@@ -1,4 +1,5 @@
 import React from 'react';
+import { API_URL } from '../../utilities/envUrl';
 
 interface Props {
   categories?: string[];
@@ -25,7 +26,7 @@ Categories.getInitialProps = async ({ req, query }) => {
     categories = query.categories;
   } else {
     // in the NEXT.js client side, we need to fetch the same data above
-    const response = await fetch('http://localhost:3000/api/categories');
+    const response = await fetch(`${API_URL}/ads/categories`);
     categories = await response.json();
   }
 
