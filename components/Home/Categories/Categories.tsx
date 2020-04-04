@@ -1,17 +1,30 @@
 import React from 'react';
 import Link from 'next/link';
-import { Wrapper, Header, Title } from './categoriesStyled';
+import {
+  Wrapper,
+  Header,
+  Title,
+  CategoryItem,
+  CategoryLabel,
+} from './categoriesStyled';
 
 const TopCategories: React.FC = () => {
+  const categories = ['Sushi', 'pizza', 'Magenta'];
   return (
     <Wrapper>
       <Header>
         <Title>Popular Categories</Title>
       </Header>
       <div>
-        <Link href="/categories">
-          <a href="/categories">categories</a>
-        </Link>
+        {categories.map(category => {
+          return (
+            <CategoryItem key={category}>
+              <Link href="/categories">
+                <CategoryLabel>{category}</CategoryLabel>
+              </Link>
+            </CategoryItem>
+          );
+        })}
       </div>
     </Wrapper>
   );
