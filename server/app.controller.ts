@@ -27,7 +27,6 @@ export class AppController {
     @Req() req: IncomingMessage,
     @Res() res: ServerResponse,
   ) {
-    // this will render `pages/index.tsx`!
     await this.next.render('/posts', req, res);
   }
 
