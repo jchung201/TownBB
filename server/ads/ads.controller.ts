@@ -18,7 +18,7 @@ import { Ad } from './models/ad.entity';
 import { AdPatchDTO } from './dtos/adPatch.dto';
 import { ConfigService } from '@nestjs/config';
 
-@Controller('api/v1/ads')
+@Controller('rest/ads')
 export class AdsController {
   constructor(
     private adsService: AdsService,

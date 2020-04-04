@@ -13,7 +13,7 @@ import { SubsService } from './subs.service';
 import { SubPostDTO } from './dtos/subPost.dto';
 import { Sub } from './models/sub.entity';
 
-@Controller('api/v1/subs')
+@Controller('rest/subs')
 export class SubsController {
   constructor(private subsService: SubsService) {}
 
