@@ -1,5 +1,6 @@
 import React from 'react';
 import { API_URL } from '../../utilities/envUrl';
+import axios from 'axios';
 
 interface Props {
   categories?: string[];
@@ -26,8 +27,8 @@ Categories.getInitialProps = async ({ req, query }) => {
     categories = query.categories;
   } else {
     // in the NEXT.js client side, we need to fetch the same data above
-    const response = await fetch(`${API_URL}/ads/categories`);
-    categories = await response.json();
+    const response = await axios.get(`${API_URL}/ads/categories`);
+    categories = response.data;
   }
 
   return {

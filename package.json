@@ -30,6 +30,7 @@
     "@nestpress/next": "^1.2.3",
     "@sendgrid/mail": "^6.5.5",
     "aws-sdk": "^2.647.0",
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.11.1",
