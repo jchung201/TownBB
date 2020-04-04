@@ -3,6 +3,7 @@ import Head from 'next/head';
 import App from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import theme from '../components/styled/theme';
+import '../public/styles/main.css';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
