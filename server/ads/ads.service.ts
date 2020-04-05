@@ -25,7 +25,11 @@ export class AdsService {
   ) {}
 
   async getAds(filterDTO: AdsGetDTO): Promise<Ad[]> {
-    return this.adRepository.getAds(filterDTO);
+    const rawAds = await this.adRepository.getAds(filterDTO);
+    return rawAds.map(ad => {
+      delete ad.hash;
+      return ad;
+    });
   }
 
   async getAdCategories(): Promise<string[]> {

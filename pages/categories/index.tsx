@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getCategories } from '../../store/home/homeReducer';
+import { getCategories } from '../../store/home/homeActions';
 
 const Categories = () => {
   const categories = useSelector(state => state.home.categories);

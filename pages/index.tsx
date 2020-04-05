@@ -1,6 +1,10 @@
 import React from 'react';
 import HomeContainer from '../components/Home/HomeContainer/HomeContainer';
-import { getCategories } from '../store/home/homeReducer';
+import {
+  getCategories,
+  getLocation,
+  getPosts,
+} from '../store/home/homeActions';
 
 const Home = () => {
   return <HomeContainer />;
@@ -8,6 +12,8 @@ const Home = () => {
 
 Home.getInitialProps = async ({ store }) => {
   store.dispatch(await getCategories());
+  store.dispatch(await getLocation());
+  store.dispatch(await getPosts());
 };
 
 export default Home;

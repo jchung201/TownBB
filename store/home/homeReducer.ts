@@ -1,25 +1,12 @@
-import axios from 'axios';
-import { AnyAction } from 'redux';
-import { API_URL } from '../../utilities/envUrl';
-
-const GET_CATEGORIES = 'GET_CATEGORIES';
-
-export const getCategories = async (): Promise<AnyAction> => {
-  const request = await axios.get(`${API_URL}/ads/categories`);
-  const { data } = request;
-  return {
-    type: GET_CATEGORIES,
-    payload: data,
-  };
-};
-
 interface ExampleState {
   location: string;
   categories: string[];
+  posts: any[];
 }
 const exampleState: ExampleState = {
   location: '',
   categories: [],
+  posts: [],
 };
 
 export const homeReducer = (state = exampleState, action) => {
@@ -28,6 +15,8 @@ export const homeReducer = (state = exampleState, action) => {
       return { ...state, location: action.payload };
     case 'GET_CATEGORIES':
       return { ...state, categories: action.payload };
+    case 'GET_POSTS':
+      return { ...state, posts: action.payload };
     default:
       return state;
   }
