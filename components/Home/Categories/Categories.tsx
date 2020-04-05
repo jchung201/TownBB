@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 import {
   Wrapper,
   Header,
@@ -9,7 +10,7 @@ import {
 } from './categoriesStyled';
 
 const TopCategories = () => {
-  const categories = ['Sushi', 'pizza', 'Magenta'];
+  const categories = useSelector(state => state.home.categories);
   return (
     <Wrapper>
       <Header>
