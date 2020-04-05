@@ -1,7 +1,7 @@
 import React from 'react';
 import { Wrapper } from './listStyled';
 
-const List: React.FC = () => {
+const List = () => {
   return <Wrapper>Categories List</Wrapper>;
 };
 

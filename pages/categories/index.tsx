@@ -16,7 +16,6 @@ const Categories = () => {
 
 Categories.getInitialProps = async ({ store }) => {
   store.dispatch(await getCategories());
-  return {};
 };
 
 export default Categories;

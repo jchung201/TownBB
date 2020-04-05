@@ -8,7 +8,7 @@ import {
   CategoryLabel,
 } from './categoriesStyled';
 
-const TopCategories: React.FC = () => {
+const TopCategories = () => {
   const categories = ['Sushi', 'pizza', 'Magenta'];
   return (
     <Wrapper>
