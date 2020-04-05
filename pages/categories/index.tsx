@@ -1,12 +1,9 @@
 import React from 'react';
-import { API_URL } from '../../utilities/envUrl';
-import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { getCategories } from '../../store/home/homeReducer';
 
-interface Props {
-  categories?: string[];
-}
-
-const Categories = ({ categories }: Props) => {
+const Categories = () => {
+  const categories = useSelector(state => state.home.categories);
   return (
     <div>
       <h1>Categories</h1>
@@ -17,23 +14,9 @@ const Categories = ({ categories }: Props) => {
   );
 };
 
-Categories.getInitialProps = async ({ req, query }) => {
-  const isServer = !!req;
-
-  let categories;
-  if (isServer) {
-    // in the NEXT.js server side, we can pass the server data
-    // this `query.categories` is passed from AppController
-    categories = query.categories;
-  } else {
-    // in the NEXT.js client side, we need to fetch the same data above
-    const response = await axios.get(`${API_URL}/ads/categories`);
-    categories = response.data;
-  }
-
-  return {
-    categories,
-  };
+Categories.getInitialProps = async ({ store }) => {
+  store.dispatch(await getCategories());
+  return {};
 };
 
 export default Categories;

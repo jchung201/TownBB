@@ -4,7 +4,7 @@ import FilterBar from '../FilterBar/FilterBar';
 import List from '../List/List';
 import Categories from '../Categories/Categories';
 
-const HomeContainer: React.FC = () => {
+const HomeContainer = () => {
   return (
     <Wrapper>
       <Main>

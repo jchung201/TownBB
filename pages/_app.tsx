@@ -1,21 +1,27 @@
-import React from 'react';
 import Head from 'next/head';
-import App from 'next/app';
+import App, { AppContext } from 'next/app';
+import React from 'react';
+// Redux
+import { Provider as StoreProvider } from 'react-redux';
+import withRedux, { ReduxWrapperAppProps } from 'next-redux-wrapper';
+import { makeStore, RootState } from '../store/index';
+// Themes
 import { ThemeProvider } from 'styled-components';
 import theme from '../utilities/theme';
 import '../public/styles/main.css';
+// Layout Component
 import Layout from '../components/Layout/Layout';
 
-class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
+class MyApp extends App<ReduxWrapperAppProps<RootState>> {
+  static async getInitialProps({ Component, ctx }: AppContext) {
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : {};
+
     return { pageProps };
   }
-
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, store } = this.props;
     return (
       <React.Fragment>
         <Head>
@@ -30,7 +36,9 @@ class MyApp extends App {
         </Head>
         <ThemeProvider theme={theme}>
           <Layout>
-            <Component {...pageProps} />
+            <StoreProvider store={store}>
+              <Component {...pageProps} />
+            </StoreProvider>
           </Layout>
         </ThemeProvider>
       </React.Fragment>
@@ -38,4 +46,4 @@ class MyApp extends App {
   }
 }
 
-export default MyApp;
+export default withRedux(makeStore)(MyApp);

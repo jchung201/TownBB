@@ -1,7 +1,7 @@
 import React from 'react';
 import { Wrapper } from './filterBarStyled';
 
-const FilterBar: React.FC = () => {
+const FilterBar = () => {
   return <Wrapper>Filter Bar</Wrapper>;
 };
 
