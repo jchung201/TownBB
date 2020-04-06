@@ -13,6 +13,8 @@ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 8;
+  margin-left: 2rem;
+  margin-right: 2rem;
 `;
 export const SideBar = styled.div`
   display: flex;
