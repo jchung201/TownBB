@@ -1,11 +1,6 @@
 import React from 'react';
 import HomeContainer from '../components/Home/HomeContainer/HomeContainer';
-import {
-  getCategories,
-  getLocation,
-  getPosts,
-} from '../store/home/homeActions';
-
+import { getPosts, getCategories, getLocation } from '../store/home/home.GIP';
 const Home = () => {
   return <HomeContainer />;
 };

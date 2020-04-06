@@ -10,6 +10,9 @@ export const PostContainer = styled.div`
   width: 100%;
   height: 10rem;
   margin-bottom: 2rem;
+  &:first-child {
+    margin-top: 2rem;
+  }
 `;
 export const PostTitle = styled.div`
   margin-left: 1rem;

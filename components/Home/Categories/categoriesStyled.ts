@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  border: 0.3rem solid #49a59d;
+  border: 0.2rem solid #49a59d;
 `;
 
 export const Header = styled.div`

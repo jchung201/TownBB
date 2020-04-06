@@ -7,7 +7,6 @@ const List = () => {
   const posts = useSelector(state => state.home.posts);
   return (
     <Wrapper>
-      Categories List
       {posts.map(post => {
         return (
           <PostContainer key={post.id}>
