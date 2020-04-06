@@ -26,10 +26,10 @@ export interface Post {
   updated: Date;
 }
 export class GetPostsDTO {
-  search?: string;
+  search?: string | string[];
   latitude?: string;
   longitude?: string;
-  categories?: string[];
+  category?: string;
 }
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,

@@ -2,7 +2,7 @@ import React from 'react';
 import { Wrapper, Main, SideBar } from './homeContainerStyled';
 import FilterBar from '../FilterBar/FilterBar';
 import List from '../List/List';
-import Categories from '../Categories/Categories';
+import TopCategories from '../TopCategories/TopCategories';
 
 const HomeContainer = () => (
   <Wrapper>
@@ -11,7 +11,7 @@ const HomeContainer = () => (
       <List />
     </Main>
     <SideBar>
-      <Categories />
+      <TopCategories />
     </SideBar>
   </Wrapper>
 );

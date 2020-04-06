@@ -15,7 +15,7 @@ const List = () => {
           </PostContainer>
         );
       })}
-      {posts.length >= 0 && <div>No Items</div>}
+      {posts.length <= 0 && <div>No Items</div>}
     </Wrapper>
   );
 };

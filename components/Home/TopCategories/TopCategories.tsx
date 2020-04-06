@@ -7,7 +7,7 @@ import {
   Title,
   CategoryItem,
   CategoryLabel,
-} from './categoriesStyled';
+} from './topCategoriesStyled';
 
 const TopCategories = () => {
   const categories = useSelector(state => state.home.categories);
@@ -20,7 +20,7 @@ const TopCategories = () => {
         {categories.map(category => {
           return (
             <CategoryItem key={category}>
-              <Link href="/categories">
+              <Link href="/categories/[id]" as={`/categories/${category}`}>
                 <CategoryLabel>{category}</CategoryLabel>
               </Link>
             </CategoryItem>

@@ -14,10 +14,8 @@ export class AdRepository extends Repository<Ad> {
   private logger = new Logger('Ad Repository');
 
   async getAds(filterDTO: AdsGetDTO): Promise<Ad[]> {
-    const { categories, search, latitude, longitude } = filterDTO;
+    const { category, search, latitude, longitude } = filterDTO;
     let query;
-    if (typeof categories === 'string')
-      throw new BadRequestException('Categories must be an array of strings!');
     if (latitude && longitude) {
       // Arbitrary radius... hard coded
       const radius = 300;
@@ -30,31 +28,13 @@ export class AdRepository extends Repository<Ad> {
       if (search) {
         query += ` AND ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%'`;
       }
-      if (categories) {
-        for (let i = 0; i < categories.length; i++) {
-          if (i === 0) {
-            query += ` AND '${categories[i]}'=ANY(ad.categories)`;
-          } else {
-            query += ` OR '${categories[i]}'=ANY(ad.categories)`;
-          }
-        }
-      }
+      if (category) query += ` AND '${category}'=ANY(ad.categories)`;
     } else if (search) {
       query = `SELECT * from ad WHERE ad.deleted=false AND ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%'`;
-      if (categories) {
-        for (let i = 0; i < categories.length; i++) {
-          if (i === 0) {
-            query += ` AND '${categories[i]}'=ANY(ad.categories)`;
-          } else {
-            query += ` OR '${categories[i]}'=ANY(ad.categories)`;
-          }
-        }
-      }
-    } else if (categories) {
+      if (category) query += ` AND '${category}'=ANY(ad.categories)`;
+    } else if (category) {
       query = `SELECT * from ad WHERE ad.deleted=false`;
-      for (let i = 0; i < categories.length; i++) {
-        query += ` OR '${categories[i]}'=ANY(ad.categories)`;
-      }
+      query += ` OR '${category}'=ANY(ad.categories)`;
     } else {
       query = `SELECT * from ad WHERE ad.deleted=false`;
     }

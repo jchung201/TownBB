@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { AnyAction, Action } from 'redux';
 import { API_URL } from '../../utilities/envUrl';
 
 import { Category, Post, GetPostsDTO, AppThunk } from './home.types';

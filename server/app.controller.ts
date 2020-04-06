@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { Controller, Get, Req, Res } from '@nestjs/common';
+import { Controller, Get, Req, Res, ParseIntPipe, Param } from '@nestjs/common';
 import { NextService } from '@nestpress/next';
 import { AdsService } from './ads/ads.service';
 
@@ -23,8 +23,15 @@ export class AppController {
     @Req() req: IncomingMessage,
     @Res() res: ServerResponse,
   ) {
-    const categories = await this.adsService.getAdCategories();
-    await this.next.render('/categories', { categories }, req, res);
+    await this.next.render('/categories', req, res);
+  }
+  @Get('categories/:id')
+  public async getCategory(
+    @Req() req: IncomingMessage,
+    @Res() res: ServerResponse,
+    @Param('id') id: string,
+  ) {
+    await this.next.render(`/categories/${id}`, req, res);
   }
 
   @Get('posts')
@@ -39,8 +46,9 @@ export class AppController {
   public async showPost(
     @Req() req: IncomingMessage,
     @Res() res: ServerResponse,
+    @Param('id', ParseIntPipe) id: number,
   ) {
-    await this.next.render('/posts/:id', req, res);
+    await this.next.render(`/posts/${id}`, req, res);
   }
 
   @Get('create')
@@ -55,7 +63,8 @@ export class AppController {
   public async editPost(
     @Req() req: IncomingMessage,
     @Res() res: ServerResponse,
+    @Param('id', ParseIntPipe) id: number,
   ) {
-    await this.next.render('/edit/:id', req, res);
+    await this.next.render(`/edit/${id}`, req, res);
   }
 }
