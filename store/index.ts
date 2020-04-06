@@ -9,10 +9,11 @@ const rootReducer = combineReducers({
 });
 export type RootState = ReturnType<typeof rootReducer>;
 
+const appliedMiddleware =
+  process.env.NODE_ENV === 'production'
+    ? applyMiddleware(thunk)
+    : composeWithDevTools(applyMiddleware(thunk));
+
 export const makeStore: MakeStore = (initialState: RootState) => {
-  return createStore(
-    rootReducer,
-    initialState,
-    composeWithDevTools(applyMiddleware(thunk)),
-  );
+  return createStore(rootReducer, initialState, appliedMiddleware);
 };
