@@ -30,13 +30,34 @@ class FilterBar extends Component<PropsFromRedux, OwnState> {
   onSubmit = async e => {
     e.preventDefault();
     const { getPosts } = this.props;
-    const { location } = this.state;
+    const { location, longitude, latitude, search } = this.state;
     // if location ... get location and then fetch
-    if (location !== '') {
-      return;
+    if (!longitude || !latitude) {
+      if (!location) return getPosts({ search });
+      else {
+        // get location
+        return alert('got location!');
+        // set longitude/latitude in redux
+
+        //fetch posts
+        getPosts({ search });
+      }
     } else {
-      getPosts({ search: 'keto' });
+      getPosts({ search, longitude, latitude });
     }
+  };
+
+  onSearchChange = async e => {
+    const {
+      target: { value },
+    } = e;
+    this.setState({ search: value });
+  };
+  onLocationChange = async e => {
+    const {
+      target: { value },
+    } = e;
+    this.setState({ location: value });
   };
 
   render() {
@@ -47,8 +68,17 @@ class FilterBar extends Component<PropsFromRedux, OwnState> {
         }}
         onSubmit={this.onSubmit}
       >
-        <SearchInput type="text" placeholder="Search" required="" />
-        <LocationInput placeholder="Location" />
+        <SearchInput
+          type="text"
+          placeholder="Search"
+          required=""
+          onChange={this.onSearchChange}
+        />
+        <LocationInput
+          type="text"
+          placeholder="Location"
+          onChange={this.onLocationChange}
+        />
         <SubmitButton onClick={this.onSubmit}>Search</SubmitButton>
       </Wrapper>
     );
