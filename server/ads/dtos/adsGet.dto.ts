@@ -8,7 +8,7 @@ export class AdsGetDTO {
   search: string;
 
   @IsOptional()
-  latitude: string;
+  latitude: number;
   @IsOptional()
-  longitude: string;
+  longitude: number;
 }

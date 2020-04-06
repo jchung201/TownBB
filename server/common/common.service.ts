@@ -84,8 +84,6 @@ export class CommonService {
     delete response.key;
     delete response.Key;
     return response;
-    // console.log(encoding, mimetype, buffer, size, originalname);
-    // this.AWS.upload(file);
   }
 
   async getLocation(getLocationDTO: GetLocationDTO): Promise<any> {

@@ -15,15 +15,20 @@ export class AdRepository extends Repository<Ad> {
 
   async getAds(filterDTO: AdsGetDTO): Promise<Ad[]> {
     const { category, search, latitude, longitude } = filterDTO;
+
     let query;
     if (latitude && longitude) {
       // Arbitrary radius... hard coded
       const radius = 300;
       query = `
-      SELECT *, point(${longitude}, ${latitude}) <@> point(longitude, latitude)::point as distance 
+      SELECT *, point(${Number(longitude)}, ${Number(
+        latitude,
+      )}) <@> point(longitude, latitude)::point as distance 
       FROM ad
       WHERE ad.deleted=false
-      AND (point(${longitude}, ${latitude}) <@> point(longitude, latitude)) < ${radius}
+      AND (point(${Number(longitude)}, ${Number(
+        latitude,
+      )}) <@> point(longitude, latitude)) < ${radius}
       `;
       if (search) {
         query += ` AND ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%'`;
