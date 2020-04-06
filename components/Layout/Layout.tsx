@@ -16,7 +16,7 @@ const Layout: React.FC = ({ children }) => {
       <Nav>
         <Link href="/">
           <LogoWrapper>
-            <Logo src="images/logo_main.png" />
+            <Logo src="/images/logo_main.png" />
           </LogoWrapper>
         </Link>
         <Link href="/create">
