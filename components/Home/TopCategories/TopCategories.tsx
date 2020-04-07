@@ -11,17 +11,26 @@ import {
 
 const TopCategories = () => {
   const categories = useSelector(state => state.home.categories);
+  const rawCategories = [
+    { id: 'Jobs', value: 'jobs' },
+    { id: 'For Sale', value: 'forSale' },
+    { id: 'Housing', value: 'housing' },
+    { id: 'Other', value: 'other' },
+  ];
   return (
     <Wrapper>
       <Header>
-        <Title>Popular Categories</Title>
+        <Title>All Categories</Title>
       </Header>
       <div>
-        {categories.map(category => {
+        {rawCategories.map(category => {
           return (
-            <CategoryItem key={category}>
-              <Link href="/categories/[id]" as={`/categories/${category}`}>
-                <CategoryLabel>{category}</CategoryLabel>
+            <CategoryItem key={category.id}>
+              <Link
+                href="/categories/[id]"
+                as={`/categories/${category.value}`}
+              >
+                <CategoryLabel>{category.id}</CategoryLabel>
               </Link>
             </CategoryItem>
           );

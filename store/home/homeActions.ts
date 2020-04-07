@@ -59,7 +59,7 @@ export const getLocationAction = ({ data }) => {
 };
 
 export const getLocation = (location: string): AppThunk => async dispatch => {
-  const request = await axios.get<Category>(`${API_URL}/rest/common/location`, {
+  const request = await axios.get(`${API_URL}/rest/common/location`, {
     params: {
       location,
     },

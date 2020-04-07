@@ -39,7 +39,7 @@ export class AdRepository extends Repository<Ad> {
       if (category) query += ` AND '${category}'=ANY(ad.categories)`;
     } else if (category) {
       query = `SELECT * from ad WHERE ad.deleted=false`;
-      query += ` OR '${category}'=ANY(ad.categories)`;
+      query += ` AND '${category}'=ANY(ad.categories)`;
     } else {
       query = `SELECT * from ad WHERE ad.deleted=false`;
     }

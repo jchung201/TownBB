@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Wrapper } from './listStyled';
 import { useSelector } from 'react-redux';
 import { PostContainer, PostTitle, PostDescription } from './listStyled';
@@ -12,6 +13,13 @@ const List = () => {
           <PostContainer key={post.id}>
             <PostTitle>Title: {post.title}</PostTitle>
             <PostDescription>Description: {post.description}</PostDescription>
+            <div style={{ marginLeft: '1rem', marginTop: '1rem' }}>
+              Last updated:{' '}
+              {moment
+                .utc(post.updated)
+                .local()
+                .format('lll')}
+            </div>
           </PostContainer>
         );
       })}
