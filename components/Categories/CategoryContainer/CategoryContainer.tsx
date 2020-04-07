@@ -17,7 +17,6 @@ const CategoryContainer = () => {
   return (
     <Wrapper>
       <Main>
-        <FilterBar />
         <CategoryLabel>
           Filtered by {category}
           &nbsp; &nbsp;
@@ -25,6 +24,7 @@ const CategoryContainer = () => {
             <Back>go back</Back>
           </Link>
         </CategoryLabel>
+        <FilterBar />
         <List />
       </Main>
       <SideBar>
