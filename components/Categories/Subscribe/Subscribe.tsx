@@ -1,12 +1,12 @@
 import React from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
   Wrapper,
   Header,
   Title,
-  CategoryItem,
-  CategoryLabel,
+  Main,
+  EmailInput,
+  Submit,
 } from './subscribeStyled';
 
 const Subscribe = () => {
@@ -18,7 +18,10 @@ const Subscribe = () => {
       <Header>
         <Title>Subscribe to {id}</Title>
       </Header>
-      <div>Input your email</div>
+      <Main>
+        <EmailInput placeholder="Input your Email" />
+        <Submit>Subscribe</Submit>
+      </Main>
     </Wrapper>
   );
 };
