@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
-
 import axios from 'axios';
 import { API_URL } from '../../../utilities/envUrl';
+import notify from '../../../utilities/notify';
 import {
   Wrapper,
   Header,
@@ -42,9 +42,11 @@ class Subscribe extends Component<PropsFromRedux, OwnState> {
         email,
         category,
       });
+      notify('success', 'Email subscribed!');
       // notify success
       this.setState({ email: '' });
     } catch (error) {
+      notify('error', 'Issue with subscription!');
       //notify fail
       console.error(error);
     }

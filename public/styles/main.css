@@ -7,3 +7,8 @@ body {
 html {
   font-size: 62.5%;
 }
+.Toastify__toast-body {
+  font-size: 1.9rem;
+  line-height: 1.9rem;
+  font: 'Roboto', sans-serif;
+}

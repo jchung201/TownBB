@@ -9,6 +9,9 @@ import { makeStore, RootState } from '../store/index';
 import { ThemeProvider } from 'styled-components';
 import theme from '../utilities/theme';
 import '../public/styles/main.css';
+// Toast
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // Layout Component
 import Layout from '../components/Layout/Layout';
 
@@ -41,6 +44,7 @@ class MyApp extends App<ReduxWrapperAppProps<RootState>> {
             </StoreProvider>
           </Layout>
         </ThemeProvider>
+        <ToastContainer />
       </React.Fragment>
     );
   }
