@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../../utilities/envUrl';
+import notify from '../../../utilities/notify';
 import {
   Wrapper,
   Main,
@@ -9,22 +10,7 @@ import {
   SubmitButton,
 } from './createContainerStyled';
 
-interface OwnState {
-  title: string;
-  description: string;
-  location: null;
-  longitude: null;
-  latitude: string;
-  value: string;
-  categories: string[];
-  images: string[];
-  company: string;
-  contactEmail: string;
-  contactPhone: string;
-  contactWebsite: string;
-}
-
-class CreateContainer extends Component<null, OwnState> {
+class CreateContainer extends Component {
   state = {
     title: '',
     description: '',
@@ -88,6 +74,7 @@ class CreateContainer extends Component<null, OwnState> {
         contactPhone,
         contactWebsite,
       });
+      notify('success', 'Post Created!');
       //notify success and refetch ads
       // also go to specific posting screen
     } catch (error) {
@@ -95,17 +82,8 @@ class CreateContainer extends Component<null, OwnState> {
     }
   };
 
-  onSearchChange = async e => {
-    const {
-      target: { value },
-    } = e;
-    this.setState({ search: value });
-  };
-  onLocationChange = async e => {
-    const {
-      target: { value },
-    } = e;
-    this.setState({ location: value });
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
