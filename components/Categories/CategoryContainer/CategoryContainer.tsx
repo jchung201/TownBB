@@ -14,7 +14,6 @@ import Subscribe from '../Subscribe/Subscribe';
 
 const CategoryContainer = () => {
   const category = useSelector(state => state.home.category);
-
   return (
     <Wrapper>
       <Main>
