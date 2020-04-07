@@ -1,9 +1,6 @@
 import React from 'react';
+import CreateContainer from '../../components/Create/CreateContainer/CreateContainer';
 
-const CreatePost = () => (
-  <div>
-    <h1>Create Post</h1>
-  </div>
-);
+const CreatePost = () => <CreateContainer />;
 
 export default CreatePost;
