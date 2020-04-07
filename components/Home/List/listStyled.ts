@@ -8,7 +8,8 @@ export const Wrapper = styled.div`
 export const PostContainer = styled.div`
   box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.5);
   width: 100%;
-  height: 10rem;
+  font-size: 1.8rem;
+  height: 15rem;
   margin-bottom: 2rem;
   &:first-child {
     margin-top: 2rem;

@@ -39,7 +39,7 @@ export const Submit = styled.div`
   cursor: pointer;
   color: white;
   width: 50%;
-  font-size: 2.5rem;
+  font-size: 2rem;
   border-radius: 0.5rem;
   padding: 0.7rem; 1rem;
   display: flex;

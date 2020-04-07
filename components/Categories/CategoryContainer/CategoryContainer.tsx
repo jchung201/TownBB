@@ -22,7 +22,7 @@ const CategoryContainer = () => {
           Filtered by {category}
           &nbsp; &nbsp;
           <Link href="/">
-            <Back>Go Back</Back>
+            <Back>go back</Back>
           </Link>
         </CategoryLabel>
         <List />
