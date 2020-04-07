@@ -9,6 +9,19 @@ export const Wrapper = styled.div`
   margin-right: auto;
 `;
 
+export const CategoryLabel = styled.div`
+  font-size: 2rem;
+  color: #49a59d;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+`;
+export const Back = styled.span`
+  font-size: 1.7rem;
+  color: #2a615d;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
 export const Main = styled.div`
   display: flex;
   flex-direction: column;
