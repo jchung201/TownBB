@@ -8,7 +8,6 @@ import { makeStore, RootState } from '../store/index';
 // Themes
 import { ThemeProvider } from 'styled-components';
 import theme from '../utilities/theme';
-import '../public/styles/main.css';
 // Toast
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -32,8 +31,12 @@ class MyApp extends App<ReduxWrapperAppProps<RootState>> {
           <link rel="manifest" href="/site.webmanifest" />
           <link rel="shortcut icon" href="/favicon.ico" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
             rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
           />
           <title>TownBB | Classifieds</title>
         </Head>

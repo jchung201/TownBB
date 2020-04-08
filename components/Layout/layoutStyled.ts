@@ -23,7 +23,7 @@ export const LogoWrapper = styled.div`
 `;
 
 export const Logo = styled.img`
-  height: 15rem;
+  height: 10rem;
 `;
 
 export const CreateWrapper = styled.div`
