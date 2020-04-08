@@ -8,11 +8,11 @@ const HomeContainer = () => {
   return (
     <Container style={{ flexGrow: 1, marginTop: '5em' }}>
       <Grid container spacing={3} direction="row">
-        <Grid item xs={6}>
+        <Grid item xs={9}>
           <FilterBar />
           <List />
         </Grid>
-        <Grid item xs={6} sm={6}>
+        <Grid item xs={3}>
           <TopCategories />
         </Grid>
       </Grid>

@@ -5,6 +5,7 @@ import {
   getLocationAndPosts,
 } from '../../../store/home/homeActions';
 import { connect, ConnectedProps } from 'react-redux';
+import { TextField, Button, Box } from '@material-ui/core';
 import {
   Wrapper,
   SearchInput,
@@ -76,25 +77,38 @@ class FilterBar extends Component<PropsFromRedux, OwnState> {
 
   render() {
     return (
-      <Wrapper
+      <Box
+        display="flex"
         onKeyPress={e => {
           e.key === 'Enter' && this.onSubmit(e);
         }}
         onSubmit={this.onSubmit}
       >
-        <SearchInput
-          type="text"
-          placeholder="Search"
-          required=""
+        <TextField
+          id="standard-basic"
+          label="Search"
           onChange={this.onSearchChange}
+          style={{
+            flexGrow: 4,
+          }}
         />
-        <LocationInput
-          type="text"
-          placeholder="Location"
+        <TextField
+          id="standard-basic"
+          label="Location"
           onChange={this.onLocationChange}
+          style={{ marginLeft: '3em', marginRight: '3em', flexGrow: 4 }}
         />
-        <SubmitButton onClick={this.onSubmit}>Search</SubmitButton>
-      </Wrapper>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={this.onSubmit}
+          style={{
+            flexGrow: 1,
+          }}
+        >
+          Search
+        </Button>
+      </Box>
     );
   }
 }
