@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import axios from 'axios';
 import { API_URL } from '../../../utilities/envUrl';
 import notify from '../../../utilities/notify';
 import {
+  CATEGORY_NAMES,
+  SUB_CATEGORY_NAMES,
+} from '../../../utilities/categories';
+import {
   Wrapper,
   Top,
   GeneralInput,
+  CategoryInput,
   ImageInputContainer,
   ImageInput,
   ImageLabel,
@@ -26,8 +32,8 @@ class CreateContainer extends Component {
     longitude: null,
     latitude: null,
     value: '',
-    categories: [],
-    subCategories: [],
+    category: '',
+    subcategory: '',
     images: [],
     contactEmail: '',
   };
@@ -58,19 +64,24 @@ class CreateContainer extends Component {
   };
   fileInputRef = React.createRef();
   onSelectFile = async e => {
-    const formData = new FormData();
-    formData.append('image', e.target.files[0]);
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
-    };
-    const res = await axios.post(
-      `${API_URL}/rest/common/upload/image`,
-      formData,
-      config,
-    );
-    this.setState({ images: [res.data.Location] });
+    try {
+      const formData = new FormData();
+      formData.append('image', e.target.files[0]);
+      const config = {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
+      };
+      const res = await axios.post(
+        `${API_URL}/rest/common/upload/image`,
+        formData,
+        config,
+      );
+      this.setState({ images: [res.data.Location] });
+    } catch (error) {
+      console.error(error);
+      notify('error', error.response.data.message);
+    }
   };
 
   onSubmit = async e => {
@@ -82,34 +93,33 @@ class CreateContainer extends Component {
       longitude,
       latitude,
       value,
-      categories,
-      subCategories,
+      category,
+      subcategory,
       images,
       contactEmail,
     } = this.state;
     try {
-      const request = await axios.post(`${API_URL}/rest/common/location`, {
+      const request = await axios.post(`${API_URL}/rest/ads`, {
         title,
         description,
         location,
         longitude,
         latitude,
         value,
-        categories: [...categories, ...subCategories],
+        categories: [...category, ...subcategory],
         images,
         contactEmail,
       });
       notify('success', 'Post Created!');
-      //notify success and refetch ads
-      // also go to specific posting screen
+      Router.push('/posts/[pid]', `/posts/${request.data.id}`);
     } catch (error) {
+      notify('error', error.response.data.message);
       console.error(error);
     }
   };
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-    console.log(this.state);
   };
 
   render() {
@@ -118,13 +128,17 @@ class CreateContainer extends Component {
       description,
       location,
       value,
-      categories,
-      subCategories,
+      category,
       images,
       contactEmail,
     } = this.state;
     return (
-      <Wrapper>
+      <Wrapper
+        onSubmit={this.onSubmit}
+        onKeyPress={e => {
+          e.key === 'Enter' && this.onSubmit(e);
+        }}
+      >
         <Top>
           <TopLeft>
             <GeneralInput
@@ -144,23 +158,28 @@ class CreateContainer extends Component {
               name="location"
               onBlur={this.onLocationCheck}
             />
-            <GeneralInput
-              type="text"
-              placeholder="Category"
-              required=""
-              onChange={this.onChange}
-              value={categories}
-              name="categories"
-            />
-
-            <GeneralInput
-              type="text"
-              placeholder="Sub Categories"
-              required=""
-              onChange={this.onChange}
-              value={subCategories}
-              name="subCategories"
-            />
+            <CategoryInput name="category" onChange={this.onChange}>
+              <option value="">Choose a Category</option>
+              {CATEGORY_NAMES.map(category => {
+                return (
+                  <option key={category.name} value={category.id}>
+                    {category.name}
+                  </option>
+                );
+              })}
+            </CategoryInput>
+            {category.length > 0 && (
+              <CategoryInput name="subcategory" onChange={this.onChange}>
+                <option value="">Choose a Sub Category</option>
+                {SUB_CATEGORY_NAMES[category].map(category => {
+                  return (
+                    <option key={category.name} value={category.id}>
+                      {category.name}
+                    </option>
+                  );
+                })}
+              </CategoryInput>
+            )}
             <GeneralInput
               type="text"
               placeholder="Contact Email (Anonymous)"
@@ -202,7 +221,7 @@ class CreateContainer extends Component {
             value={description}
             name="description"
           />
-          <SubmitButton>Create Posting!</SubmitButton>
+          <SubmitButton onClick={this.onSubmit}>Create Posting!</SubmitButton>
         </Bottom>
       </Wrapper>
     );

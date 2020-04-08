@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,6 +31,14 @@ export const TopRight = styled.div`
 `;
 
 export const GeneralInput = styled.input`
+  padding: 1.4rem 2rem;
+  font-size: 1.7rem;
+  margin-top: 1rem;
+  margin-left: 2em;
+  margin-right: 2em;
+`;
+
+export const CategoryInput = styled.select`
   padding: 1.4rem 2rem;
   font-size: 1.7rem;
   margin-top: 1rem;
@@ -69,7 +77,7 @@ export const Headline = styled.input`
   margin-left: 2em;
   margin-right: 2em;
 `;
-export const Description = styled.input`
+export const Description = styled.textarea`
   padding: 1.4rem 2rem;
   font-size: 1.7rem;
   margin-top: 1rem;

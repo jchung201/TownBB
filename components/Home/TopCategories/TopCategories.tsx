@@ -8,28 +8,21 @@ import {
   CategoryItem,
   CategoryLabel,
 } from './topCategoriesStyled';
+import { CATEGORY_NAMES } from '../../../utilities/categories';
 
 const TopCategories = () => {
   const categories = useSelector(state => state.home.categories);
-  const rawCategories = [
-    { id: 'Jobs', value: 'jobs' },
-    { id: 'For Sale', value: 'forSale' },
-    { id: 'Housing', value: 'housing' },
-    { id: 'Other', value: 'other' },
-  ];
+
   return (
     <Wrapper>
       <Header>
         <Title>All Categories</Title>
       </Header>
       <div>
-        {rawCategories.map(category => {
+        {CATEGORY_NAMES.map(category => {
           return (
             <CategoryItem key={category.id}>
-              <Link
-                href="/categories/[id]"
-                as={`/categories/${category.value}`}
-              >
+              <Link href="/categories/[id]" as={`/categories/${category.name}`}>
                 <CategoryLabel>{category.id}</CategoryLabel>
               </Link>
             </CategoryItem>
