@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
 import {
   Wrapper,
   Header,
@@ -11,8 +10,6 @@ import {
 import { CATEGORY_NAMES } from '../../../utilities/categories';
 
 const TopCategories = () => {
-  const categories = useSelector(state => state.home.categories);
-
   return (
     <Wrapper>
       <Header>
@@ -22,8 +19,8 @@ const TopCategories = () => {
         {CATEGORY_NAMES.map(category => {
           return (
             <CategoryItem key={category.id}>
-              <Link href="/categories/[id]" as={`/categories/${category.name}`}>
-                <CategoryLabel>{category.id}</CategoryLabel>
+              <Link href="/categories/[id]" as={`/categories/${category.id}`}>
+                <CategoryLabel>{category.name}</CategoryLabel>
               </Link>
             </CategoryItem>
           );
