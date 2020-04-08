@@ -1,46 +1,22 @@
 import React from 'react';
 import moment from 'moment';
-import { Wrapper } from './listStyled';
 import { useSelector } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles(() => ({
-  postItem: {
-    display: 'flex',
-    marginTop: 20,
-  },
-  details: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  content: {
-    flex: '1 0 auto',
-  },
-  cover: {
-    width: 151,
-    margin: 10,
-  },
-}));
+import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 
 const List = () => {
-  const classes = useStyles();
   const posts = useSelector(state => state.home.posts);
   return (
-    <Wrapper>
+    <div>
       {posts.map(post => {
         return (
-          <Card className={classes.postItem} key={post.id}>
+          <Card style={{ display: 'flex', marginTop: '2em' }} key={post.id}>
             <CardMedia
-              className={classes.cover}
+              style={{ width: '10em', margin: '1em' }}
               image="https://cms.prod.nypr.digital/images/297736/fill-661x496/"
               title="Live from space album cover"
             />
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <CardContent style={{ flex: '1 0 auto' }}>
                 <Typography component="h5" variant="h5">
                   {post.title}
                 </Typography>
@@ -60,7 +36,7 @@ const List = () => {
         );
       })}
       {posts.length <= 0 && <div>No Items</div>}
-    </Wrapper>
+    </div>
   );
 };
 

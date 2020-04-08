@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { LinkA } from '../Common/Links';
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Button,
   CssBaseline,
@@ -10,37 +9,13 @@ import {
   Typography,
 } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
-  appBar: {
-    position: 'relative',
-  },
-  layout: {
-    width: 'auto',
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
-
 const Layout: React.FC = ({ children }) => {
-  const classes = useStyles();
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="absolute" color="primary" className={classes.appBar}>
+      <AppBar position="relative" color="primary">
         <Toolbar>
-          <Typography
-            variant="h4"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
+          <Typography style={{ flexGrow: 1 }} variant={'h4'} noWrap>
             <Link href="/">
               <LinkA href="/">TownBB</LinkA>
             </Link>
@@ -52,17 +27,18 @@ const Layout: React.FC = ({ children }) => {
           </Button>
         </Toolbar>
       </AppBar>
-      <main className={classes.layout}>
-        {children}
-        <Typography variant="body2" align="center">
-          {'Copyright © '}
-          <a href="https://www.townbb.com/">TownBB</a>{' '}
-          {new Date().getFullYear()}
-          {'.'}
-        </Typography>
-      </main>
+      <main>{children}</main>
     </React.Fragment>
   );
 };
 
 export default Layout;
+
+{
+  /* <Typography variant="body2" align="center">
+{'Copyright © '}
+<a href="https://www.townbb.com/">TownBB</a>{' '}
+{new Date().getFullYear()}
+{'.'}
+</Typography> */
+}
