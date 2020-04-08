@@ -113,8 +113,7 @@ class CreateContainer extends Component {
       notify('success', 'Post Created!');
       Router.push('/posts/[pid]', `/posts/${request.data.id}`);
     } catch (error) {
-      notify('error', error.response.data.message);
-      console.error(error);
+      notify('error', 'Missing fields!');
     }
   };
 
