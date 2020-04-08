@@ -3,17 +3,10 @@ import Link from 'next/link';
 import { LinkA } from '../Common/Links';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  CardMedia,
-  Box,
   Button,
-  Grid,
   CssBaseline,
   AppBar,
   Toolbar,
-  Paper,
-  Stepper,
-  Step,
-  StepLabel,
   Typography,
 } from '@material-ui/core';
 
@@ -64,7 +57,7 @@ const Layout: React.FC = ({ children }) => {
         {children}
         <Typography variant="body2" align="center">
           {'Copyright © '}
-          <Link href="https://www.townbb.com/">TownBB</Link>{' '}
+          <a href="https://www.townbb.com/">TownBB</a>{' '}
           {new Date().getFullYear()}
           {'.'}
         </Typography>

@@ -45,7 +45,7 @@ const List = () => {
                   {post.title}
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary">
-                  {post.description}
+                  {post.description.substring(0, 80) + '...'}
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary">
                   Last updated:{' '}
