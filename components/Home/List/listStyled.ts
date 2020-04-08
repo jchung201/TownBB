@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+export const Wrapper = styled.div``;
 
 export const PostContainer = styled.div`
   box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.5);

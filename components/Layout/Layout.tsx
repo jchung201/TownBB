@@ -1,14 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import {
-  DesktopWrapper,
-  Nav,
-  LogoWrapper,
-  Logo,
-  CreateWrapper,
-  Create,
-  Content,
-} from './layoutStyled';
+import { LinkA } from '../Common/Links';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   CardMedia,
@@ -25,20 +17,9 @@ import {
   Typography,
 } from '@material-ui/core';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link href="https://www.townbb.com/">TownBB</Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 const useStyles = makeStyles(theme => ({
   appBar: {
-    cursor: 'pointer',
+    position: 'relative',
   },
   layout: {
     width: 'auto',
@@ -57,6 +38,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+    cursor: 'pointer',
   },
 }));
 
@@ -65,27 +47,35 @@ const Layout: React.FC = ({ children }) => {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="static" color="primary" className={classes.appBar}>
+      <AppBar position="absolute" color="primary" className={classes.appBar}>
         <Toolbar>
-          <Link href="/">
-            <Typography
-              variant="h4"
-              color="inherit"
-              noWrap
-              className={classes.title}
-            >
-              TownBB
-            </Typography>
-          </Link>
-          <Link href="/create">
-            <Button color="inherit" size="large">
-              Create a Posting
-            </Button>
-          </Link>
+          <Typography
+            variant="h4"
+            color="inherit"
+            noWrap
+            className={classes.title}
+          >
+            <Link href="/">
+              <LinkA href="/">TownBB</LinkA>
+            </Link>
+          </Typography>
+          <Button color="inherit" size="large">
+            <Link href="/create">
+              <LinkA href="/create">Create a Posting</LinkA>
+            </Link>
+          </Button>
         </Toolbar>
       </AppBar>
       <main className={classes.layout}>
-        <Paper className={classes.paper}>{children}</Paper>
+        <Paper className={classes.paper}>
+          {children}
+          <Typography variant="body2" align="center">
+            {'Copyright © '}
+            <Link href="https://www.townbb.com/">TownBB</Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+          </Typography>
+        </Paper>
       </main>
     </React.Fragment>
   );

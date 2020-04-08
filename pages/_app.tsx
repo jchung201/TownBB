@@ -5,9 +5,7 @@ import React from 'react';
 import { Provider as StoreProvider } from 'react-redux';
 import withRedux, { ReduxWrapperAppProps } from 'next-redux-wrapper';
 import { makeStore, RootState } from '../store/index';
-// Themes
-import { ThemeProvider } from 'styled-components';
-import theme from '../utilities/theme';
+
 // Toast
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -40,14 +38,12 @@ class MyApp extends App<ReduxWrapperAppProps<RootState>> {
           />
           <title>TownBB | Classifieds</title>
         </Head>
-        <ThemeProvider theme={theme}>
-          <Layout>
-            <StoreProvider store={store}>
-              <Component {...pageProps} />
-            </StoreProvider>
-          </Layout>
-        </ThemeProvider>
-        <ToastContainer />
+        <Layout>
+          <StoreProvider store={store}>
+            <Component {...pageProps} />
+          </StoreProvider>
+          <ToastContainer />
+        </Layout>
       </React.Fragment>
     );
   }
