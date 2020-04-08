@@ -30,12 +30,6 @@ const useStyles = makeStyles(theme => ({
       marginRight: 'auto',
     },
   },
-  paper: {
-    padding: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      padding: theme.spacing(3),
-    },
-  },
   title: {
     flexGrow: 1,
     cursor: 'pointer',
@@ -67,15 +61,13 @@ const Layout: React.FC = ({ children }) => {
         </Toolbar>
       </AppBar>
       <main className={classes.layout}>
-        <Paper className={classes.paper}>
-          {children}
-          <Typography variant="body2" align="center">
-            {'Copyright © '}
-            <Link href="https://www.townbb.com/">TownBB</Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-          </Typography>
-        </Paper>
+        {children}
+        <Typography variant="body2" align="center">
+          {'Copyright © '}
+          <Link href="https://www.townbb.com/">TownBB</Link>{' '}
+          {new Date().getFullYear()}
+          {'.'}
+        </Typography>
       </main>
     </React.Fragment>
   );

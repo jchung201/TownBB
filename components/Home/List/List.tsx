@@ -8,9 +8,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
-  root: {
+const useStyles = makeStyles(() => ({
+  postItem: {
     display: 'flex',
+    marginTop: 20,
   },
   details: {
     display: 'flex',
@@ -32,7 +33,7 @@ const List = () => {
     <Wrapper>
       {posts.map(post => {
         return (
-          <Card className={classes.root} key={post.id}>
+          <Card className={classes.postItem} key={post.id}>
             <CardMedia
               className={classes.cover}
               image="https://cms.prod.nypr.digital/images/297736/fill-661x496/"
