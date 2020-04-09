@@ -1,29 +1,20 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
-import {
-  Wrapper,
-  Main,
-  SideBar,
-  CategoryLabel,
-  Back,
-} from './categoryContainerStyled';
+import { CategoryLabel, Back } from './categoryContainerStyled';
+import { Grid } from '@material-ui/core';
+
 import FilterBar from '../../Home/FilterBar/FilterBar';
 import List from '../../Home/List/List';
 import Subscribe from '../Subscribe/Subscribe';
-import { CATEGORY_NAMES } from '../../../utilities/categories';
 
 const CategoryContainer = () => {
   const category = useSelector(state => state.home.category);
-  let realName;
-  for (let i = 0; i < CATEGORY_NAMES.length; i++) {
-    if (CATEGORY_NAMES[i].id === category) realName = CATEGORY_NAMES[i].name;
-  }
   return (
-    <Wrapper>
-      <Main>
+    <Grid container spacing={3} direction="row">
+      <Grid item xs={9}>
         <CategoryLabel>
-          Filtered by {realName}
+          Filtered by {category && category.split('_').join(' ')}
           &nbsp; &nbsp;
           <Link href="/">
             <Back>go back</Back>
@@ -31,11 +22,11 @@ const CategoryContainer = () => {
         </CategoryLabel>
         <FilterBar />
         <List />
-      </Main>
-      <SideBar>
+      </Grid>
+      <Grid item xs={3}>
         <Subscribe />
-      </SideBar>
-    </Wrapper>
+      </Grid>
+    </Grid>
   );
 };
 

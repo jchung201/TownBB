@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { List, ListSubheader, ListItem, ListItemText } from '@material-ui/core';
-import { CATEGORY_NAMES } from '../../../utilities/categories';
 
 const TopCategories = () => {
+  const CATEGORY_NAMES = ['Full_Time', 'Part_Time', 'Gigs'];
   return (
     <div>
       <List
@@ -15,12 +15,11 @@ const TopCategories = () => {
             id="nested-list-subheader"
             style={{ color: 'white', fontSize: '1.5em' }}
           >
-            Categories
+            Job Categories
           </ListSubheader>
         }
-        color="primary"
         style={{
-          width: '100%',
+          width: '90%',
           maxWidth: 360,
           backgroundColor: '#3f51b5',
           color: 'white',
@@ -29,10 +28,10 @@ const TopCategories = () => {
       >
         {CATEGORY_NAMES.map(category => {
           return (
-            <ListItem button key={category.id}>
-              <Link href="/categories/[id]" as={`/categories/${category.id}`}>
+            <ListItem button key={category}>
+              <Link href="/categories/[id]" as={`/categories/${category}`}>
                 <ListItemText
-                  primary={category.name}
+                  primary={category && category.split('_').join(' ')}
                   style={{ textAlign: 'center' }}
                 />
               </Link>

@@ -11,14 +11,13 @@ export const Wrapper = styled.div`
 
 export const CategoryLabel = styled.div`
   position: absolute;
-  top: 17.5rem;
-  font-size: 2rem;
-  color: #49a59d;
-  margin-top: 1rem;
+  top: 5em;
+  font-size: 1.5em;
+  color: #3f51b5;
 `;
 export const Back = styled.span`
-  font-size: 1.7rem;
-  color: #2a615d;
+  font-size: 1.3rem;
+  color: #3f51b5;
   text-decoration: underline;
   cursor: pointer;
 `;

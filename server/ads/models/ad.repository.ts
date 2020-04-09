@@ -31,11 +31,11 @@ export class AdRepository extends Repository<Ad> {
       )}) <@> point(longitude, latitude)) < ${radius}
       `;
       if (search) {
-        query += ` AND ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%'`;
+        query += ` AND (ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%')`;
       }
       if (category) query += ` AND '${category}'=ANY(ad.categories)`;
     } else if (search) {
-      query = `SELECT * from ad WHERE ad.deleted=false AND ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%'`;
+      query = `SELECT * from ad WHERE ad.deleted=false AND (ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%')`;
       if (category) query += ` AND '${category}'=ANY(ad.categories)`;
     } else if (category) {
       query = `SELECT * from ad WHERE ad.deleted=false`;

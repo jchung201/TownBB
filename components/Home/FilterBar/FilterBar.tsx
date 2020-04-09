@@ -6,12 +6,6 @@ import {
 } from '../../../store/home/homeActions';
 import { connect, ConnectedProps } from 'react-redux';
 import { TextField, Button, Box } from '@material-ui/core';
-import {
-  Wrapper,
-  SearchInput,
-  LocationInput,
-  SubmitButton,
-} from './filterBarStyled';
 
 const mapStateToProps = ({
   home: { formattedAddress, latitude, longitude, category },

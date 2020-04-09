@@ -1,30 +1,26 @@
 export const CATEGORY_NAMES = [
-  { id: 'jobs', name: 'Jobs' },
-  { id: 'forSale', name: 'For Sale' },
-  { id: 'housing', name: 'Housing' },
-  { id: 'other', name: 'Other' },
+  { id: 'Full_Time', name: 'Full Time' },
+  { id: 'Part_Time', name: 'Part Time' },
+  { id: 'Gigs', name: 'Gigs' },
 ];
 
 export const SUB_CATEGORY_NAMES = {
-  jobs: [
-    { id: 'fullTime', name: 'Full Time' },
-    { id: 'partTime', name: 'Part Time' },
-    { id: 'gigs', name: 'Gigs' },
+  Full_Time: [
+    { id: 'Hospitality', name: 'Restaurants/Hospitality' },
+    { id: 'Salons', name: 'Salons' },
+    { id: 'Nail_Salon', name: 'Nail Salons' },
+    { id: 'Landscaping', name: 'Landscaping' },
+    { id: 'General_Labor', name: 'General Labor' },
   ],
-  forSale: [
-    { id: 'electronics', name: 'Electronics' },
-    { id: 'vehicles', name: 'Vehicles' },
-    { id: 'home', name: 'Home & Garden' },
-    { id: 'entertainment', name: 'Entertainment' },
-    { id: 'apparel', name: 'Apparel' },
-    { id: 'sportingGoods', name: 'Sporting Goods' },
-    { id: 'toysAndGames', name: 'Toys & Games' },
-    { id: 'musicalInstruments', name: 'Musical Instruments' },
-    { id: 'petSupplies', name: 'Pet Supplies' },
+  Part_Time: [
+    { id: 'Hospitality', name: 'Restaurants/Hospitality' },
+    { id: 'Salons', name: 'Salons' },
+    { id: 'Nail_Salon', name: 'Nail Salons' },
+    { id: 'Landscaping', name: 'Landscaping' },
+    { id: 'General_Labor', name: 'General Labor' },
   ],
-  housing: [
-    { id: 'rent', name: 'For Rent' },
-    { id: 'sale', name: 'For Sale' },
+  Gigs: [
+    { id: 'General_Labor', name: 'General Labor' },
+    { id: 'Events', name: 'Events' },
   ],
-  other: [{ id: 'misc', name: 'Miscellaneous' }],
 };

@@ -7,6 +7,7 @@ import {
   AppBar,
   Toolbar,
   Typography,
+  Container,
 } from '@material-ui/core';
 
 const Layout: React.FC = ({ children }) => {
@@ -27,7 +28,11 @@ const Layout: React.FC = ({ children }) => {
           </Button>
         </Toolbar>
       </AppBar>
-      <main>{children}</main>
+      <main>
+        <Container style={{ flexGrow: 1, marginTop: '5em' }}>
+          {children}
+        </Container>
+      </main>
     </React.Fragment>
   );
 };
