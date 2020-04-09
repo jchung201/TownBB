@@ -1,32 +1,46 @@
 import React from 'react';
 import Link from 'next/link';
-import {
-  Wrapper,
-  Header,
-  Title,
-  CategoryItem,
-  CategoryLabel,
-} from './topCategoriesStyled';
+import { List, ListSubheader, ListItem, ListItemText } from '@material-ui/core';
 import { CATEGORY_NAMES } from '../../../utilities/categories';
 
 const TopCategories = () => {
   return (
-    <Wrapper>
-      <Header>
-        <Title>All Categories</Title>
-      </Header>
-      <div>
+    <div>
+      <List
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+        subheader={
+          <ListSubheader
+            component="div"
+            id="nested-list-subheader"
+            style={{ color: 'white', fontSize: '1.5em' }}
+          >
+            Categories
+          </ListSubheader>
+        }
+        color="primary"
+        style={{
+          width: '100%',
+          maxWidth: 360,
+          backgroundColor: '#3f51b5',
+          color: 'white',
+          textAlign: 'center',
+        }}
+      >
         {CATEGORY_NAMES.map(category => {
           return (
-            <CategoryItem key={category.id}>
+            <ListItem button key={category.id}>
               <Link href="/categories/[id]" as={`/categories/${category.id}`}>
-                <CategoryLabel>{category.name}</CategoryLabel>
+                <ListItemText
+                  primary={category.name}
+                  style={{ textAlign: 'center' }}
+                />
               </Link>
-            </CategoryItem>
+            </ListItem>
           );
         })}
-      </div>
-    </Wrapper>
+      </List>
+    </div>
   );
 };
 

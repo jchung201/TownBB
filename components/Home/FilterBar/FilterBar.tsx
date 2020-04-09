@@ -77,15 +77,8 @@ class FilterBar extends Component<PropsFromRedux, OwnState> {
 
   render() {
     return (
-      <Box
-        display="flex"
-        onKeyPress={e => {
-          e.key === 'Enter' && this.onSubmit(e);
-        }}
-        onSubmit={this.onSubmit}
-      >
+      <form style={{ display: 'flex' }} onSubmit={this.onSubmit}>
         <TextField
-          id="standard-basic"
           label="Search"
           onChange={this.onSearchChange}
           style={{
@@ -93,7 +86,6 @@ class FilterBar extends Component<PropsFromRedux, OwnState> {
           }}
         />
         <TextField
-          id="standard-basic"
           label="Location"
           onChange={this.onLocationChange}
           style={{ marginLeft: '3em', marginRight: '3em', flexGrow: 4 }}
@@ -102,13 +94,14 @@ class FilterBar extends Component<PropsFromRedux, OwnState> {
           variant="contained"
           color="primary"
           onClick={this.onSubmit}
+          type="submit"
           style={{
             flexGrow: 1,
           }}
         >
           Search
         </Button>
-      </Box>
+      </form>
     );
   }
 }

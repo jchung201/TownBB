@@ -132,12 +132,7 @@ class CreateContainer extends Component {
       contactEmail,
     } = this.state;
     return (
-      <Wrapper
-        onSubmit={this.onSubmit}
-        onKeyPress={e => {
-          e.key === 'Enter' && this.onSubmit(e);
-        }}
-      >
+      <Wrapper onSubmit={this.onSubmit}>
         <Top>
           <TopLeft>
             <GeneralInput
@@ -220,7 +215,9 @@ class CreateContainer extends Component {
             value={description}
             name="description"
           />
-          <SubmitButton onClick={this.onSubmit}>Create Posting!</SubmitButton>
+          <SubmitButton type="submit" onClick={this.onSubmit}>
+            Create Posting!
+          </SubmitButton>
         </Bottom>
       </Wrapper>
     );
