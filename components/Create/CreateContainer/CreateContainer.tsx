@@ -4,25 +4,23 @@ import axios from 'axios';
 import { API_URL } from '../../../utilities/envUrl';
 import notify from '../../../utilities/notify';
 import {
+  Grid,
+  Typography,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Button,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControl,
+} from '@material-ui/core';
+import { ImageRender } from './createContainerStyled';
+import {
   CATEGORY_NAMES,
   SUB_CATEGORY_NAMES,
 } from '../../../utilities/categories';
-import {
-  Wrapper,
-  Top,
-  GeneralInput,
-  CategoryInput,
-  ImageInputContainer,
-  ImageInput,
-  ImageLabel,
-  SubmitButton,
-  Bottom,
-  TopLeft,
-  TopRight,
-  ImageRender,
-  Headline,
-  Description,
-} from './createContainerStyled';
+import { Wrapper, Description } from './createContainerStyled';
 
 class CreateContainer extends Component {
   state = {
@@ -36,6 +34,7 @@ class CreateContainer extends Component {
     subcategory: '',
     images: [],
     contactEmail: '',
+    company: '',
   };
 
   onLocationCheck = async () => {
@@ -130,95 +129,162 @@ class CreateContainer extends Component {
       category,
       images,
       contactEmail,
+      company,
     } = this.state;
     return (
       <Wrapper onSubmit={this.onSubmit}>
-        <Top>
-          <TopLeft>
-            <GeneralInput
-              type="text"
-              placeholder="Title"
-              required=""
-              onChange={this.onChange}
-              value={title}
+        <Typography variant="h6" gutterBottom>
+          Create a Post
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              label="Title"
               name="title"
-            />
-            <GeneralInput
-              type="text"
-              placeholder="Location"
-              required=""
+              value={title}
               onChange={this.onChange}
-              value={location}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              label="Location"
               name="location"
+              value={location}
+              fullWidth
+              onChange={this.onChange}
               onBlur={this.onLocationCheck}
             />
-            <CategoryInput name="category" onChange={this.onChange}>
-              <option value="">Choose a Category</option>
-              {CATEGORY_NAMES.map(category => {
-                return (
-                  <option key={category.name} value={category.id}>
-                    {category.name}
-                  </option>
-                );
-              })}
-            </CategoryInput>
-            {category.length > 0 && (
-              <CategoryInput name="subcategory" onChange={this.onChange}>
-                <option value="">Choose a Sub Category</option>
-                {SUB_CATEGORY_NAMES[category].map(category => {
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Category</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="category"
+                onChange={this.onChange}
+              >
+                {CATEGORY_NAMES.map(category => {
                   return (
-                    <option key={category.name} value={category.id}>
+                    <MenuItem key={category.name} value={category.id}>
                       {category.name}
-                    </option>
+                    </MenuItem>
                   );
                 })}
-              </CategoryInput>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            {category.length > 0 && (
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Sub-Category
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  name="subCategory"
+                  onChange={this.onChange}
+                >
+                  {SUB_CATEGORY_NAMES[category].map(category => {
+                    return (
+                      <MenuItem key={category.name} value={category.id}>
+                        {category.name}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
             )}
-            <GeneralInput
-              type="text"
-              placeholder="Contact Email (Anonymous)"
-              required=""
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              label="Company"
+              name="company"
+              value={company}
               onChange={this.onChange}
-              value={contactEmail}
-              name="contactEmail"
+              fullWidth
             />
-          </TopLeft>
-          <TopRight>
-            <ImageInputContainer>
-              <ImageLabel>Upload a image</ImageLabel>
-              <ImageInput
-                onChange={this.onSelectFile}
-                type="file"
-                accept="image/png, image/jpeg, image/jpg"
-                name="images"
-              />
-            </ImageInputContainer>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              label="Contact Email"
+              name="contactEmail"
+              value={contactEmail}
+              onChange={this.onChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid
+            item
+            container
+            xs={12}
+            justify="center"
+            alignItems="center"
+            direction="column"
+            style={{ marginTop: '2em' }}
+          >
+            <input
+              accept="image/*"
+              id="contained-button-file"
+              multiple
+              type="file"
+              onChange={this.onSelectFile}
+              name="images"
+              style={{ display: 'none' }}
+            />
+            <label htmlFor="contained-button-file">
+              <Button variant="contained" color="primary" component="span">
+                Upload Pictures
+              </Button>
+            </label>
             {images.length > 0 && (
               <ImageRender src={images[0]} alt="Image Render" />
             )}
-          </TopRight>
-        </Top>
-        <Bottom>
-          <Headline
-            type="text"
-            placeholder="Headline"
-            required=""
-            onChange={this.onChange}
-            value={value}
-            name="value"
-          />
-          <Description
-            type="text"
-            placeholder="Description"
-            required=""
-            onChange={this.onChange}
-            value={description}
-            name="description"
-          />
-          <SubmitButton type="submit" onClick={this.onSubmit}>
-            Create Posting!
-          </SubmitButton>
-        </Bottom>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              name="value"
+              label="Headline"
+              onChange={this.onChange}
+              value={value}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Description
+              type="text"
+              placeholder="Description"
+              required=""
+              onChange={this.onChange}
+              value={description}
+              name="description"
+            />
+          </Grid>
+          <Grid
+            item
+            container
+            xs={12}
+            alignItems="center"
+            justify="center"
+            direction="column"
+          >
+            <Button
+              type="submit"
+              variant="contained"
+              onClick={this.onSubmit}
+              color="primary"
+              size="large"
+              style={{ marginBottom: '2em', width: '12em', fontSize: '2em' }}
+            >
+              Create Posting
+            </Button>
+          </Grid>
+        </Grid>
       </Wrapper>
     );
   }

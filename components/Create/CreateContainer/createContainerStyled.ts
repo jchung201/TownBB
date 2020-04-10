@@ -11,6 +11,8 @@ export const Wrapper = styled.form`
   box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.5);
   margin-bottom: 5rem;
   padding-top: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
 `;
 
 export const Top = styled.div`
@@ -63,7 +65,7 @@ export const ImageLabel = styled.div`
 export const ImageRender = styled.img`
   padding: 1.4rem 2rem;
   font-size: 1.7rem;
-  height: 15rem;
+  width: 100%;
 `;
 export const Bottom = styled.div`
   display: flex;
@@ -78,12 +80,13 @@ export const Headline = styled.input`
   margin-right: 2em;
 `;
 export const Description = styled.textarea`
-  padding: 1.4rem 2rem;
-  font-size: 1.7rem;
-  margin-top: 1rem;
-  margin-left: 2em;
-  margin-right: 2em;
-  height: 10rem;
+  padding: 0.7em 1em;
+  font-size: 1.7em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  height: 10em;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
 `;
 export const SubmitButton = styled.div`
   display: flex;
@@ -112,3 +115,88 @@ export const SubmitButton = styled.div`
     transition: all 0.4s ease 0s;
   }
 `;
+// const rawr = () => {
+//   return (
+//     <Wrapper>
+//       <Top>
+//         <TopLeft>
+//           <GeneralInput
+//             type="text"
+//             placeholder="Title"
+//             required=""
+//             onChange={this.onChange}
+//             value={title}
+//             name="title"
+//           />
+//           <GeneralInput
+//             type="text"
+//             placeholder="Location"
+//             required=""
+//             onChange={this.onChange}
+//             value={location}
+//             name="location"
+//             onBlur={this.onLocationCheck}
+//           />
+//           <CategoryInput name="category" onChange={this.onChange}>
+//             <option value="">Choose a Category</option>
+//             {CATEGORY_NAMES.map(category => {
+//               return (
+//                 <option key={category.name} value={category.id}>
+//                   {category.name}
+//                 </option>
+//               );
+//             })}
+//           </CategoryInput>
+//           {category.length > 0 && (
+//             <CategoryInput name="subcategory" onChange={this.onChange}>
+//               <option value="">Choose a Sub Category</option>
+//               {SUB_CATEGORY_NAMES[category].map(category => {
+//                 return (
+//                   <option key={category.name} value={category.id}>
+//                     {category.name}
+//                   </option>
+//                 );
+//               })}
+//             </CategoryInput>
+//           )}
+//           <GeneralInput
+//             type="text"
+//             placeholder="Contact Email (Anonymous)"
+//             required=""
+//             onChange={this.onChange}
+//             value={contactEmail}
+//             name="contactEmail"
+//           />
+//         </TopLeft>
+//         <TopRight>
+//           <ImageInputContainer>
+//             <ImageLabel>Upload a image</ImageLabel>
+//             <ImageInput
+//               onChange={this.onSelectFile}
+//               type="file"
+//               accept="image/png, image/jpeg, image/jpg"
+//               name="images"
+//             />
+//           </ImageInputContainer>
+//           {images.length > 0 && (
+//             <ImageRender src={images[0]} alt="Image Render" />
+//           )}
+//         </TopRight>
+//       </Top>
+//       <Bottom>
+//         <Headline
+//           type="text"
+//           placeholder="Headline"
+//           required=""
+//           onChange={this.onChange}
+//           value={value}
+//           name="value"
+//         />
+
+//         <SubmitButton type="submit" onClick={this.onSubmit}>
+//           Create Posting!
+//         </SubmitButton>
+//       </Bottom>
+//     </Wrapper>
+//   );
+// };
