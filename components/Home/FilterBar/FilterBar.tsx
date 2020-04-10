@@ -49,11 +49,9 @@ class FilterBar extends Component<PropsFromRedux, OwnState> {
     } = this.props;
     const { location, search } = this.state;
     // if location ... get location and then fetch
-    if (location && (!longitude || !latitude)) {
-      getLocationAndPosts({ location, search, category });
-    } else {
-      getPosts({ search, longitude, latitude, category });
-    }
+    if (location === '' || !location)
+      return getLocationAndPosts({ search, category });
+    getLocationAndPosts({ location, search, category });
   };
 
   onSearchChange = async e => {
