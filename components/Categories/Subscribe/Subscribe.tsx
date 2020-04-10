@@ -3,7 +3,13 @@ import { connect, ConnectedProps } from 'react-redux';
 import axios from 'axios';
 import { API_URL } from '../../../utilities/envUrl';
 import notify from '../../../utilities/notify';
-import { List, ListSubheader, TextField, Button } from '@material-ui/core';
+import {
+  List,
+  ListSubheader,
+  TextField,
+  Button,
+  ListItem,
+} from '@material-ui/core';
 
 const mapStateToProps = ({ home: { category } }) => ({
   category,
@@ -63,48 +69,50 @@ class Subscribe extends Component<PropsFromRedux, OwnState> {
             </ListSubheader>
           }
           style={{
-            width: '90%',
-            maxWidth: 360,
+            width: '100%',
             backgroundColor: '#3f51b5',
             color: 'white',
             textAlign: 'center',
-          }}
-        ></List>
-        <form
-          noValidate
-          autoComplete="off"
-          onSubmit={this.onSubmit}
-          style={{
-            color: 'white',
-            paddingTop: '1em',
-            paddingBottom: '1.5em',
-            border: '0.2em solid #3f51b5',
-            width: '90%',
-            backgroundColor: 'white',
-            textAlign: 'center',
+            paddingBottom: 0,
           }}
         >
-          <TextField
-            onChange={this.onChangeEmail}
-            id="standard-basic"
-            label="Email"
-            value={email}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.onSubmit}
-            type="submit"
-            style={{
-              marginTop: '1.5em',
-              display: 'block',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-            }}
-          >
-            Subscribe
-          </Button>
-        </form>
+          <ListItem style={{ paddingLeft: '0.6em', paddingRight: '0.6em' }}>
+            <form
+              noValidate
+              autoComplete="off"
+              onSubmit={this.onSubmit}
+              style={{
+                width: '100%',
+                color: 'white',
+                paddingTop: '1em',
+                paddingBottom: '1.5em',
+                backgroundColor: 'white',
+                textAlign: 'center',
+              }}
+            >
+              <TextField
+                onChange={this.onChangeEmail}
+                id="standard-basic"
+                label="Email"
+                value={email}
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.onSubmit}
+                type="submit"
+                style={{
+                  marginTop: '1.5em',
+                  display: 'block',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                }}
+              >
+                Subscribe
+              </Button>
+            </form>
+          </ListItem>
+        </List>
       </div>
     );
   }

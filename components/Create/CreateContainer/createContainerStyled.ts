@@ -65,7 +65,7 @@ export const ImageLabel = styled.div`
 export const ImageRender = styled.img`
   padding: 1.4rem 2rem;
   font-size: 1.7rem;
-  width: 100%;
+  max-width: 100%;
 `;
 export const Bottom = styled.div`
   display: flex;

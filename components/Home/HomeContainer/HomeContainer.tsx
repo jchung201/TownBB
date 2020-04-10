@@ -2,13 +2,16 @@ import React from 'react';
 import FilterBar from '../FilterBar/FilterBar';
 import List from '../List/List';
 import TopCategories from '../TopCategories/TopCategories';
+import MobileTopCategories from '../TopCategories/MobileTopCategories';
 import { Grid, Hidden } from '@material-ui/core';
 
 const HomeContainer = () => {
   return (
     <Grid container spacing={3} direction="row">
       <Grid item xs={12}>
-        <Hidden smUp>New Category</Hidden>
+        <Hidden smUp>
+          <MobileTopCategories />
+        </Hidden>
       </Grid>
       <Grid item xs={12} sm={9}>
         <FilterBar />
