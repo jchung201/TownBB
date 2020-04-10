@@ -1,6 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { List, ListSubheader, ListItem, ListItemText } from '@material-ui/core';
+import {
+  List,
+  ListSubheader,
+  ListItem,
+  ListItemText,
+  Divider,
+} from '@material-ui/core';
 
 const TopCategories = () => {
   const CATEGORY_NAMES = ['Full_Time', 'Part_Time', 'Gigs'];
@@ -28,14 +34,17 @@ const TopCategories = () => {
       >
         {CATEGORY_NAMES.map(category => {
           return (
-            <ListItem button key={category}>
-              <Link href="/categories/[id]" as={`/categories/${category}`}>
-                <ListItemText
-                  primary={category && category.split('_').join(' ')}
-                  style={{ textAlign: 'center' }}
-                />
-              </Link>
-            </ListItem>
+            <React.Fragment key={category}>
+              <Divider style={{ backgroundColor: 'white' }} />
+              <ListItem button>
+                <Link href="/categories/[id]" as={`/categories/${category}`}>
+                  <ListItemText
+                    primary={category && category.split('_').join(' ')}
+                    style={{ textAlign: 'center' }}
+                  />
+                </Link>
+              </ListItem>
+            </React.Fragment>
           );
         })}
       </List>

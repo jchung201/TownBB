@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 
 export const CategoryLabel = styled.div`
   position: absolute;
-  top: 5em;
+  top: 4.5em;
   font-size: 1.5em;
   color: #3f51b5;
 `;
