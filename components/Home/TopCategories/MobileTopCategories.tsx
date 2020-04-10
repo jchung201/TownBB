@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
   List,
   ListSubheader,
@@ -14,21 +15,30 @@ import {
 
 const TopCategories = () => {
   const CATEGORY_NAMES = ['Full_Time', 'Part_Time', 'Gigs'];
+  const router = useRouter();
+  const [category, setCategory] = useState('');
+  if (category) {
+    router.push(`/categories/${category}`);
+  }
+
   return (
     <FormControl fullWidth>
-      <InputLabel htmlFor="age-native-simple">Categories</InputLabel>
-      <Select labelId="demo-simple-select-label">
+      <InputLabel>Categories</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        onChange={e => {
+          const {
+            target: { value },
+          } = e;
+          setCategory(String(value));
+        }}
+        value={category}
+      >
         {CATEGORY_NAMES.map(category => {
           return (
-            <Link
-              href="/categories/[id]"
-              as={`/categories/${category}`}
-              key={category}
-            >
-              <MenuItem id={category}>
-                {category && category.split('_').join(' ')}
-              </MenuItem>
-            </Link>
+            <MenuItem key={category} value={category}>
+              {category && category.split('_').join(' ')}
+            </MenuItem>
           );
         })}
       </Select>
