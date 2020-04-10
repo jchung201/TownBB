@@ -279,7 +279,12 @@ class CreateContainer extends Component {
               onClick={this.onSubmit}
               color="primary"
               size="large"
-              style={{ marginBottom: '2em', width: '12em', fontSize: '2em' }}
+              style={{
+                marginBottom: '2em',
+                width: '12em',
+                maxWidth: '80%',
+                fontSize: '2em',
+              }}
             >
               Create Posting
             </Button>

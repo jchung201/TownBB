@@ -21,7 +21,7 @@ const List = () => {
                   {post.title}
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary">
-                  {post.description.substring(0, 80) + '...'}
+                  {post.description.substring(0, 40) + '...'}
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary">
                   Last updated:{' '}

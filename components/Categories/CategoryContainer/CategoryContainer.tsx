@@ -12,7 +12,7 @@ const CategoryContainer = () => {
   const category = useSelector(state => state.home.category);
   return (
     <Grid container spacing={3} direction="row">
-      <Grid item xs={9}>
+      <Grid item sm={9} xs={12}>
         <CategoryLabel>
           Filtered by {category && category.split('_').join(' ')}
           &nbsp; &nbsp;
@@ -23,7 +23,7 @@ const CategoryContainer = () => {
         <FilterBar />
         <List />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item sm={3} xs={12}>
         <Subscribe />
       </Grid>
     </Grid>
