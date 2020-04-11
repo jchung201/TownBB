@@ -1,7 +1,10 @@
+import { Post } from './home.types';
+
 interface ExampleState {
   location: string;
   categories: string[];
-  posts: any[];
+  posts: Post[];
+  post: Post | null;
   latitude: number | null;
   longitude: number | null;
   category: string | null;
@@ -10,6 +13,7 @@ const exampleState: ExampleState = {
   location: '',
   categories: [],
   posts: [],
+  post: null,
   latitude: null,
   longitude: null,
   category: null,
@@ -23,6 +27,8 @@ export const homeReducer = (state = exampleState, action) => {
       return { ...state, categories: action.payload };
     case 'GET_POSTS':
       return { ...state, posts: action.payload };
+    case 'GET_POST':
+      return { ...state, post: action.payload };
     case 'GET_LOCATION':
       return {
         ...state,

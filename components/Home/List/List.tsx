@@ -11,27 +11,25 @@ const List = () => {
         return (
           <Card style={{ display: 'flex', marginTop: '2em' }} key={post.id}>
             <CardMedia
-              style={{ width: '10em', margin: '1em' }}
+              style={{ minWidth: '6em', width: '6em', margin: '1em' }}
               image="https://cms.prod.nypr.digital/images/297736/fill-661x496/"
               title="Live from space album cover"
             />
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <CardContent style={{ flex: '1 0 auto' }}>
-                <Typography component="h5" variant="h5">
-                  {post.title}
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  {post.description.substring(0, 40) + '...'}
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  Last updated:{' '}
-                  {moment
-                    .utc(post.updated)
-                    .local()
-                    .format('lll')}
-                </Typography>
-              </CardContent>
-            </div>
+            <CardContent style={{ flex: '1 0 auto' }}>
+              <Typography component="h5" variant="h5">
+                {post.title}
+              </Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {post.description.substring(0, 40) + '...'}
+              </Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                Last updated:{' '}
+                {moment
+                  .utc(post.updated)
+                  .local()
+                  .format('lll')}
+              </Typography>
+            </CardContent>
           </Card>
         );
       })}

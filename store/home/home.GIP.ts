@@ -7,7 +7,7 @@ import { GetPostsDTO, Post, Category } from './home.types';
 const GET_CATEGORIES = 'GET_CATEGORIES';
 const GET_LOCATION = 'GET_LOCATION';
 const GET_POSTS = 'GET_POSTS';
-
+const GET_POST = 'GET_POST';
 export const getPosts = async (
   getPostsDTO?: GetPostsDTO,
 ): Promise<AnyAction> => {
@@ -37,5 +37,14 @@ export const getLocation = async (): Promise<AnyAction> => {
   return {
     type: GET_LOCATION,
     payload: location,
+  };
+};
+
+export const getPost = async ({ id }): Promise<AnyAction> => {
+  const request = await axios.get<Post>(`${API_URL}/rest/ads/${id}`);
+  const { data } = request;
+  return {
+    type: GET_POST,
+    payload: data,
   };
 };
