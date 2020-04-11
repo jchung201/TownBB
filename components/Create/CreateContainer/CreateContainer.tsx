@@ -105,7 +105,7 @@ class CreateContainer extends Component {
         longitude,
         latitude,
         value,
-        categories: [category, subcategory],
+        categories: [category && category, subcategory && subcategory],
         images,
         contactEmail,
       });

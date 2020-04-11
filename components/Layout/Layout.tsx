@@ -38,12 +38,3 @@ const Layout: React.FC = ({ children }) => {
 };
 
 export default Layout;
-
-{
-  /* <Typography variant="body2" align="center">
-{'Copyright © '}
-<a href="https://www.townbb.com/">TownBB</a>{' '}
-{new Date().getFullYear()}
-{'.'}
-</Typography> */
-}
