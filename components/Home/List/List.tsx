@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState, Fragment } from 'react';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 
 const List = () => {
   const posts = useSelector(state => state.home.posts);
+  const router = useRouter();
+  const [postId, setPost] = useState('');
+  if (postId) {
+    router.push(`/posts/${postId}`);
+  }
   return (
-    <div>
+    <Fragment>
       {posts.map(post => {
         return (
-          <Card style={{ display: 'flex', marginTop: '2em' }} key={post.id}>
+          <Card
+            style={{ display: 'flex', marginTop: '2em', cursor: 'pointer' }}
+            key={post.id}
+            onClick={() => {
+              setPost(post.id);
+            }}
+          >
             <CardMedia
               style={{ minWidth: '6em', width: '6em', margin: '1em' }}
               image="https://cms.prod.nypr.digital/images/297736/fill-661x496/"
@@ -34,7 +46,7 @@ const List = () => {
         );
       })}
       {posts.length <= 0 && <div>No Items</div>}
-    </div>
+    </Fragment>
   );
 };
 
