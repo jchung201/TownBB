@@ -53,8 +53,8 @@ const Post = () => {
             <Breadcrumbs aria-label="breadcrumb" component="span">
               {post.categories.map(category => {
                 return (
-                  <Link key={category} href="/">
-                    {category}
+                  <Link key={category} href={`/categories/${category}`}>
+                    {category.split('_').join(' ')}
                   </Link>
                 );
               })}

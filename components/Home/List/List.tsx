@@ -23,7 +23,7 @@ const List = () => {
             }}
           >
             <CardMedia
-              style={{ minWidth: '6em', width: '6em', margin: '1em' }}
+              style={{ minWidth: '8em', width: '8em', margin: '1em' }}
               image={
                 post.images.length > 0
                   ? post.images[0]
@@ -32,8 +32,11 @@ const List = () => {
               title="Live from space album cover"
             />
             <CardContent style={{ flex: '1 0 auto' }}>
-              <Typography component="h5" variant="h5">
+              <Typography component="h4" variant="h4">
                 {post.title}
+              </Typography>
+              <Typography component="h6" variant="h6">
+                {post.value}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
                 {post.description.substring(0, 40) + '...'}
