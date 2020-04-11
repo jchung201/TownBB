@@ -24,7 +24,11 @@ const List = () => {
           >
             <CardMedia
               style={{ minWidth: '6em', width: '6em', margin: '1em' }}
-              image="https://cms.prod.nypr.digital/images/297736/fill-661x496/"
+              image={
+                post.images.length > 0
+                  ? post.images[0]
+                  : 'https://cms.prod.nypr.digital/images/297736/fill-661x496/'
+              }
               title="Live from space album cover"
             />
             <CardContent style={{ flex: '1 0 auto' }}>

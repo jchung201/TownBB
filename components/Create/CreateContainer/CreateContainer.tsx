@@ -184,7 +184,7 @@ class CreateContainer extends Component {
                 </InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
-                  name="subCategory"
+                  name="subcategory"
                   onChange={this.onChange}
                 >
                   {SUB_CATEGORY_NAMES[category].map(category => {

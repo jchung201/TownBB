@@ -41,7 +41,11 @@ const Post = () => {
       <Card style={{ width: '80%' }}>
         <CardActionArea>
           <CardMedia
-            image={post.images[0]}
+            image={
+              post.images.length > 0
+                ? post.images[0]
+                : 'https://cms.prod.nypr.digital/images/297736/fill-661x496/'
+            }
             title="Post image"
             style={{ paddingTop: '56.25%' }}
           />
