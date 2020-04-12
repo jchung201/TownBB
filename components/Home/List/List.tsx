@@ -32,7 +32,12 @@ const List = ({ width }) => {
             }}
           >
             <CardMedia
-              style={{ minWidth: '8em', width: '8em', margin: '1em' }}
+              style={{
+                minWidth: '8em',
+                width: '8em',
+                margin: '1em',
+                paddingRight: '3em',
+              }}
               image={
                 post.images.length > 0
                   ? post.images[0]

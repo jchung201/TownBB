@@ -29,7 +29,7 @@ const Layout: React.FC = ({ children }) => {
         </Toolbar>
       </AppBar>
       <main>
-        <Container style={{ flexGrow: 1, marginTop: '5em' }}>
+        <Container style={{ flexGrow: 1, marginTop: '2em' }}>
           {children}
         </Container>
       </main>
