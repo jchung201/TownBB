@@ -54,7 +54,6 @@ class CreateContainer extends Component {
         location,
       });
     } catch (error) {
-      console.log(error);
       this.setState({
         location: '',
       });

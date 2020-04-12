@@ -42,7 +42,7 @@ export class CommonService {
     this.sgMail.send(msg);
   }
 
-  emailSub(emailSubDTO: EmailSubDTO) {
+  async emailSub(emailSubDTO: EmailSubDTO) {
     const {
       to,
       from,
@@ -64,7 +64,12 @@ export class CommonService {
         category,
       },
     };
-    this.sgMail.send(msg);
+    console.log(msg);
+    try {
+      await this.sgMail.send(msg);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async uploadImage(image: Image): Promise<S3Response> {

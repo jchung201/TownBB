@@ -47,13 +47,13 @@ export class SubsService {
       });
       for (let j = 0; j < foundSubs.length; j++) {
         this.commonService.emailSub({
-          to: createdAd.contactEmail,
+          to: foundSubs[j].email,
           from: 'noreply@townbb.com',
           templateId: 'd-b12a36f355e2431392f5e2b129b62ee2',
           title: createdAd.title,
           viewUrl: `${this.configService.get('WEB_URL')}/ads/${createdAd.id}`,
           unsubUrl: `${this.configService.get('WEB_URL')}/subs/${
-            createdAd.id
+            foundSubs[j].id
           }/unsub?hash=${foundSubs[j].hash}`,
           category: categories[i],
         });
