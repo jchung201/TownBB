@@ -1,6 +1,7 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { LinkA } from '../Common/Links';
+import { LinkA, LinkB } from '../Common/Links';
 import {
   Button,
   CssBaseline,
@@ -8,9 +9,27 @@ import {
   Toolbar,
   Typography,
   Container,
+  Breadcrumbs,
 } from '@material-ui/core';
 
 const Layout: React.FC = ({ children }) => {
+  const router = useRouter();
+  let bcText = '';
+  if (router.pathname === '/create') {
+    bcText = 'Create';
+  } else if (router.pathname.startsWith('/categories/')) {
+    const {
+      query: { id },
+    } = router;
+    bcText = String(id)
+      .split('_')
+      .join(' ');
+  } else if (router.pathname.startsWith('/posts/')) {
+    const {
+      query: { id },
+    } = router;
+    bcText = `Post: ${String(id)}`;
+  }
   return (
     <React.Fragment>
       <CssBaseline />
@@ -30,6 +49,12 @@ const Layout: React.FC = ({ children }) => {
       </AppBar>
       <main>
         <Container style={{ flexGrow: 1, marginTop: '2em' }}>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link href="/">
+              <LinkB>Home</LinkB>
+            </Link>
+            <Typography color="textPrimary">{bcText}</Typography>
+          </Breadcrumbs>
           {children}
         </Container>
       </main>

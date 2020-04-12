@@ -26,18 +26,10 @@ const Post = () => {
       style={{
         display: 'flex',
         justifyContent: 'center',
-        marginBottom: '10em',
+        marginBottom: '5em',
+        marginTop: '3em',
       }}
     >
-      <CategoryLabel>
-        <Back
-          onClick={() => {
-            Router.push('/');
-          }}
-        >
-          go back
-        </Back>
-      </CategoryLabel>
       <Card style={{ width: '80%' }}>
         <CardActionArea>
           <CardMedia
