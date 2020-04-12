@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import {
   List,
   ListSubheader,
@@ -10,6 +10,11 @@ import {
 
 const TopCategories = () => {
   const CATEGORY_NAMES = ['Full_Time', 'Part_Time', 'Gigs'];
+  const router = useRouter();
+  const [categoryId, setCategory] = useState('');
+  if (categoryId) {
+    router.push(`/categories/${categoryId}`);
+  }
   return (
     <div>
       <List
@@ -36,13 +41,16 @@ const TopCategories = () => {
           return (
             <React.Fragment key={category}>
               <Divider style={{ backgroundColor: 'white' }} />
-              <ListItem button>
-                <Link href="/categories/[id]" as={`/categories/${category}`}>
-                  <ListItemText
-                    primary={category && category.split('_').join(' ')}
-                    style={{ textAlign: 'center' }}
-                  />
-                </Link>
+              <ListItem
+                button
+                onClick={() => {
+                  setCategory(category);
+                }}
+              >
+                <ListItemText
+                  primary={category && category.split('_').join(' ')}
+                  style={{ textAlign: 'center' }}
+                />
               </ListItem>
             </React.Fragment>
           );
