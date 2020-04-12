@@ -64,12 +64,7 @@ export class CommonService {
         category,
       },
     };
-    console.log(msg);
-    try {
-      await this.sgMail.send(msg);
-    } catch (error) {
-      console.log(error);
-    }
+    this.sgMail.send(msg);
   }
 
   async uploadImage(image: Image): Promise<S3Response> {
