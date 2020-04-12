@@ -60,9 +60,9 @@ export class AdsService {
       from: 'noreply@townbb.com',
       templateId: 'd-372939afe8db4caeb693f179ea0f33a2',
       title: createdAd.title,
-      editUrl: `${this.configService.get('WEB_URL')}/ads/${
-        createdAd.id
-      }/edit?hash=${createdAd.hash}`,
+      editUrl: `${this.configService.get('WEB_URL')}/edit/${createdAd.id}/${
+        createdAd.hash
+      }`,
     });
     // Send subs emails
     const { categories } = createAdDTO;

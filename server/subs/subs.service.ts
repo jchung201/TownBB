@@ -54,7 +54,7 @@ export class SubsService {
           viewUrl: `${this.configService.get('WEB_URL')}/ads/${createdAd.id}`,
           unsubUrl: `${this.configService.get('WEB_URL')}/subs/${
             foundSubs[j].id
-          }/unsub?hash=${foundSubs[j].hash}`,
+          }/${foundSubs[j].hash}`,
           category: categories[i].split('_').join(' '),
         });
       }
