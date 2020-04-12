@@ -66,7 +66,15 @@ const List = ({ width }) => {
           </Card>
         );
       })}
-      {posts.length <= 0 && <div>No Items</div>}
+      {posts.length <= 0 && (
+        <Typography
+          style={{ marginTop: '2em' }}
+          color="secondary"
+          variant="subtitle1"
+        >
+          Sorry, no items found.
+        </Typography>
+      )}
     </Fragment>
   );
 };

@@ -69,7 +69,7 @@ class Subscribe extends Component<PropsFromRedux, OwnState> {
             </ListSubheader>
           }
           style={{
-            width: '100%',
+            width: '90%',
             backgroundColor: '#3f51b5',
             color: 'white',
             textAlign: 'center',
