@@ -32,7 +32,7 @@ const Post = () => {
       <CategoryLabel>
         <Back
           onClick={() => {
-            Router.back();
+            Router.push('/');
           }}
         >
           go back

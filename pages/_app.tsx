@@ -5,7 +5,9 @@ import React from 'react';
 import { Provider as StoreProvider } from 'react-redux';
 import withRedux, { ReduxWrapperAppProps } from 'next-redux-wrapper';
 import { makeStore, RootState } from '../store/index';
-
+// Material UI
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from '../utilities/theme';
 // Toast
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,30 +22,32 @@ class MyApp extends App<ReduxWrapperAppProps<RootState>> {
 
     return { pageProps };
   }
+  componentDidMount() {
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }
+
   render() {
     const { Component, pageProps, store } = this.props;
     return (
       <React.Fragment>
         <Head>
-          <link rel="manifest" href="/manifest.json" />
-          <link rel="manifest" href="/site.webmanifest" />
-          <link rel="shortcut icon" href="/favicon.ico" />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          />
           <title>TownBB | Classifieds</title>
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
+          />
         </Head>
-        <Layout>
-          <StoreProvider store={store}>
-            <Component {...pageProps} />
-          </StoreProvider>
-          <ToastContainer />
-        </Layout>
+        <StoreProvider store={store}>
+          <ThemeProvider theme={theme}>
+            <Layout>
+              <Component {...pageProps} />
+              <ToastContainer />
+            </Layout>
+          </ThemeProvider>
+        </StoreProvider>
       </React.Fragment>
     );
   }

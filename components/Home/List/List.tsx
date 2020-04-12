@@ -3,13 +3,22 @@ import moment from 'moment';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
-const List = () => {
+const List = ({ width }) => {
   const posts = useSelector(state => state.home.posts);
   const router = useRouter();
   const [postId, setPost] = useState('');
   if (postId) {
     router.push(`/posts/${postId}`);
+  }
+  let descriptionWidth = 35;
+  if (isWidthUp('lg', width)) {
+    descriptionWidth = 100;
+  } else if (isWidthUp('md', width)) {
+    descriptionWidth = 65;
+  } else if (isWidthUp('sm', width)) {
+    descriptionWidth = 55;
   }
   return (
     <Fragment>
@@ -39,7 +48,7 @@ const List = () => {
                 {post.value}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
-                {post.description.substring(0, 40) + '...'}
+                {post.description.substring(0, descriptionWidth) + '...'}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
                 Last updated:{' '}
@@ -57,14 +66,4 @@ const List = () => {
   );
 };
 
-export default List;
-
-{
-  /* <PostContainer key={post.id}>
-<PostTitle>Title: {post.title}</PostTitle>
-<PostDescription>Description: {post.description}</PostDescription>
-<div style={{ marginLeft: '1rem', marginTop: '1rem' }}>
-  
-</div>
-</PostContainer> */
-}
+export default withWidth()(List);
