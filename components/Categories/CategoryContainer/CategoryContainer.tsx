@@ -9,7 +9,6 @@ import MobileSubCategories from '../SubCategories/MobileSubCategories';
 import SubCategories from '../SubCategories/SubCategories';
 
 const CategoryContainer = () => {
-  const category = useSelector(state => state.home.category);
   return (
     <Grid container spacing={3} direction="row">
       <Grid item xs={12}>

@@ -7,9 +7,9 @@ import {
   ListItemText,
   Divider,
 } from '@material-ui/core';
+import { CATEGORY_NAMES } from '../../../utilities/categories';
 
 const TopCategories = () => {
-  const CATEGORY_NAMES = ['Full_Time', 'Part_Time', 'Gigs'];
   const router = useRouter();
   const [categoryId, setCategory] = useState('');
   if (categoryId) {
@@ -39,16 +39,16 @@ const TopCategories = () => {
       >
         {CATEGORY_NAMES.map(category => {
           return (
-            <React.Fragment key={category}>
+            <React.Fragment key={category.id}>
               <Divider style={{ backgroundColor: 'white' }} />
               <ListItem
                 button
                 onClick={() => {
-                  setCategory(category);
+                  setCategory(category.id);
                 }}
               >
                 <ListItemText
-                  primary={category && category.split('_').join(' ')}
+                  primary={category && category.name.split('_').join(' ')}
                   style={{ textAlign: 'center' }}
                 />
               </ListItem>

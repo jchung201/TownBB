@@ -14,20 +14,19 @@ import {
 
 const Layout: React.FC = ({ children }) => {
   const router = useRouter();
+  const {
+    query: { slug, id },
+  } = router;
   let bcText = '';
   if (router.pathname === '/create') {
     bcText = 'Create';
   } else if (router.pathname.startsWith('/categories/')) {
-    const {
-      query: { id },
-    } = router;
-    bcText = String(id)
-      .split('_')
-      .join(' ');
+    if (slug.length >= 1) {
+      bcText = String(slug[0])
+        .split('_')
+        .join(' ');
+    }
   } else if (router.pathname.startsWith('/posts/')) {
-    const {
-      query: { id },
-    } = router;
     bcText = `Post: ${String(id)}`;
   }
   return (
@@ -53,7 +52,15 @@ const Layout: React.FC = ({ children }) => {
             <Link href="/">
               <LinkB>Home</LinkB>
             </Link>
-            <Typography color="textPrimary">{bcText}</Typography>
+            {!slug && <Typography color="textPrimary">{bcText}</Typography>}
+            {slug && slug.length > 0 && (
+              <Link href={`/categories/${bcText.split(' ').join('_')}`}>
+                <LinkB>{bcText}</LinkB>
+              </Link>
+            )}
+            {slug && slug.length > 1 && (
+              <Typography color="textPrimary">{slug[1]}</Typography>
+            )}
           </Breadcrumbs>
           {children}
         </Container>

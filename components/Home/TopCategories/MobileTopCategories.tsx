@@ -12,9 +12,9 @@ import {
   Select,
   MenuItem,
 } from '@material-ui/core';
+import { CATEGORY_NAMES } from '../../../utilities/categories';
 
 const TopCategories = () => {
-  const CATEGORY_NAMES = ['Full_Time', 'Part_Time', 'Gigs'];
   const router = useRouter();
   const [category, setCategory] = useState('');
   if (category) {
@@ -36,8 +36,8 @@ const TopCategories = () => {
       >
         {CATEGORY_NAMES.map(category => {
           return (
-            <MenuItem key={category} value={category}>
-              {category && category.split('_').join(' ')}
+            <MenuItem key={category.id} value={category.id}>
+              {category && category.name.split('_').join(' ')}
             </MenuItem>
           );
         })}
