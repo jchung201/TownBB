@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Grid, Hidden } from '@material-ui/core';
 
 import FilterBar from '../../Home/FilterBar/FilterBar';

@@ -14,10 +14,6 @@ import {
   Typography,
   Link,
 } from '@material-ui/core';
-import {
-  CategoryLabel,
-  Back,
-} from '../Categories/CategoryContainer/categoryContainerStyled';
 
 const Post = () => {
   const post = useSelector(state => state.home.post);

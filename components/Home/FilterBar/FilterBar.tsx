@@ -5,7 +5,7 @@ import {
   getLocationAndPosts,
 } from '../../../store/home/homeActions';
 import { connect, ConnectedProps } from 'react-redux';
-import { TextField, Button, Box } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 
 const mapStateToProps = ({
   home: { formattedAddress, latitude, longitude, category },

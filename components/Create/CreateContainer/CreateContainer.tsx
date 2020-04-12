@@ -15,12 +15,11 @@ import {
   MenuItem,
   FormControl,
 } from '@material-ui/core';
-import { ImageRender } from './createContainerStyled';
 import {
   CATEGORY_NAMES,
   SUB_CATEGORY_NAMES,
 } from '../../../utilities/categories';
-import { Wrapper, Description } from './createContainerStyled';
+import { Wrapper, Description, ImageRender } from './createContainerStyled';
 
 class CreateContainer extends Component {
   state = {

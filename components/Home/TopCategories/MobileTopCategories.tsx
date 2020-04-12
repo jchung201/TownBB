@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {
-  List,
-  ListSubheader,
-  ListItem,
-  ListItemText,
-  Divider,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from '@material-ui/core';
+import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { CATEGORY_NAMES } from '../../../utilities/categories';
 
 const TopCategories = () => {
