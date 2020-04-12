@@ -1,8 +1,8 @@
 import React from 'react';
-import FilterBar from '../FilterBar/FilterBar';
-import List from '../List/List';
-import TopCategories from '../TopCategories/TopCategories';
-import MobileTopCategories from '../TopCategories/MobileTopCategories';
+import FilterBar from './FilterBar';
+import List from './List';
+import TopCategories from './TopCategories';
+import MobileTopCategories from './MobileTopCategories';
 import { Grid, Hidden } from '@material-ui/core';
 
 const HomeContainer = () => {

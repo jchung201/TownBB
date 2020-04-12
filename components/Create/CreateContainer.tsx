@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Router from 'next/router';
 import axios from 'axios';
-import { API_URL } from '../../../utilities/envUrl';
-import notify from '../../../utilities/notify';
+import { API_URL } from '../../utilities/envUrl';
+import notify from '../../utilities/notify';
 import {
   Grid,
   Typography,
@@ -15,10 +15,7 @@ import {
   MenuItem,
   FormControl,
 } from '@material-ui/core';
-import {
-  CATEGORY_NAMES,
-  SUB_CATEGORY_NAMES,
-} from '../../../utilities/categories';
+import { CATEGORY_NAMES, SUB_CATEGORY_NAMES } from '../../utilities/categories';
 import { Wrapper, Description, ImageRender } from './createContainerStyled';
 
 class CreateContainer extends Component {

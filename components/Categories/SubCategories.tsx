@@ -8,10 +8,7 @@ import {
   ListItemText,
   Divider,
 } from '@material-ui/core';
-import {
-  CATEGORY_NAMES,
-  SUB_CATEGORY_NAMES,
-} from '../../../utilities/categories';
+import { CATEGORY_NAMES, SUB_CATEGORY_NAMES } from '../../utilities/categories';
 
 const TopCategories = () => {
   const category = useSelector(state => state.home.category);

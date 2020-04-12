@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import axios from 'axios';
-import { API_URL } from '../../../utilities/envUrl';
-import notify from '../../../utilities/notify';
+import { API_URL } from '../../utilities/envUrl';
+import notify from '../../utilities/notify';
 import {
   List,
   ListSubheader,

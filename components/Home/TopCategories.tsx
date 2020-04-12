@@ -7,7 +7,7 @@ import {
   ListItemText,
   Divider,
 } from '@material-ui/core';
-import { CATEGORY_NAMES } from '../../../utilities/categories';
+import { CATEGORY_NAMES } from '../../utilities/categories';
 
 const TopCategories = () => {
   const router = useRouter();

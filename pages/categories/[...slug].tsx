@@ -1,6 +1,6 @@
 import React from 'react';
 import { getPosts, getLocation } from '../../store/home/home.GIP';
-import CategoryContainer from '../../components/Categories/CategoryContainer/CategoryContainer';
+import CategoryContainer from '../../components/Categories/CategoryContainer';
 import { setCategoryAction } from '../../store/home/homeActions';
 
 const GetPost = () => {

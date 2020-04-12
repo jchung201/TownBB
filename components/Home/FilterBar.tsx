@@ -3,7 +3,7 @@ import {
   getPosts,
   getLocation,
   getLocationAndPosts,
-} from '../../../store/home/homeActions';
+} from '../../store/home/homeActions';
 import { connect, ConnectedProps } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
 

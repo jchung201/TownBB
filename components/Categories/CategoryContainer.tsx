@@ -1,11 +1,11 @@
 import React from 'react';
 import { Grid, Hidden } from '@material-ui/core';
 
-import FilterBar from '../../Home/FilterBar/FilterBar';
-import List from '../../Home/List/List';
-import Subscribe from '../Subscribe/Subscribe';
-import MobileSubCategories from '../SubCategories/MobileSubCategories';
-import SubCategories from '../SubCategories/SubCategories';
+import FilterBar from '../Home/FilterBar';
+import List from '../Home/List';
+import Subscribe from './Subscribe';
+import MobileSubCategories from './MobileSubCategories';
+import SubCategories from './SubCategories';
 
 const CategoryContainer = () => {
   return (

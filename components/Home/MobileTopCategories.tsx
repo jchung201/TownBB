@@ -1,18 +1,7 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {
-  List,
-  ListSubheader,
-  ListItem,
-  ListItemText,
-  Divider,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from '@material-ui/core';
-import { CATEGORY_NAMES } from '../../../utilities/categories';
+import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
+import { CATEGORY_NAMES } from '../../utilities/categories';
 
 const TopCategories = () => {
   const router = useRouter();
@@ -23,7 +12,7 @@ const TopCategories = () => {
 
   return (
     <FormControl fullWidth>
-      <InputLabel>Sub Categories</InputLabel>
+      <InputLabel>Categories</InputLabel>
       <Select
         labelId="demo-simple-select-label"
         onChange={e => {

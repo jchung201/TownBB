@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateContainer from '../../components/Create/CreateContainer/CreateContainer';
+import CreateContainer from '../../components/Create/CreateContainer';
 
 const CreatePost = () => <CreateContainer />;
 
