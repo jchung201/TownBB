@@ -42,6 +42,15 @@ export class AdsService {
     return foundAd;
   }
 
+  async adCheckHash(id: number, hash: string): Promise<Ad> {
+    const foundAd = await this.adRepository.findOne({ id, hash });
+    if (!foundAd)
+      throw new UnauthorizedException(
+        `You do not have authorization for this posting!`,
+      );
+    return foundAd;
+  }
+
   async createAd(createAdDTO: AdPostDTO): Promise<Ad> {
     // Create Ad
     const createdAd = await this.adRepository.createAd(createAdDTO);

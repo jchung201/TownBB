@@ -18,7 +18,11 @@ import {
 import { CATEGORY_NAMES, SUB_CATEGORY_NAMES } from '../../utilities/categories';
 import { Wrapper, Description, ImageRender } from './createContainerStyled';
 
-class CreateContainer extends Component {
+interface OwnProps {
+  foundPost: any;
+}
+
+class CreateContainer extends Component<OwnProps | any> {
   state = {
     title: '',
     description: '',
@@ -32,6 +36,10 @@ class CreateContainer extends Component {
     contactEmail: '',
     company: '',
   };
+  componentDidMount() {
+    const { foundPost } = this.props;
+    console.log(foundPost, 'YES');
+  }
 
   onLocationCheck = async () => {
     const { location } = this.state;

@@ -35,6 +35,14 @@ export class AdsController {
     return this.adsService.getAdCategories();
   }
 
+  @Get('/:id/check')
+  adCheckHash(
+    @Param('id', ParseIntPipe) id: number,
+    @Query('hash') hash: string,
+  ): Promise<Ad> {
+    return this.adsService.adCheckHash(id, hash);
+  }
+
   @Get('/:id')
   getAdById(@Param('id', ParseIntPipe) id: number): Promise<Ad> {
     return this.adsService.getAdById(id);

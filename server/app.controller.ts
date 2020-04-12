@@ -1,5 +1,13 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { Controller, Get, Req, Res, ParseIntPipe, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Req,
+  Res,
+  ParseIntPipe,
+  Param,
+  Query,
+} from '@nestjs/common';
 import { NextService } from '@nestpress/next';
 import { AdsService } from './ads/ads.service';
 
@@ -68,12 +76,13 @@ export class AppController {
     await this.next.render('/create', req, res);
   }
 
-  @Get('edit/:id')
+  @Get('edit/:id/:hash')
   public async editPost(
     @Req() req: IncomingMessage,
     @Res() res: ServerResponse,
     @Param('id', ParseIntPipe) id: number,
+    @Param('hash') hash: string,
   ) {
-    await this.next.render(`/edit/${id}`, req, res);
+    await this.next.render(`/edit/${id}/${hash}`, req, res);
   }
 }
