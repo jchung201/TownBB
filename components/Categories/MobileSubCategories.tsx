@@ -1,24 +1,16 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {
-  List,
-  ListSubheader,
-  ListItem,
-  ListItemText,
-  Divider,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from '@material-ui/core';
-import { CATEGORY_NAMES } from '../../utilities/categories';
+import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
+import { SUB_CATEGORY_NAMES } from '../../utilities/categories';
 
 const TopCategories = () => {
   const router = useRouter();
+  const {
+    query: { slug },
+  } = router;
   const [category, setCategory] = useState('');
   if (category) {
-    router.push(`/categories/${category}`);
+    router.push(`/categories/${slug[0]}/${category}`);
   }
 
   return (
@@ -34,13 +26,14 @@ const TopCategories = () => {
         }}
         value={category}
       >
-        {CATEGORY_NAMES.map(category => {
-          return (
-            <MenuItem key={category.id} value={category.id}>
-              {category && category.name.split('_').join(' ')}
-            </MenuItem>
-          );
-        })}
+        {slug &&
+          SUB_CATEGORY_NAMES[slug[0]].map(category => {
+            return (
+              <MenuItem key={category.id} value={category.id}>
+                {category && category.name.split('_').join(' ')}
+              </MenuItem>
+            );
+          })}
       </Select>
     </FormControl>
   );

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import {
   List,
@@ -8,10 +7,18 @@ import {
   ListItemText,
   Divider,
 } from '@material-ui/core';
-import { CATEGORY_NAMES, SUB_CATEGORY_NAMES } from '../../utilities/categories';
+import { SUB_CATEGORY_NAMES } from '../../utilities/categories';
 
 const TopCategories = () => {
-  const category = useSelector(state => state.home.category);
+  const router = useRouter();
+  const {
+    query: { slug },
+  } = router;
+  const [categoryId, setCategory] = useState('');
+  if (categoryId) {
+    router.push(`/categories/${slug[0]}/${categoryId}`);
+  }
+
   return (
     <div>
       <List
@@ -23,7 +30,7 @@ const TopCategories = () => {
             id="nested-list-subheader"
             style={{ color: 'white', fontSize: '1.5em' }}
           >
-            Job Categories
+            Sub Categories
           </ListSubheader>
         }
         style={{
@@ -34,12 +41,17 @@ const TopCategories = () => {
           textAlign: 'center',
         }}
       >
-        {category &&
-          SUB_CATEGORY_NAMES[category].map(category => {
+        {slug &&
+          SUB_CATEGORY_NAMES[slug[0]].map(category => {
             return (
               <React.Fragment key={category.id}>
                 <Divider style={{ backgroundColor: 'white' }} />
-                <ListItem button>
+                <ListItem
+                  button
+                  onClick={() => {
+                    setCategory(category.id);
+                  }}
+                >
                   <ListItemText
                     primary={
                       category.name && category.name.split('_').join(' ')
