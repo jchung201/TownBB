@@ -16,9 +16,7 @@ const CategoryContainer = () => {
   return (
     <Grid container spacing={3} direction="row">
       <Grid item xs={12}>
-        <Hidden smUp>
-          <MobileSubCategories />
-        </Hidden>
+        <Hidden smUp>{slug.length === 1 && <MobileSubCategories />}</Hidden>
       </Grid>
       <Grid item sm={9} xs={12}>
         <FilterBar />
