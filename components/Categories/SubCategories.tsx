@@ -13,7 +13,7 @@ import { CATEGORY_NAMES, SUB_CATEGORY_NAMES } from '../../utilities/categories';
 const TopCategories = () => {
   const category = useSelector(state => state.home.category);
   return (
-    <div style={{ marginTop: '3em' }}>
+    <div>
       <List
         component="nav"
         aria-labelledby="nested-list-subheader"

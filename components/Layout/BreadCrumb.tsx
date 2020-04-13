@@ -9,15 +9,7 @@ const BreadCrumb = () => {
   const {
     query: { slug, id },
   } = router;
-  let bcText = '';
-  let breadCrumb;
-  if (router.pathname.startsWith('/categories/')) {
-    if (slug.length >= 1) {
-      bcText = String(slug[0])
-        .split('_')
-        .join(' ');
-    }
-  }
+
   return (
     <Breadcrumbs aria-label="breadcrumb">
       <Link href="/">
@@ -37,7 +29,11 @@ const BreadCrumb = () => {
       {router.pathname.startsWith('/categories') &&
         (slug.length > 1 ? (
           <Link href={`/categories/${slug[0]}`}>
-            <LinkB>{slug[0].split('_').join(' ')}</LinkB>
+            <LinkB>
+              <Typography color="textPrimary">
+                {slug[0].split('_').join(' ')}
+              </Typography>
+            </LinkB>
           </Link>
         ) : (
           <Typography color="textPrimary">
@@ -52,19 +48,5 @@ const BreadCrumb = () => {
     </Breadcrumbs>
   );
 };
-
-// {
-//   !slug && <Typography color="textPrimary">{bcText}</Typography>;
-// }
-// {
-//   slug && slug.length > 0 && (
-
-//   );
-// }
-// {
-//   slug && slug.length > 1 && (
-//     <Typography color="textPrimary">{slug[1]}</Typography>
-//   );
-// }
 
 export default BreadCrumb;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { Grid, Hidden } from '@material-ui/core';
 
 import FilterBar from '../Home/FilterBar';
@@ -8,6 +9,10 @@ import MobileSubCategories from './MobileSubCategories';
 import SubCategories from './SubCategories';
 
 const CategoryContainer = () => {
+  const router = useRouter();
+  const {
+    query: { slug },
+  } = router;
   return (
     <Grid container spacing={3} direction="row">
       <Grid item xs={12}>
@@ -20,8 +25,8 @@ const CategoryContainer = () => {
         <List />
       </Grid>
       <Grid item sm={3} xs={12}>
-        <Subscribe />
-        <SubCategories />
+        {slug.length === 1 && <SubCategories />}
+        {slug.length > 1 && <Subscribe />}
       </Grid>
     </Grid>
   );
