@@ -9,8 +9,9 @@ const GetPost = () => {
 
 GetPost.getInitialProps = async ({ store, query: { slug } }) => {
   store.dispatch(await getLocation());
-  store.dispatch(await getPosts({ category: slug[0] }));
-  store.dispatch(setCategoryAction(slug[0]));
+  const category = slug.length > 1 ? slug[1] : slug[0];
+  store.dispatch(await getPosts({ category }));
+  store.dispatch(setCategoryAction(category));
 };
 
 export default GetPost;
