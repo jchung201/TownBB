@@ -23,7 +23,7 @@ const CategoryContainer = () => {
         <List />
       </Grid>
       <Grid item sm={3} xs={12}>
-        {slug.length === 1 && <SubCategories />}
+        <Hidden xsDown>{slug.length === 1 && <SubCategories />}</Hidden>
         {slug.length > 1 && <Subscribe />}
       </Grid>
     </Grid>
