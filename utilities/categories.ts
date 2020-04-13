@@ -6,16 +6,16 @@ export const CATEGORY_NAMES = [
 
 export const SUB_CATEGORY_NAMES = {
   Full_Time: [
-    { id: 'Hospitality', name: 'Restaurants/Hospitality' },
+    { id: 'Restaurants_&_Hospitality', name: 'Restaurants & Hospitality' },
     { id: 'Salons', name: 'Salons' },
-    { id: 'Nail_Salon', name: 'Nail Salons' },
+    { id: 'Nail_Salons', name: 'Nail Salons' },
     { id: 'Landscaping', name: 'Landscaping' },
     { id: 'General_Labor', name: 'General Labor' },
   ],
   Part_Time: [
-    { id: 'Hospitality', name: 'Restaurants/Hospitality' },
+    { id: 'Restaurants_&_Hospitality', name: 'Restaurants & Hospitality' },
     { id: 'Salons', name: 'Salons' },
-    { id: 'Nail_Salon', name: 'Nail Salons' },
+    { id: 'Nail_Salons', name: 'Nail Salons' },
     { id: 'Landscaping', name: 'Landscaping' },
     { id: 'General_Labor', name: 'General Labor' },
   ],
