@@ -39,13 +39,18 @@ const Post = () => {
           />
           <CardContent>
             <Breadcrumbs aria-label="breadcrumb" component="span">
-              {post.categories.map(category => {
-                return (
-                  <Link key={category} href={`/categories/${category}`}>
-                    {category.split('_').join(' ')}
-                  </Link>
-                );
-              })}
+              {post.categories && (
+                <Link href={`/categories/${post.categories[0]}`}>
+                  {post.categories[0].split('_').join(' ')}
+                </Link>
+              )}
+              {post.categories.length > 1 && (
+                <Link
+                  href={`/categories/${post.categories[0]}/${post.categories[1]}`}
+                >
+                  {post.categories[1].split('_').join(' ')}
+                </Link>
+              )}
             </Breadcrumbs>
             <Typography gutterBottom variant="h5" component="h2">
               {post.title}{' '}
