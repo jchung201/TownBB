@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
       height: '25%',
     },
     [theme.breakpoints.down('xs')]: {
-      fontSize: '0.5em',
+      fontSize: '0.7em',
     },
   },
   listHeadline: {
@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
       fontSize: '1.2em',
     },
     [theme.breakpoints.down('xs')]: {
-      fontSize: '0.6em',
+      fontSize: '0.7em',
     },
   },
   listDate: {
@@ -118,7 +118,7 @@ const List = ({ width }) => {
                     variant="h4"
                     className={classes.listTitle}
                   >
-                    {post.title}
+                    {post.title.substring(0, descriptionWidth) + '...'}
                   </Typography>
                   {post.company && (
                     <Chip
