@@ -1,7 +1,9 @@
 import React from 'react';
-import CreateContainer from '../../components/Create/CreateContainer';
 import axios from 'axios';
 import Error from 'next/error';
+
+import CreateContainer from '../../components/Create/CreateContainer';
+import { API_URL } from '../../utilities/envUrl;
 
 const EditPost = ({ foundPost, err }) => {
   if (err) return <Error statusCode={err.statusCode} />;
@@ -10,10 +12,9 @@ const EditPost = ({ foundPost, err }) => {
 
 EditPost.getInitialProps = async ({ query: { slug } }) => {
   try {
-    console.log('checkSlug', slug);
     const hash = slug[1];
     const foundPost = await axios.get(
-      `http://localhost:3000/rest/ads/${slug[0]}/check`,
+      `${API_URL}/rest/ads/${slug[0]}/check`,
       {
         params: {
           hash,
@@ -24,7 +25,6 @@ EditPost.getInitialProps = async ({ query: { slug } }) => {
       foundPost: foundPost.data,
     };
   } catch (error) {
-    console.error('pre-edit error', error);
     return {
       err: {
         statusCode: 401,
