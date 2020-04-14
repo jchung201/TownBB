@@ -5,6 +5,9 @@ export class AdsGetDTO {
   category: string;
 
   @IsOptional()
+  type: string;
+
+  @IsOptional()
   search: string;
 
   @IsOptional()

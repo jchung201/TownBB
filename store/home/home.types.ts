@@ -14,7 +14,8 @@ export interface Post {
   longitude: number;
   latitude: number;
   value: string | null;
-  categories: string[];
+  category: string;
+  type: string | null;
   images: string[];
   company: string | null;
   contactEmail: string;

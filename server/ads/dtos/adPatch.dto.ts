@@ -8,7 +8,8 @@ export class AdPatchDTO {
   latitude: number;
   longitude: number;
   value: string;
-  categories: string[];
+  category: string;
+  type: string;
   images: string[];
   company: string;
 

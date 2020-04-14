@@ -1,13 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import {
-  Controller,
-  Get,
-  Req,
-  Res,
-  ParseIntPipe,
-  Param,
-  Query,
-} from '@nestjs/common';
+import { Controller, Get, Req, Res, ParseIntPipe, Param } from '@nestjs/common';
 import { NextService } from '@nestpress/next';
 import { AdsService } from './ads/ads.service';
 

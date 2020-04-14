@@ -14,7 +14,8 @@ export class AdPostDTO {
   latitude: number;
   value: string;
   @IsNotEmpty()
-  categories: string[];
+  category: string;
+  type: string;
   @IsNotEmpty()
   images: string[];
   company: string;

@@ -38,26 +38,24 @@ export class SubsService {
     return this.subRepository.createSub(createSubDTO);
   }
 
-  async notifySubs(categories: string[], createdAd: Ad): Promise<void> {
-    for (let i = 0; i < categories.length; i++) {
-      // Find all subs for each category
-      const foundSubs = await this.subRepository.find({
-        category: categories[i],
-        deleted: false,
+  async notifySubs(category: string, createdAd: Ad): Promise<void> {
+    // Find all subs for each category
+    const foundSubs = await this.subRepository.find({
+      category: category,
+      deleted: false,
+    });
+    for (let j = 0; j < foundSubs.length; j++) {
+      this.commonService.emailSub({
+        to: foundSubs[j].email,
+        from: 'noreply@townbb.com',
+        templateId: 'd-b12a36f355e2431392f5e2b129b62ee2',
+        title: createdAd.title,
+        viewUrl: `${this.configService.get('WEB_URL')}/ads/${createdAd.id}`,
+        unsubUrl: `${this.configService.get('WEB_URL')}/subs/${
+          foundSubs[j].id
+        }/${foundSubs[j].hash}`,
+        category: category.split('_').join(' '),
       });
-      for (let j = 0; j < foundSubs.length; j++) {
-        this.commonService.emailSub({
-          to: foundSubs[j].email,
-          from: 'noreply@townbb.com',
-          templateId: 'd-b12a36f355e2431392f5e2b129b62ee2',
-          title: createdAd.title,
-          viewUrl: `${this.configService.get('WEB_URL')}/ads/${createdAd.id}`,
-          unsubUrl: `${this.configService.get('WEB_URL')}/subs/${
-            foundSubs[j].id
-          }/${foundSubs[j].hash}`,
-          category: categories[i].split('_').join(' '),
-        });
-      }
     }
   }
 

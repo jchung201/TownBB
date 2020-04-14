@@ -14,7 +14,7 @@ export class AdRepository extends Repository<Ad> {
   private logger = new Logger('Ad Repository');
 
   async getAds(filterDTO: AdsGetDTO): Promise<Ad[]> {
-    const { category, search, latitude, longitude } = filterDTO;
+    const { category, type, search, latitude, longitude } = filterDTO;
 
     let query;
     if (latitude && longitude) {
@@ -31,17 +31,21 @@ export class AdRepository extends Repository<Ad> {
       )}) <@> point(longitude, latitude)) < ${radius}
       `;
       if (search) {
-        query += ` AND (ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%')`;
+        query += ` AND (ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%' OR ad.category ILIKE '%${search}% OR ad.type ILIKE '%${search}%')`;
       }
-      if (category) query += ` AND '${category}'=ANY(ad.categories)`;
+      if (category) query += ` AND ad.category ILIKE '%${category}%'`;
+      if (type) query += ` AND ad.type ILIKE '%${type}%'`;
     } else if (search) {
-      query = `SELECT * from ad WHERE ad.deleted=false AND (ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%')`;
-      if (category) query += ` AND '${category}'=ANY(ad.categories)`;
+      query = `SELECT * from ad WHERE ad.deleted=false AND (ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%' OR ad.category ILIKE '%${search}% OR ad.type ILIKE '%${search}%')`;
+      if (category) query += ` AND ad.category ILIKE '%${category}%'`;
+      if (type) query += ` AND ad.type ILIKE '%${type}%'`;
     } else if (category) {
       query = `SELECT * from ad WHERE ad.deleted=false`;
-      query += ` AND '${category}'=ANY(ad.categories)`;
+      query += ` AND ad.category ILIKE '%${category}%'`;
+      if (type) query += ` AND ad.type ILIKE '%${type}%'`;
     } else {
       query = `SELECT * from ad WHERE ad.deleted=false`;
+      if (type) query += ` AND ad.type ILIKE '%${type}%'`;
     }
     query += ' ORDER BY ad.updated DESC';
 
@@ -58,14 +62,7 @@ export class AdRepository extends Repository<Ad> {
 
   async getAdCategories(): Promise<string[]> {
     try {
-      const fetchedAds = await this.query(
-        'Select DISTINCT categories from ad;',
-      );
-      const foundArray: string[] = [];
-      fetchedAds.forEach(ad => {
-        foundArray.push(...ad.categories);
-      });
-      return [...new Set(foundArray)];
+      return await this.query('Select DISTINCT category from ad;');
     } catch (error) {
       throw new InternalServerErrorException();
     }
@@ -79,7 +76,8 @@ export class AdRepository extends Repository<Ad> {
       longitude,
       latitude,
       value,
-      categories,
+      category,
+      type,
       images,
       company,
       contactEmail,
@@ -95,7 +93,8 @@ export class AdRepository extends Repository<Ad> {
     ad.latitude = latitude;
     ad.longitude = longitude;
     if (value) ad.value = value;
-    ad.categories = categories;
+    ad.category = category;
+    if (type) ad.type = type;
     ad.images = images;
     if (company) ad.company = company;
     ad.contactEmail = contactEmail;

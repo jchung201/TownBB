@@ -65,8 +65,8 @@ export class AdsService {
       }`,
     });
     // Send subs emails
-    const { categories } = createAdDTO;
-    this.subsService.notifySubs(categories, createdAd);
+    const { category } = createAdDTO;
+    this.subsService.notifySubs(category, createdAd);
     return createdAd;
   }
 
@@ -82,7 +82,8 @@ export class AdsService {
       latitude,
       longitude,
       value,
-      categories,
+      category,
+      type,
       images,
       company,
       contactEmail,
@@ -106,7 +107,8 @@ export class AdsService {
       foundAd.longitude = longitude;
     }
     if (value) foundAd.value = value;
-    if (categories) foundAd.categories = categories;
+    if (category) foundAd.category = category;
+    if (type) foundAd.type = type;
     if (images) foundAd.images = images;
     if (company) foundAd.company = company;
     if (contactEmail) foundAd.contactEmail = contactEmail;

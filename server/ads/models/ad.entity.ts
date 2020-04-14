@@ -26,8 +26,10 @@ export class Ad extends BaseEntity {
 
   @Column({ nullable: true })
   value: string;
-  @Column('text', { array: true })
-  categories: string[];
+  @Column()
+  category: string;
+  @Column()
+  type: string;
   @Column('text', { array: true })
   images: string[];
   @Column('text', { nullable: true })
