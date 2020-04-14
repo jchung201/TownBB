@@ -31,12 +31,12 @@ export class AdRepository extends Repository<Ad> {
       )}) <@> point(longitude, latitude)) < ${radius}
       `;
       if (search) {
-        query += ` AND (ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%' OR ad.category ILIKE '%${search}% OR ad.type ILIKE '%${search}%')`;
+        query += ` AND (ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%' OR ad.category ILIKE '%${search}%' OR ad.type ILIKE '%${search}%')`;
       }
       if (category) query += ` AND ad.category ILIKE '%${category}%'`;
       if (type) query += ` AND ad.type ILIKE '%${type}%'`;
     } else if (search) {
-      query = `SELECT * from ad WHERE ad.deleted=false AND (ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%' OR ad.category ILIKE '%${search}% OR ad.type ILIKE '%${search}%')`;
+      query = `SELECT * from ad WHERE ad.deleted=false AND (ad.title ILIKE '%${search}%' OR ad.description ILIKE '%${search}%' OR ad.location ILIKE '%${search}%' OR ad.value ILIKE '%${search}%' OR ad.company ILIKE '%${search}%' OR ad.category ILIKE '%${search}%' OR ad.type ILIKE '%${search}%')`;
       if (category) query += ` AND ad.category ILIKE '%${category}%'`;
       if (type) query += ` AND ad.type ILIKE '%${type}%'`;
     } else if (category) {
@@ -48,6 +48,7 @@ export class AdRepository extends Repository<Ad> {
       if (type) query += ` AND ad.type ILIKE '%${type}%'`;
     }
     query += ' ORDER BY ad.updated DESC';
+    console.log(query);
 
     try {
       return await this.query(query);
