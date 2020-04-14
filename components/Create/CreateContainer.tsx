@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Router from 'next/router';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 import { API_URL } from '../../utilities/envUrl';
 import notify from '../../utilities/notify';
@@ -17,7 +18,7 @@ import { CATEGORY_NAMES, SUB_CATEGORY_NAMES } from '../../utilities/categories';
 import { Wrapper, Description, ImageRender } from './createContainerStyled';
 
 interface OwnProps {
-  foundPost: any;
+  foundPost?: any;
 }
 
 class CreateContainer extends Component<OwnProps | any> {
@@ -36,7 +37,34 @@ class CreateContainer extends Component<OwnProps | any> {
   };
   componentDidMount() {
     const { foundPost } = this.props;
-    console.log(foundPost, 'YES');
+    if (foundPost) {
+      const {
+        title,
+        description,
+        location,
+        longitude,
+        latitude,
+        value,
+        category,
+        type,
+        images,
+        contactEmail,
+        company,
+      } = foundPost;
+      this.setState({
+        title,
+        description,
+        location,
+        longitude,
+        latitude,
+        value,
+        category,
+        type,
+        images,
+        contactEmail,
+        company,
+      });
+    }
   }
 
   onLocationCheck = async () => {
@@ -99,21 +127,43 @@ class CreateContainer extends Component<OwnProps | any> {
       images,
       contactEmail,
     } = this.state;
+    const { foundPost } = this.props;
     try {
-      const request = await axios.post(`${API_URL}/rest/ads`, {
-        title,
-        description,
-        location,
-        longitude,
-        latitude,
-        company,
-        value,
-        category,
-        type,
-        images,
-        contactEmail,
-      });
-      notify('success', 'Post Created!');
+      let request;
+      if (foundPost) {
+        request = await axios.patch(
+          `${API_URL}/rest/ads/${foundPost.id}?hash=${foundPost.hash}`,
+          {
+            title,
+            description,
+            location,
+            longitude,
+            latitude,
+            company,
+            value,
+            category,
+            type,
+            images,
+            contactEmail,
+          },
+        );
+        notify('success', 'Post Edited!');
+      } else {
+        request = await axios.post(`${API_URL}/rest/ads`, {
+          title,
+          description,
+          location,
+          longitude,
+          latitude,
+          company,
+          value,
+          category,
+          type,
+          images,
+          contactEmail,
+        });
+        notify('success', 'Post Created!');
+      }
       Router.push('/posts/[pid]', `/posts/${request.data.id}`);
     } catch (error) {
       notify('error', 'Missing fields!');
@@ -131,10 +181,12 @@ class CreateContainer extends Component<OwnProps | any> {
       location,
       value,
       category,
+      type,
       images,
       contactEmail,
       company,
     } = this.state;
+    const { foundPost } = this.props;
     return (
       <Wrapper onSubmit={this.onSubmit}>
         <Typography variant="h6" gutterBottom>
@@ -169,6 +221,7 @@ class CreateContainer extends Component<OwnProps | any> {
                 labelId="demo-simple-select-label"
                 name="category"
                 onChange={this.onChange}
+                value={category}
               >
                 {CATEGORY_NAMES.map(category => {
                   return (
@@ -189,6 +242,7 @@ class CreateContainer extends Component<OwnProps | any> {
                 <Select
                   labelId="demo-simple-select-label"
                   name="type"
+                  value={type}
                   onChange={this.onChange}
                 >
                   {SUB_CATEGORY_NAMES[category].map(category => {
@@ -290,7 +344,7 @@ class CreateContainer extends Component<OwnProps | any> {
                 fontSize: '2em',
               }}
             >
-              Create Posting
+              {foundPost ? 'Edit' : 'Create'} Posting
             </Button>
           </Grid>
         </Grid>

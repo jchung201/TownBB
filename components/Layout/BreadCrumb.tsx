@@ -7,7 +7,7 @@ import { Breadcrumbs, Typography } from '@material-ui/core';
 const BreadCrumb = () => {
   const router = useRouter();
   const {
-    query: { id },
+    query: { id, slug },
   } = router;
 
   return (
@@ -21,7 +21,9 @@ const BreadCrumb = () => {
         <Typography color="textPrimary">Create Posting</Typography>
       )}
       {router.pathname.startsWith('/edit') && (
-        <Typography color="textPrimary">Edit Post: {String(id)}</Typography>
+        <Typography color="textPrimary">
+          Edit Post: {String(slug[0])}
+        </Typography>
       )}
       {router.pathname.startsWith('/posts') && (
         <Typography color="textPrimary">{`Post: ${String(id)}`}</Typography>

@@ -10,11 +10,12 @@ const EditPost = ({ foundPost, err }) => {
 
 EditPost.getInitialProps = async ({ query: { slug } }) => {
   try {
+    const hash = slug[1];
     const foundPost = await axios.get(
       `http://localhost:3000/rest/ads/${slug[0]}/check`,
       {
         params: {
-          hash: slug[1],
+          hash,
         },
       },
     );
