@@ -45,7 +45,7 @@ const Post = () => {
                   {post.categories[0].split('_').join(' ')}
                 </Link>
               )}
-              {post.categories.length > 1 && (
+              {post.type > 1 && (
                 <Link
                   href={`/categories/${post.categories[0]}/${post.categories[1]}`}
                 >

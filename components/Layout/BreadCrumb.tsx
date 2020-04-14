@@ -7,7 +7,7 @@ import { Breadcrumbs, Typography } from '@material-ui/core';
 const BreadCrumb = () => {
   const router = useRouter();
   const {
-    query: { slug, id },
+    query: { id },
   } = router;
 
   return (
@@ -26,23 +26,11 @@ const BreadCrumb = () => {
       {router.pathname.startsWith('/posts') && (
         <Typography color="textPrimary">{`Post: ${String(id)}`}</Typography>
       )}
-      {router.pathname.startsWith('/categories') &&
-        (slug.length > 1 ? (
-          <Link href={`/categories/${slug[0]}`}>
-            <LinkB>
-              <Typography color="textPrimary">
-                {slug[0].split('_').join(' ')}
-              </Typography>
-            </LinkB>
-          </Link>
-        ) : (
-          <Typography color="textPrimary">
-            {slug[0].split('_').join(' ')}
-          </Typography>
-        ))}
-      {router.pathname.startsWith('/categories') && slug.length > 1 && (
+      {router.pathname.startsWith('/categories') && (
         <Typography color="textPrimary">
-          {slug[1].split('_').join(' ')}
+          {String(id)
+            .split('_')
+            .join(' ')}
         </Typography>
       )}
     </Breadcrumbs>

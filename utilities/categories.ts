@@ -1,26 +1,35 @@
 export const CATEGORY_NAMES = [
-  { id: 'Full_Time', name: 'Full Time' },
-  { id: 'Part_Time', name: 'Part Time' },
-  { id: 'Gigs', name: 'Gigs' },
+  { id: 'Restaurants_&_Hospitality', name: 'Restaurants & Hospitality' },
+  { id: 'Hair_Salons', name: 'Hair Salons' },
+  { id: 'Nail_Salons', name: 'Nail Salons' },
+  { id: 'Landscaping', name: 'Landscaping' },
+  { id: 'General_Labor', name: 'General Labor' },
 ];
 
 export const SUB_CATEGORY_NAMES = {
-  Full_Time: [
-    { id: 'Restaurants_&_Hospitality', name: 'Restaurants & Hospitality' },
-    { id: 'Salons', name: 'Salons' },
-    { id: 'Nail_Salons', name: 'Nail Salons' },
-    { id: 'Landscaping', name: 'Landscaping' },
-    { id: 'General_Labor', name: 'General Labor' },
+  'Restaurants_&_Hospitality': [
+    { id: 'Full_Time', name: 'Full Time' },
+    { id: 'Part_Time', name: 'Part Time' },
+    { id: 'Gigs', name: 'Gigs' },
   ],
-  Part_Time: [
-    { id: 'Restaurants_&_Hospitality', name: 'Restaurants & Hospitality' },
-    { id: 'Salons', name: 'Salons' },
-    { id: 'Nail_Salons', name: 'Nail Salons' },
-    { id: 'Landscaping', name: 'Landscaping' },
-    { id: 'General_Labor', name: 'General Labor' },
+  Hair_Salons: [
+    { id: 'Full_Time', name: 'Full Time' },
+    { id: 'Part_Time', name: 'Part Time' },
+    { id: 'Gigs', name: 'Gigs' },
   ],
-  Gigs: [
-    { id: 'General_Labor', name: 'General Labor' },
-    { id: 'Events', name: 'Events' },
+  Nail_Salons: [
+    { id: 'Full_Time', name: 'Full Time' },
+    { id: 'Part_Time', name: 'Part Time' },
+    { id: 'Gigs', name: 'Gigs' },
+  ],
+  Landscaping: [
+    { id: 'Full_Time', name: 'Full Time' },
+    { id: 'Part_Time', name: 'Part Time' },
+    { id: 'Gigs', name: 'Gigs' },
+  ],
+  General_Labor: [
+    { id: 'Full_Time', name: 'Full Time' },
+    { id: 'Part_Time', name: 'Part Time' },
+    { id: 'Gigs', name: 'Gigs' },
   ],
 };

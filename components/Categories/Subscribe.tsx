@@ -15,14 +15,14 @@ const Subscribe = () => {
   const [email, setEmail] = useState('');
   const router = useRouter();
   const {
-    query: { slug },
+    query: { id },
   } = router;
   const onSubmit = async event => {
     event.preventDefault();
     try {
       await axios.post(`${API_URL}/rest/subs`, {
         email,
-        category: slug[1],
+        category: id,
       });
       notify('success', 'Email subscribed!');
       setEmail('');
@@ -43,7 +43,11 @@ const Subscribe = () => {
             id="nested-list-subheader"
             style={{ color: 'white', fontSize: '1.5em' }}
           >
-            Subscribe to {slug && slug[1].split('_').join(' ')}
+            Subscribe to{' '}
+            {id &&
+              String(id)
+                .split('_')
+                .join(' ')}
           </ListSubheader>
         }
         style={{
@@ -96,17 +100,3 @@ const Subscribe = () => {
 };
 
 export default Subscribe;
-
-// state = {
-//   email: '',
-// };
-// onChangeEmail = event => {
-//   const {
-//     target: { value },
-//   } = event;
-//   this.setState({ email: value });
-// };
-// onSubmit = async event => {
-//   event.preventDefault();
-
-// };

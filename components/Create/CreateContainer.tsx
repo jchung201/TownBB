@@ -185,7 +185,7 @@ class CreateContainer extends Component<OwnProps | any> {
             {category.length > 0 && (
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">
-                  Sub-Category
+                  Employment Type
                 </InputLabel>
                 <Select
                   labelId="demo-simple-select-label"

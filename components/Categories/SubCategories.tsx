@@ -13,7 +13,7 @@ import { SUB_CATEGORY_NAMES } from '../../utilities/categories';
 const TopCategories = () => {
   const router = useRouter();
   const {
-    query: { slug },
+    query: { id },
   } = router;
 
   return (
@@ -27,7 +27,7 @@ const TopCategories = () => {
             id="nested-list-subheader"
             style={{ color: 'white', fontSize: '1.5em' }}
           >
-            Sub Categories
+            Employment Type
           </ListSubheader>
         }
         style={{
@@ -38,19 +38,19 @@ const TopCategories = () => {
           textAlign: 'center',
         }}
       >
-        {slug &&
-          SUB_CATEGORY_NAMES[slug[0]].map(category => {
+        {id &&
+          SUB_CATEGORY_NAMES[String(id)].map(category => {
             return (
               <React.Fragment key={category.id}>
                 <Divider style={{ backgroundColor: 'white' }} />
                 <Link
                   href="/categories/[id]/[sub]"
-                  as={`/categories/${slug[0]}/${category.id}`}
+                  as={`/categories/${id}/${category.id}`}
                 >
                   <ListItem
                     button
                     component="a"
-                    href={`/categories/${slug[0]}/${category.id}`}
+                    href={`/categories/${id}/${category.id}`}
                   >
                     <ListItemText
                       primary={

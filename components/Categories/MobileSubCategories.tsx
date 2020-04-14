@@ -7,19 +7,19 @@ import { SUB_CATEGORY_NAMES } from '../../utilities/categories';
 const TopCategories = () => {
   const router = useRouter();
   const {
-    query: { slug },
+    query: { id },
   } = router;
 
   return (
     <FormControl fullWidth>
-      <InputLabel>Sub Categories</InputLabel>
+      <InputLabel>Employment Type</InputLabel>
       <Select labelId="demo-simple-select-label">
-        {slug &&
-          SUB_CATEGORY_NAMES[slug[0]].map(category => {
+        {id &&
+          SUB_CATEGORY_NAMES[String(id)].map(category => {
             return (
               <Link
                 href="/categories/[id]/[sub]"
-                as={`/categories/${slug[0]}/${category.id}`}
+                as={`/categories/${id}/${category.id}`}
                 key={category.id}
               >
                 <MenuItem value={category.id}>
