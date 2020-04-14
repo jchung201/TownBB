@@ -10,6 +10,7 @@ const EditPost = ({ foundPost, err }) => {
 
 EditPost.getInitialProps = async ({ query: { slug } }) => {
   try {
+    console.log('checkSlug', slug);
     const hash = slug[1];
     const foundPost = await axios.get(
       `http://localhost:3000/rest/ads/${slug[0]}/check`,
@@ -23,6 +24,7 @@ EditPost.getInitialProps = async ({ query: { slug } }) => {
       foundPost: foundPost.data,
     };
   } catch (error) {
+    console.error('pre-edit error', error);
     return {
       err: {
         statusCode: 401,
