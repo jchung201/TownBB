@@ -96,6 +96,7 @@ class CreateContainer extends Component<OwnProps | any> {
       latitude,
       value,
       category,
+      company,
       subcategory,
       images,
       contactEmail,
@@ -107,6 +108,7 @@ class CreateContainer extends Component<OwnProps | any> {
         location,
         longitude,
         latitude,
+        company,
         value,
         categories: [category && category, subcategory && subcategory],
         images,
@@ -252,7 +254,7 @@ class CreateContainer extends Component<OwnProps | any> {
             <TextField
               required
               name="value"
-              label="Headline"
+              label="Subtitle"
               onChange={this.onChange}
               value={value}
               fullWidth

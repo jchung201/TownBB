@@ -41,7 +41,7 @@ const List = ({ width }) => {
               image={
                 post.images.length > 0
                   ? post.images[0]
-                  : 'https://cms.prod.nypr.digital/images/297736/fill-661x496/'
+                  : 'https://farmhouseguide.com/wp-content/uploads/2020/01/farm-geese-relaxing-in-a-field.jpg'
               }
               title="Live from space album cover"
             />
@@ -52,6 +52,11 @@ const List = ({ width }) => {
               <Typography component="h6" variant="h6">
                 {post.value}
               </Typography>
+              {post.company && (
+                <Typography variant="subtitle1" color="textSecondary">
+                  Company: {post.company}
+                </Typography>
+              )}
               <Typography variant="subtitle1" color="textSecondary">
                 {post.description.substring(0, descriptionWidth) + '...'}
               </Typography>
