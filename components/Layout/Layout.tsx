@@ -43,9 +43,11 @@ const useStyles = makeStyles(theme => ({
   footerMessage: {
     [theme.breakpoints.down('sm')]: {
       fontSize: '1.5em',
+      lineHeight: '2em',
     },
     [theme.breakpoints.down('xs')]: {
       fontSize: '0.8em',
+      lineHeight: '1.2em',
     },
   },
   main: {
@@ -93,8 +95,12 @@ const Layout: React.FC = ({ children }) => {
       </main>
       <footer className={classes.footer}>
         <Container maxWidth="sm">
-          <Typography variant="subtitle1" align="center">
-            <strong className={classes.footerMessage}>
+          <Typography
+            variant="subtitle1"
+            align="center"
+            className={classes.footerMessage}
+          >
+            <strong>
               TownBB is commited to help small businesses and workers who have
               been impacted by COVID-19.
             </strong>
@@ -103,6 +109,7 @@ const Layout: React.FC = ({ children }) => {
             variant="body1"
             align="center"
             className={classes.footerMessage}
+            style={{ marginTop: '0.8em', marginBottom: '0.8em' }}
           >
             If you have any questions or issues, please contact
             <a href="mailto: support@townbb.com"> support@townbb.com</a>.
