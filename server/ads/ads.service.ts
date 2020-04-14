@@ -63,6 +63,7 @@ export class AdsService {
       editUrl: `${this.configService.get('WEB_URL')}/edit/${createdAd.id}/${
         createdAd.hash
       }`,
+      viewUrl: `${this.configService.get('WEB_URL')}/posts/${createdAd.id}/`,
     });
     // Send subs emails
     const { category } = createAdDTO;

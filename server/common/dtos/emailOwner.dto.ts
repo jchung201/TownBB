@@ -4,4 +4,5 @@ export class EmailOwnerDTO {
   templateId: string;
   title: string;
   editUrl: string;
+  viewUrl: string;
 }

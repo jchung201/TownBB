@@ -28,7 +28,7 @@ export class CommonService {
   }
 
   emailOwner(emailOwnerDTO: EmailOwnerDTO): void {
-    const { to, from, templateId, title, editUrl } = emailOwnerDTO;
+    const { to, from, templateId, title, editUrl, viewUrl } = emailOwnerDTO;
     const msg = {
       to,
       from,
@@ -37,6 +37,7 @@ export class CommonService {
       dynamic_template_data: {
         title,
         editUrl,
+        viewUrl,
       },
     };
     this.sgMail.send(msg);
