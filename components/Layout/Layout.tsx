@@ -8,8 +8,10 @@ import {
   AppBar,
   Toolbar,
   Container,
+  Typography,
 } from '@material-ui/core';
 import BreadCrumb from './BreadCrumb';
+import Copyright from './Copyright';
 
 const useStyles = makeStyles(theme => ({
   navLogo: {
@@ -24,12 +26,28 @@ const useStyles = makeStyles(theme => ({
       fontSize: '1.2em',
     },
   },
+  footer: {
+    padding: theme.spacing(3, 2),
+    marginTop: 'auto',
+    backgroundColor:
+      theme.palette.type === 'light'
+        ? theme.palette.grey[200]
+        : theme.palette.grey[800],
+  },
+  main: {
+    marginBottom: '5em',
+  },
+  layoutContainer: {
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+  },
 }));
 
 const Layout: React.FC = ({ children }) => {
   const classes = useStyles();
   return (
-    <React.Fragment>
+    <div className={classes.layoutContainer}>
       <CssBaseline />
       <AppBar position="relative" color="primary">
         <Toolbar>
@@ -53,13 +71,28 @@ const Layout: React.FC = ({ children }) => {
           </Link>
         </Toolbar>
       </AppBar>
-      <main>
+      <main className={classes.main}>
         <Container style={{ flexGrow: 1, marginTop: '2em' }}>
           <BreadCrumb />
           {children}
         </Container>
       </main>
-    </React.Fragment>
+      <footer className={classes.footer}>
+        <Container maxWidth="sm">
+          <Typography variant="subtitle1" align="center">
+            <strong>
+              TownBB is dedicated to help assist small businesses and workers
+              who have been impacted by COVID-19 related impacts.
+            </strong>
+          </Typography>
+          <Typography variant="body1" align="center">
+            If you have any questions or issues, please contact
+            <a href="mailto: support@townbb.com"> support@townbb.com</a>.
+          </Typography>
+          <Copyright />
+        </Container>
+      </footer>
+    </div>
   );
 };
 
