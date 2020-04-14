@@ -28,12 +28,10 @@ const TopCategories = () => {
     <div>
       <List
         component="nav"
-        aria-labelledby="nested-list-subheader"
         subheader={
           <ListSubheader
             component="div"
-            id="nested-list-subheader"
-            style={{ color: 'white', fontSize: '1.5em' }}
+            style={{ color: 'white', fontSize: '1.5em', position: 'relative' }}
           >
             Job Categories
           </ListSubheader>

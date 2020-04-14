@@ -23,6 +23,31 @@ const useStyles = makeStyles(theme => ({
       width: '8em',
     },
   },
+  listTitle: {
+    marginBottom: '0.2em',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.5em',
+    },
+  },
+  listChips: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.2em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1em',
+    },
+  },
+  listDate: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.1em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.9em',
+    },
+  },
 }));
 
 const List = ({ width }) => {
@@ -51,57 +76,71 @@ const List = ({ width }) => {
       {finalPosts.map(post => {
         return (
           <Link href={`/posts/${post.id}`} key={post.id}>
-            <Card
-              style={{ display: 'flex', marginTop: '2em', cursor: 'pointer' }}
-              component="a"
+            <a
+              href={`/posts/${post.id}`}
+              style={{ color: 'inherit', textDecoration: 'none' }}
             >
-              <CardMedia
-                className={classes.listImage}
-                image={
-                  post.images.length > 0
-                    ? post.images[0]
-                    : 'https://cms.prod.nypr.digital/images/297736/fill-661x496/'
-                }
-                title="Card Picture"
-              />
-              <CardContent style={{ flex: '1 0 auto' }}>
-                <Typography
-                  component="h4"
-                  variant="h4"
-                  style={{ marginBottom: '0.2em' }}
-                >
-                  {post.title}
-                </Typography>
-                {post.company && (
-                  <Chip
-                    icon={<BusinessIcon />}
-                    size="small"
-                    label={post.company}
-                    style={{ marginRight: '1em' }}
-                  />
-                )}
-                <span>
-                  <Chip label={post.location} size="small" variant="outlined" />
-                </span>
-                <Typography
-                  component="h6"
-                  variant="h6"
-                  style={{ marginTop: '0.2em' }}
-                >
-                  {post.value}
-                </Typography>
-                <Typography variant="subtitle1">
-                  {post.description.substring(0, descriptionWidth) + '...'}
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  Last updated:{' '}
-                  {moment
-                    .utc(post.updated)
-                    .local()
-                    .format('lll')}
-                </Typography>
-              </CardContent>
-            </Card>
+              <Card
+                style={{ display: 'flex', marginTop: '2em', cursor: 'pointer' }}
+              >
+                <CardMedia
+                  className={classes.listImage}
+                  image={
+                    post.images.length > 0
+                      ? post.images[0]
+                      : 'https://cms.prod.nypr.digital/images/297736/fill-661x496/'
+                  }
+                  title="Card Picture"
+                />
+                <CardContent style={{ flex: '1 0 auto' }}>
+                  <Typography
+                    component="h4"
+                    variant="h4"
+                    className={classes.listTitle}
+                  >
+                    {post.title}
+                  </Typography>
+                  {post.company && (
+                    <Chip
+                      icon={<BusinessIcon />}
+                      size="small"
+                      className={classes.listChips}
+                      label={post.company}
+                      style={{ marginRight: '1em' }}
+                    />
+                  )}
+                  <span>
+                    <Chip
+                      label={post.location}
+                      size="small"
+                      variant="outlined"
+                      className={classes.listChips}
+                    />
+                  </span>
+                  <Typography
+                    component="h6"
+                    variant="h6"
+                    style={{ marginTop: '0.2em' }}
+                  >
+                    {post.value}
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    {post.description.substring(0, descriptionWidth) + '...'}
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    color="textSecondary"
+                    className={classes.listDate}
+                  >
+                    Last updated:{' '}
+                    {moment
+                      .utc(post.updated)
+                      .local()
+                      .format('lll')}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </a>
           </Link>
         );
       })}

@@ -18,18 +18,18 @@ const theme = {
       },
       h4: {
         [breakpoints.down('sm')]: {
-          fontSize: '1.2rem',
+          fontSize: '1.4rem',
         },
         [breakpoints.down('xs')]: {
-          fontSize: '1rem',
+          fontSize: '1.2rem',
         },
       },
       h6: {
         [breakpoints.down('sm')]: {
-          fontSize: '1rem',
+          fontSize: '1.2rem',
         },
         [breakpoints.down('xs')]: {
-          fontSize: '0.8rem',
+          fontSize: '1rem',
         },
       },
     },
