@@ -69,4 +69,14 @@ export class AppController {
   ) {
     await this.next.render(`/edit/${id}/${hash}`, req, res);
   }
+
+  @Get('unsub/:id/:hash')
+  public async unSub(
+    @Req() req: IncomingMessage,
+    @Res() res: ServerResponse,
+    @Param('id', ParseIntPipe) id: number,
+    @Param('hash') hash: string,
+  ) {
+    await this.next.render(`/unsub/${id}/${hash}`, req, res);
+  }
 }

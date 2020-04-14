@@ -35,6 +35,9 @@ const BreadCrumb = () => {
             .join(' ')}
         </Typography>
       )}
+      {router.pathname.startsWith('/unsub') && (
+        <Typography color="textPrimary">Unsubscribe</Typography>
+      )}
     </Breadcrumbs>
   );
 };

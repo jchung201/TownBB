@@ -50,8 +50,8 @@ export class SubsService {
         from: 'noreply@townbb.com',
         templateId: 'd-b12a36f355e2431392f5e2b129b62ee2',
         title: createdAd.title,
-        viewUrl: `${this.configService.get('WEB_URL')}/ads/${createdAd.id}`,
-        unsubUrl: `${this.configService.get('WEB_URL')}/subs/${
+        viewUrl: `${this.configService.get('WEB_URL')}/posts/${createdAd.id}`,
+        unsubUrl: `${this.configService.get('WEB_URL')}/unsub/${
           foundSubs[j].id
         }/${foundSubs[j].hash}`,
         category: category.split('_').join(' '),
