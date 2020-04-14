@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core';
 import { getPosts, getLocationAndPosts } from '../../store/home/homeActions';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 const useStyles = makeStyles(theme => ({
   locationInput: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const FilterBar = () => {
+const FilterBar = ({ width }) => {
   const router = useRouter();
   const {
     query: { id },
@@ -50,7 +51,9 @@ const FilterBar = () => {
         }}
       />
       <TextField
-        label="Location (e.g. City, Zip)"
+        label={`Location (e.g. City${
+          isWidthUp('md', width) ? ', Zip Code' : ''
+        })`}
         onChange={e => setLocation(e.target.value)}
         className={classes.locationInput}
       />
@@ -69,4 +72,4 @@ const FilterBar = () => {
   );
 };
 
-export default FilterBar;
+export default withWidth()(FilterBar);

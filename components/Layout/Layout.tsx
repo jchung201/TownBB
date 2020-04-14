@@ -95,8 +95,8 @@ const Layout: React.FC = ({ children }) => {
         <Container maxWidth="sm">
           <Typography variant="subtitle1" align="center">
             <strong className={classes.footerMessage}>
-              TownBB is commited to help assist small businesses and workers who
-              have been impacted by COVID-19 related impacts.
+              TownBB is commited to help small businesses and workers who have
+              been impacted by COVID-19.
             </strong>
           </Typography>
           <Typography
