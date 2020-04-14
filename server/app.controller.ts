@@ -43,14 +43,6 @@ export class AppController {
     await this.next.render(`/categories/${id}/${sub}`, req, res);
   }
 
-  @Get('posts')
-  public async showPosts(
-    @Req() req: IncomingMessage,
-    @Res() res: ServerResponse,
-  ) {
-    await this.next.render('/posts', req, res);
-  }
-
   @Get('posts/:id')
   public async showPost(
     @Req() req: IncomingMessage,
