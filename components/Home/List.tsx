@@ -57,7 +57,7 @@ const List = ({ width }) => {
 
   let descriptionWidth = 35;
   if (isWidthUp('lg', width)) {
-    descriptionWidth = 100;
+    descriptionWidth = 80;
   } else if (isWidthUp('md', width)) {
     descriptionWidth = 50;
   } else if (isWidthUp('sm', width)) {
