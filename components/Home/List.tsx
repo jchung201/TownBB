@@ -2,7 +2,14 @@ import React, { useState, Fragment } from 'react';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Chip,
+} from '@material-ui/core';
+import BusinessIcon from '@material-ui/icons/Business';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 const List = ({ width }) => {
@@ -49,14 +56,17 @@ const List = ({ width }) => {
               <Typography component="h4" variant="h4">
                 {post.title}
               </Typography>
+              {post.company && (
+                <Chip
+                  icon={<BusinessIcon />}
+                  label={post.company}
+                  style={{ marginRight: '1em' }}
+                  color="primary"
+                />
+              )}
               <Typography component="h6" variant="h6">
                 {post.value}
               </Typography>
-              {post.company && (
-                <Typography variant="subtitle1" color="textSecondary">
-                  Company: {post.company}
-                </Typography>
-              )}
               <Typography variant="subtitle1" color="textSecondary">
                 {post.description.substring(0, descriptionWidth) + '...'}
               </Typography>

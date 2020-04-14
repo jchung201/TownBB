@@ -14,6 +14,7 @@ import {
   Typography,
   Link,
 } from '@material-ui/core';
+import BusinessIcon from '@material-ui/icons/Business';
 
 const Post = () => {
   const post = useSelector(state => state.home.post);
@@ -53,11 +54,18 @@ const Post = () => {
               )}
             </Breadcrumbs>
             <Typography gutterBottom variant="h5" component="h2">
-              {post.title}{' '}
-              <span>
-                <Chip label={post.location} variant="outlined" />
-              </span>
+              {post.title}
             </Typography>
+            {post.company && (
+              <Chip
+                icon={<BusinessIcon />}
+                label={post.company}
+                style={{ marginRight: '1em' }}
+              />
+            )}
+            <span>
+              <Chip label={post.location} variant="outlined" />
+            </span>
             <Typography gutterBottom variant="h6" component="h4">
               {post.value}
             </Typography>
