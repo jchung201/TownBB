@@ -16,6 +16,16 @@ const useStyles = makeStyles(theme => ({
       marginRight: '1em',
     },
   },
+  formTextInput: {
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.8em',
+    },
+  },
+  formTextLabel: {
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.8em',
+    },
+  },
 }));
 
 const FilterBar = ({ width }) => {
@@ -49,6 +59,16 @@ const FilterBar = ({ width }) => {
         style={{
           flexGrow: 4,
         }}
+        InputProps={{
+          classes: {
+            input: classes.formTextInput,
+          },
+        }}
+        InputLabelProps={{
+          classes: {
+            root: classes.formTextLabel,
+          },
+        }}
       />
       <TextField
         label={`Location (e.g. City${
@@ -56,6 +76,16 @@ const FilterBar = ({ width }) => {
         })`}
         onChange={e => setLocation(e.target.value)}
         className={classes.locationInput}
+        InputProps={{
+          classes: {
+            input: classes.formTextInput,
+          },
+        }}
+        InputLabelProps={{
+          classes: {
+            root: classes.formTextLabel,
+          },
+        }}
       />
       <Button
         variant="contained"
