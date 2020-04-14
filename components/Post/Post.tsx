@@ -18,6 +18,7 @@ import BusinessIcon from '@material-ui/icons/Business';
 
 const Post = () => {
   const post = useSelector(state => state.home.post);
+  if (!post) return <div>Loading...</div>;
   return (
     <div
       style={{
@@ -40,17 +41,13 @@ const Post = () => {
           />
           <CardContent>
             <Breadcrumbs aria-label="breadcrumb" component="span">
-              {post.categories && (
-                <Link href={`/categories/${post.categories[0]}`}>
-                  {post.categories[0].split('_').join(' ')}
-                </Link>
-              )}
-              {post.type > 1 && (
-                <Link
-                  href={`/categories/${post.categories[0]}/${post.categories[1]}`}
-                >
-                  {post.categories[1].split('_').join(' ')}
-                </Link>
+              <Link href={`/categories/${post.category}`}>
+                {post.category.split('_').join(' ')}
+              </Link>
+              {post.type && (
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {post.type.split('_').join(' ')}
+                </Typography>
               )}
             </Breadcrumbs>
             <Typography gutterBottom variant="h5" component="h2">

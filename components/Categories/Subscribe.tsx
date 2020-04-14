@@ -4,11 +4,11 @@ import axios from 'axios';
 import { API_URL } from '../../utilities/envUrl';
 import notify from '../../utilities/notify';
 import {
-  List,
-  ListSubheader,
-  TextField,
+  Card,
+  CardContent,
+  CardHeader,
   Button,
-  ListItem,
+  TextField,
 } from '@material-ui/core';
 
 const Subscribe = () => {
@@ -32,33 +32,18 @@ const Subscribe = () => {
     }
   };
   return (
-    <div>
-      {email}
-      <List
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        subheader={
-          <ListSubheader
-            component="div"
-            id="nested-list-subheader"
-            style={{ color: 'white', fontSize: '1.5em' }}
-          >
-            Subscribe to{' '}
-            {id &&
-              String(id)
-                .split('_')
-                .join(' ')}
-          </ListSubheader>
-        }
-        style={{
-          width: '90%',
-          backgroundColor: '#3f51b5',
-          color: 'white',
-          textAlign: 'center',
-          paddingBottom: 0,
-        }}
-      >
-        <ListItem style={{ paddingLeft: '0.6em', paddingRight: '0.6em' }}>
+    <div style={{ marginTop: '2em', width: '90%' }}>
+      <Card>
+        <CardHeader
+          title="Subscribe"
+          subheader={`to ${String(id)
+            .split('_')
+            .join(' ')}`}
+          titleTypographyProps={{ align: 'center' }}
+          subheaderTypographyProps={{ align: 'center', color: 'inherit' }}
+          style={{ backgroundColor: '#3f51b5', color: 'white' }}
+        />
+        <CardContent>
           <form
             noValidate
             autoComplete="off"
@@ -93,8 +78,8 @@ const Subscribe = () => {
               Subscribe
             </Button>
           </form>
-        </ListItem>
-      </List>
+        </CardContent>
+      </Card>
     </div>
   );
 };

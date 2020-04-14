@@ -29,19 +29,22 @@ const TopCategories = () => (
         backgroundColor: '#3f51b5',
         color: 'white',
         textAlign: 'center',
+        paddingBottom: '0',
+        border: '0.1em solid #3f51b5',
       }}
     >
       {CATEGORY_NAMES.map(category => {
         return (
           <React.Fragment key={category.id}>
-            <Divider style={{ backgroundColor: 'white' }} />
+            <Divider style={{ backgroundColor: '#3f51b5' }} />
             <Link href="/categories/[id]" as={`/categories/${category.id}`}>
               <ListItem
                 button
                 href={`/categories/${category.id}`}
                 component="a"
                 style={{
-                  color: 'white',
+                  color: '#3f51b5',
+                  backgroundColor: 'white',
                   textDecoration: 'none',
                 }}
               >

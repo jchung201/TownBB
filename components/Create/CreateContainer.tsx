@@ -7,8 +7,6 @@ import {
   Grid,
   Typography,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Button,
   InputLabel,
   Select,
@@ -31,7 +29,7 @@ class CreateContainer extends Component<OwnProps | any> {
     latitude: null,
     value: '',
     category: '',
-    subcategory: '',
+    type: '',
     images: [],
     contactEmail: '',
     company: '',
@@ -97,7 +95,7 @@ class CreateContainer extends Component<OwnProps | any> {
       value,
       category,
       company,
-      subcategory,
+      type,
       images,
       contactEmail,
     } = this.state;
@@ -110,7 +108,8 @@ class CreateContainer extends Component<OwnProps | any> {
         latitude,
         company,
         value,
-        categories: [category && category, subcategory && subcategory],
+        category,
+        type,
         images,
         contactEmail,
       });
@@ -189,7 +188,7 @@ class CreateContainer extends Component<OwnProps | any> {
                 </InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
-                  name="subcategory"
+                  name="type"
                   onChange={this.onChange}
                 >
                   {SUB_CATEGORY_NAMES[category].map(category => {
