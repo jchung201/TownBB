@@ -48,7 +48,6 @@ export class AdRepository extends Repository<Ad> {
       if (type) query += ` AND ad.type ILIKE '%${type}%'`;
     }
     query += ' ORDER BY ad.updated DESC';
-    console.log(query);
 
     try {
       return await this.query(query);

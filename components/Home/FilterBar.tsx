@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
-import { getPosts, getLocationAndPosts } from '../../store/home/homeActions';
+import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core';
+import { getPosts, getLocationAndPosts } from '../../store/home/homeActions';
+
+const useStyles = makeStyles(theme => ({
+  locationInput: {
+    marginLeft: '3em',
+    marginRight: '3em',
+    flexGrow: 4,
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '1em',
+      marginRight: '1em',
+    },
+  },
+}));
 
 const FilterBar = () => {
   const router = useRouter();
@@ -13,6 +26,7 @@ const FilterBar = () => {
   const [search, setSearch] = useState('');
   const [location, setLocation] = useState('');
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -20,7 +34,6 @@ const FilterBar = () => {
     if (pathname.startsWith('/category')) category = id;
     else category = null;
 
-    console.log(category);
     // if location ... get location and then fetch
     if (location === '' || !location) {
       return dispatch(getPosts({ search, category }));
@@ -39,7 +52,7 @@ const FilterBar = () => {
       <TextField
         label="Location"
         onChange={e => setLocation(e.target.value)}
-        style={{ marginLeft: '3em', marginRight: '3em', flexGrow: 4 }}
+        className={classes.locationInput}
       />
       <Button
         variant="contained"
