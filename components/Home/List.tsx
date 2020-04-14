@@ -41,7 +41,7 @@ const List = ({ width }) => {
               image={
                 post.images.length > 0
                   ? post.images[0]
-                  : 'https://farmhouseguide.com/wp-content/uploads/2020/01/farm-geese-relaxing-in-a-field.jpg'
+                  : 'https://cms.prod.nypr.digital/images/297736/fill-661x496/'
               }
               title="Live from space album cover"
             />

@@ -254,7 +254,7 @@ class CreateContainer extends Component<OwnProps | any> {
             <TextField
               required
               name="value"
-              label="Subtitle"
+              label="Sub-Title"
               onChange={this.onChange}
               value={value}
               fullWidth
