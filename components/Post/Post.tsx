@@ -63,13 +63,23 @@ const Post = () => {
             <span>
               <Chip label={post.location} variant="outlined" />
             </span>
-            <Typography gutterBottom variant="h6" component="h4">
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="h4"
+              style={{ marginTop: '0.5em' }}
+            >
               {post.value}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography variant="body2" component="p">
               {post.description}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              component="p"
+              style={{ marginTop: '0.5em' }}
+            >
               Last updated{' '}
               {moment
                 .utc(post.updated)

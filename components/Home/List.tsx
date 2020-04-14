@@ -62,7 +62,11 @@ const List = ({ width }) => {
               title="Live from space album cover"
             />
             <CardContent style={{ flex: '1 0 auto' }}>
-              <Typography component="h4" variant="h4">
+              <Typography
+                component="h4"
+                variant="h4"
+                style={{ marginBottom: '0.2em' }}
+              >
                 {post.title}
               </Typography>
               {post.company && (
@@ -76,10 +80,14 @@ const List = ({ width }) => {
               <span>
                 <Chip label={post.location} size="small" variant="outlined" />
               </span>
-              <Typography component="h6" variant="h6">
+              <Typography
+                component="h6"
+                variant="h6"
+                style={{ marginTop: '0.2em' }}
+              >
                 {post.value}
               </Typography>
-              <Typography variant="subtitle1" color="textSecondary">
+              <Typography variant="subtitle1">
                 {post.description.substring(0, descriptionWidth) + '...'}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
