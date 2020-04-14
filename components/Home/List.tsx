@@ -59,11 +59,14 @@ const List = ({ width }) => {
               {post.company && (
                 <Chip
                   icon={<BusinessIcon />}
+                  size="small"
                   label={post.company}
                   style={{ marginRight: '1em' }}
-                  color="primary"
                 />
               )}
+              <span>
+                <Chip label={post.location} size="small" variant="outlined" />
+              </span>
               <Typography component="h6" variant="h6">
                 {post.value}
               </Typography>
