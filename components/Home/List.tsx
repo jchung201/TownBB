@@ -75,7 +75,7 @@ const List = ({ width }) => {
     <Fragment>
       {finalPosts.map(post => {
         return (
-          <Link href={`/posts/${post.id}`} key={post.id}>
+          <Link href="/posts/[id]" as={`/posts/${post.id}`} key={post.id}>
             <a
               href={`/posts/${post.id}`}
               style={{ color: 'inherit', textDecoration: 'none' }}
