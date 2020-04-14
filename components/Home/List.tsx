@@ -18,26 +18,46 @@ const useStyles = makeStyles(theme => ({
   listImage: {
     width: '12em',
     margin: '1em',
-    paddingRight: '3em',
     [theme.breakpoints.down('sm')]: {
       width: '8em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '6em',
     },
   },
   listTitle: {
     marginBottom: '0.2em',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '2em',
+      fontSize: '1.8em',
     },
     [theme.breakpoints.down('xs')]: {
-      fontSize: '1.5em',
+      fontSize: '1em',
     },
   },
   listChips: {
     [theme.breakpoints.down('sm')]: {
+      width: '45%',
+      height: '25%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.5em',
+    },
+  },
+  listHeadline: {
+    marginTop: '0.2em',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.5em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.8em',
+    },
+  },
+  listDescription: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.2em',
     },
     [theme.breakpoints.down('xs')]: {
-      fontSize: '1em',
+      fontSize: '0.6em',
     },
   },
   listDate: {
@@ -45,7 +65,7 @@ const useStyles = makeStyles(theme => ({
       fontSize: '1.1em',
     },
     [theme.breakpoints.down('xs')]: {
-      fontSize: '0.9em',
+      fontSize: '0.6em',
     },
   },
 }));
@@ -120,11 +140,14 @@ const List = ({ width }) => {
                   <Typography
                     component="h6"
                     variant="h6"
-                    style={{ marginTop: '0.2em' }}
+                    className={classes.listHeadline}
                   >
                     {post.value}
                   </Typography>
-                  <Typography variant="subtitle1">
+                  <Typography
+                    className={classes.listDescription}
+                    variant="subtitle1"
+                  >
                     {post.description.substring(0, descriptionWidth) + '...'}
                   </Typography>
                   <Typography

@@ -19,11 +19,17 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       width: '15em',
     },
+    [theme.breakpoints.down('xs')]: {
+      width: '10em',
+    },
   },
   navCreate: {
     fontSize: '1.5em',
     [theme.breakpoints.down('sm')]: {
       fontSize: '1.2em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.8em',
     },
   },
   footer: {
@@ -81,8 +87,8 @@ const Layout: React.FC = ({ children }) => {
         <Container maxWidth="sm">
           <Typography variant="subtitle1" align="center">
             <strong>
-              TownBB is dedicated to help assist small businesses and workers
-              who have been impacted by COVID-19 related impacts.
+              TownBB is commited to help assist small businesses and workers who
+              have been impacted by COVID-19 related impacts.
             </strong>
           </Typography>
           <Typography variant="body1" align="center">
