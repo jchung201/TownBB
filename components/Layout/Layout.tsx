@@ -17,16 +17,16 @@ const Layout: React.FC = ({ children }) => (
     <CssBaseline />
     <AppBar position="relative" color="primary">
       <Toolbar>
-        <Typography style={{ flexGrow: 1 }} variant={'h4'} noWrap>
-          <Link href="/">
+        <Link href="/">
+          <Typography style={{ flexGrow: 1 }} variant={'h4'} noWrap>
             <LinkA href="/">TownBB</LinkA>
-          </Link>
-        </Typography>
-        <Button color="inherit" size="large">
-          <Link href="/create">
+          </Typography>
+        </Link>
+        <Link href="/create">
+          <Button color="inherit" size="large">
             <LinkA href="/create">Create a Posting</LinkA>
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </Toolbar>
     </AppBar>
     <main>
