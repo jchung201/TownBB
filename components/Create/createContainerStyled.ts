@@ -5,7 +5,7 @@ export const Wrapper = styled.form`
   flex-direction: column;
   justify-content: center;
   margin-top: 5rem;
-  width: 80%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.5);
