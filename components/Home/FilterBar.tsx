@@ -50,7 +50,7 @@ const FilterBar = () => {
         }}
       />
       <TextField
-        label="Location"
+        label="Location (e.g. City, Zip)"
         onChange={e => setLocation(e.target.value)}
         className={classes.locationInput}
       />

@@ -3,7 +3,7 @@ export const CATEGORY_NAMES = [
   { id: 'Hair_Salons', name: 'Hair Salons' },
   { id: 'Nail_Salons', name: 'Nail Salons' },
   { id: 'Landscaping', name: 'Landscaping' },
-  { id: 'General_Labor', name: 'General Labor' },
+  { id: 'General', name: 'General' },
 ];
 
 export const SUB_CATEGORY_NAMES = {
@@ -27,7 +27,7 @@ export const SUB_CATEGORY_NAMES = {
     { id: 'Part_Time', name: 'Part Time' },
     { id: 'Gigs', name: 'Gigs' },
   ],
-  General_Labor: [
+  General: [
     { id: 'Full_Time', name: 'Full Time' },
     { id: 'Part_Time', name: 'Part Time' },
     { id: 'Gigs', name: 'Gigs' },

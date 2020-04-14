@@ -276,6 +276,16 @@ class CreateContainer extends Component<OwnProps | any> {
               fullWidth
             />
           </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              name="value"
+              label="Wage (e.g. $20/Hour)"
+              onChange={this.onChange}
+              value={value}
+              fullWidth
+            />
+          </Grid>
           <Grid
             item
             container
@@ -304,16 +314,6 @@ class CreateContainer extends Component<OwnProps | any> {
             )}
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              required
-              name="value"
-              label="Sub Title"
-              onChange={this.onChange}
-              value={value}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12}>
             <Description
               type="text"
               placeholder="Description"
@@ -336,12 +336,12 @@ class CreateContainer extends Component<OwnProps | any> {
               variant="contained"
               onClick={this.onSubmit}
               color="primary"
-              size="large"
+              size="medium"
               style={{
                 marginBottom: '2em',
                 width: '12em',
                 maxWidth: '80%',
-                fontSize: '2em',
+                fontSize: '1.5em',
               }}
             >
               {foundPost ? 'Edit' : 'Create'} Posting
