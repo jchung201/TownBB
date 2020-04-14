@@ -14,6 +14,7 @@ import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 const List = ({ width }) => {
   const posts = useSelector(state => state.home.posts);
+  const type = useSelector(state => state.home.type);
   const router = useRouter();
   const [postId, setPost] = useState('');
   if (postId) {
@@ -27,9 +28,17 @@ const List = ({ width }) => {
   } else if (isWidthUp('sm', width)) {
     descriptionWidth = 55;
   }
+  let finalPosts;
+  if (type && type !== 'All') {
+    finalPosts = posts.filter(post => {
+      return post.type === type;
+    });
+  } else {
+    finalPosts = posts;
+  }
   return (
     <Fragment>
-      {posts.map(post => {
+      {finalPosts.map(post => {
         return (
           <Card
             style={{ display: 'flex', marginTop: '2em', cursor: 'pointer' }}

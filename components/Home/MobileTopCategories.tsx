@@ -5,7 +5,7 @@ import { CATEGORY_NAMES } from '../../utilities/categories';
 
 const TopCategories = () => (
   <FormControl fullWidth>
-    <InputLabel>Categories</InputLabel>
+    <InputLabel>Job Categories</InputLabel>
     <Select labelId="demo-simple-select-label">
       {CATEGORY_NAMES.map(category => {
         return (

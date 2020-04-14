@@ -8,6 +8,7 @@ const GET_LOCATION = 'GET_LOCATION';
 const GET_POSTS = 'GET_POSTS';
 const SET_CATEGORY = 'SET_CATEGORY';
 const GET_LOCATION_AND_POSTS = 'GET_LOCATION_AND_POSTS';
+const SET_TYPE = 'SET_TYPE';
 
 export const getPostsAction = ({ data }) => {
   return {
@@ -122,4 +123,15 @@ export const setCategoryAction = data => {
 
 export const setCategory = (category: string): AppThunk => async dispatch => {
   return dispatch(setCategoryAction(category));
+};
+
+export const setTypeAction = data => {
+  return {
+    type: SET_TYPE,
+    payload: data,
+  };
+};
+
+export const setType = (type: string): AppThunk => async dispatch => {
+  return dispatch(setTypeAction(type));
 };

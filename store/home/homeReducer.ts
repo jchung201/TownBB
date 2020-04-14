@@ -8,6 +8,7 @@ interface ExampleState {
   latitude: number | null;
   longitude: number | null;
   category: string | null;
+  type: string | null;
 }
 const exampleState: ExampleState = {
   location: '',
@@ -17,6 +18,7 @@ const exampleState: ExampleState = {
   latitude: null,
   longitude: null,
   category: null,
+  type: 'All',
 };
 
 export const homeReducer = (state = exampleState, action) => {
@@ -40,6 +42,11 @@ export const homeReducer = (state = exampleState, action) => {
       return {
         ...state,
         category: action.payload,
+      };
+    case 'SET_TYPE':
+      return {
+        ...state,
+        type: action.payload,
       };
     case 'GET_LOCATION_AND_POSTS':
       return {

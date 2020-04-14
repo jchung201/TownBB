@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { API_URL } from '../../utilities/envUrl';
 import notify from '../../utilities/notify';
@@ -11,7 +12,17 @@ import {
   TextField,
 } from '@material-ui/core';
 
+const useStyles = makeStyles(theme => ({
+  cardHeader: {
+    width: '90%',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
+  },
+}));
+
 const Subscribe = () => {
+  const classes = useStyles();
   const [email, setEmail] = useState('');
   const router = useRouter();
   const {
@@ -32,8 +43,8 @@ const Subscribe = () => {
     }
   };
   return (
-    <div style={{ marginTop: '2em', width: '90%' }}>
-      <Card>
+    <div style={{ marginTop: '2em', width: '100%' }}>
+      <Card className={classes.cardHeader}>
         <CardHeader
           title="Subscribe"
           subheader={`to ${String(id)

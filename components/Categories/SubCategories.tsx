@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   FormControl,
   InputLabel,
   Select,
   MenuItem,
-  Paper,
   Card,
-  CardActions,
   CardContent,
   CardHeader,
-  Typography,
-  Button,
-  TextField,
 } from '@material-ui/core';
-
+import { setType } from '../../store/home/homeActions';
 import { SUB_CATEGORY_NAMES } from '../../utilities/categories';
 
 const TopCategories = () => {
@@ -23,7 +18,8 @@ const TopCategories = () => {
   const {
     query: { id },
   } = router;
-
+  const dispatch = useDispatch();
+  const type = useSelector(state => state.home.type);
   return (
     <div style={{ width: '90%' }}>
       <Card>
@@ -35,19 +31,20 @@ const TopCategories = () => {
         <CardContent>
           <FormControl fullWidth>
             <InputLabel>Employment Type</InputLabel>
-            <Select labelId="demo-simple-select-label">
+            <Select
+              labelId="demo-simple-select-label"
+              value={type}
+              onChange={event => {
+                dispatch(setType(String(event.target.value)));
+              }}
+            >
+              <MenuItem value="All">All</MenuItem>
               {id &&
                 SUB_CATEGORY_NAMES[String(id)].map(category => {
                   return (
-                    <Link
-                      href="/categories/[id]/[sub]"
-                      as={`/categories/${id}/${category.id}`}
-                      key={category.id}
-                    >
-                      <MenuItem value={category.id}>
-                        {category && category.name.split('_').join(' ')}
-                      </MenuItem>
-                    </Link>
+                    <MenuItem value={category.id} key={category.id}>
+                      {category && category.name.split('_').join(' ')}
+                    </MenuItem>
                   );
                 })}
             </Select>
