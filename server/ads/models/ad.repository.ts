@@ -62,7 +62,12 @@ export class AdRepository extends Repository<Ad> {
 
   async getAdCategories(): Promise<string[]> {
     try {
-      return await this.query('Select DISTINCT category from ad;');
+      const fetchedAds = await this.query('Select DISTINCT category from ad;');
+      const foundArray: string[] = [];
+      fetchedAds.forEach(ad => {
+        foundArray.push(ad.category);
+      });
+      return [...new Set(foundArray)];
     } catch (error) {
       throw new InternalServerErrorException();
     }
