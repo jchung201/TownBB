@@ -59,7 +59,11 @@ const TopCategories = () => {
                   className={classes.categoryItem}
                 >
                   <ListItemText
-                    primary={category && category.name.split('_').join(' ')}
+                    primary={
+                      category && (
+                        <strong>{category.name.split('_').join(' ')}</strong>
+                      )
+                    }
                     style={{
                       textAlign: 'center',
                     }}

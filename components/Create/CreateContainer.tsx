@@ -305,7 +305,12 @@ class CreateContainer extends Component<OwnProps | any> {
               style={{ display: 'none' }}
             />
             <label htmlFor="contained-button-file">
-              <Button variant="contained" color="primary" component="span">
+              <Button
+                variant="contained"
+                color="primary"
+                component="span"
+                style={{ color: 'white' }}
+              >
                 Upload Pictures
               </Button>
             </label>
@@ -342,6 +347,7 @@ class CreateContainer extends Component<OwnProps | any> {
                 width: '12em',
                 maxWidth: '80%',
                 fontSize: '1.5em',
+                color: 'white',
               }}
             >
               {foundPost ? 'Edit' : 'Create'} Posting

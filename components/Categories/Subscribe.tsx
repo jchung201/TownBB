@@ -92,6 +92,7 @@ const Subscribe = () => {
                 display: 'block',
                 marginLeft: 'auto',
                 marginRight: 'auto',
+                color: 'white',
               }}
             >
               Subscribe
