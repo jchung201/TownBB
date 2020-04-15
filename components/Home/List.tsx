@@ -112,7 +112,7 @@ const List = ({ width }) => {
                   }
                   title="Card Picture"
                 />
-                <CardContent style={{ flex: '1 0 auto' }}>
+                <CardContent style={{ flex: '1 0 auto', width: '60%' }}>
                   <Typography
                     component="h4"
                     variant="h4"
