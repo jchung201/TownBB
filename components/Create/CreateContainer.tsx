@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Router from 'next/router';
-import { useRouter } from 'next/router';
 import axios from 'axios';
 import { API_URL } from '../../utilities/envUrl';
 import notify from '../../utilities/notify';
@@ -34,6 +33,7 @@ class CreateContainer extends Component<OwnProps | any> {
     images: [],
     contactEmail: '',
     company: '',
+    disabled: false,
   };
   componentDidMount() {
     const { foundPost } = this.props;
@@ -114,6 +114,7 @@ class CreateContainer extends Component<OwnProps | any> {
 
   onSubmit = async e => {
     e.preventDefault();
+    this.setState({ disabled: true });
     const {
       title,
       description,
@@ -167,6 +168,29 @@ class CreateContainer extends Component<OwnProps | any> {
       Router.push('/posts/[pid]', `/posts/${request.data.id}`);
     } catch (error) {
       notify('error', 'Missing fields!');
+      this.setState({ disabled: false });
+    }
+  };
+
+  delete = async e => {
+    e.preventDefault();
+    this.setState({ disabled: true });
+
+    const { foundPost } = this.props;
+    try {
+      if (foundPost) {
+        await axios.delete(
+          `${API_URL}/rest/ads/${foundPost.id}?hash=${foundPost.hash}`,
+        );
+        notify('success', 'Post Deleted!');
+      } else {
+        this.setState({ disabled: false });
+        return notify('error', 'Cannot delete Post!');
+      }
+      Router.push('/');
+    } catch (error) {
+      this.setState({ disabled: false });
+      notify('error', 'Issue deleting Post!');
     }
   };
 
@@ -185,6 +209,7 @@ class CreateContainer extends Component<OwnProps | any> {
       images,
       contactEmail,
       company,
+      disabled,
     } = this.state;
     const { foundPost } = this.props;
     return (
@@ -349,9 +374,29 @@ class CreateContainer extends Component<OwnProps | any> {
                 fontSize: '1.5em',
                 color: 'white',
               }}
+              disabled={disabled}
             >
               {foundPost ? 'Edit' : 'Create'} Posting
             </Button>
+            {foundPost && (
+              <Button
+                type="button"
+                variant="contained"
+                onClick={this.delete}
+                size="medium"
+                style={{
+                  marginBottom: '2em',
+                  width: '12em',
+                  maxWidth: '80%',
+                  fontSize: '1.5em',
+                  color: 'white',
+                  backgroundColor: 'red',
+                }}
+                disabled={disabled}
+              >
+                Delete Posting
+              </Button>
+            )}
           </Grid>
         </Grid>
       </Wrapper>
