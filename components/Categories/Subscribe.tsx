@@ -15,9 +15,14 @@ import {
 const useStyles = makeStyles(theme => ({
   cardHeader: {
     width: '90%',
+    color: 'white',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
     },
+  },
+  cardSubHeader: {
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
   },
 }));
 
@@ -51,8 +56,11 @@ const Subscribe = () => {
             .split('_')
             .join(' ')}`}
           titleTypographyProps={{ align: 'center' }}
-          subheaderTypographyProps={{ align: 'center', color: 'inherit' }}
-          style={{ backgroundColor: '#3f51b5', color: 'white' }}
+          subheaderTypographyProps={{
+            align: 'center',
+            color: 'inherit',
+          }}
+          className={classes.cardSubHeader}
         />
         <CardContent>
           <form

@@ -25,6 +25,8 @@ const useStyles = makeStyles(theme => ({
   },
   navCreate: {
     fontSize: '1.5em',
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
     [theme.breakpoints.down('sm')]: {
       fontSize: '1.2em',
     },
@@ -71,7 +73,7 @@ const Layout: React.FC = ({ children }) => {
             <Link href="/">
               <LinkA href="/">
                 <img
-                  src="https://townbbpublic.s3.us-east-2.amazonaws.com/townbb_logo.png"
+                  src="https://townbbpublic.s3.us-east-2.amazonaws.com/logo_white_transparent.png"
                   alt="TownBB Logo"
                   className={classes.navLogo}
                 />
@@ -80,9 +82,7 @@ const Layout: React.FC = ({ children }) => {
           </div>
           <Link href="/create">
             <LinkA href="/create">
-              <Button color="inherit" className={classes.navCreate}>
-                Create a Posting
-              </Button>
+              <Button className={classes.navCreate}>Create a Posting</Button>
             </LinkA>
           </Link>
         </Toolbar>

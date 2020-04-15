@@ -12,12 +12,21 @@ import { CATEGORY_NAMES } from '../../utilities/categories';
 
 const useStyles = makeStyles(theme => ({
   categoryItem: {
-    color: '#3f51b5',
+    color: theme.palette.primary.main,
     backgroundColor: 'white',
     textDecoration: 'none',
     '&:hover': {
       color: 'white',
     },
+  },
+  listHeader: {
+    width: '90%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
+    textAlign: 'center',
+    paddingBottom: '0',
+    border: `0.1em solid ${theme.palette.primary.main}`,
   },
 }));
 
@@ -36,20 +45,12 @@ const TopCategories = () => {
             Job Categories
           </ListSubheader>
         }
-        style={{
-          width: '90%',
-          maxWidth: 360,
-          backgroundColor: '#3f51b5',
-          color: 'white',
-          textAlign: 'center',
-          paddingBottom: '0',
-          border: '0.1em solid #3f51b5',
-        }}
+        className={classes.listHeader}
       >
         {CATEGORY_NAMES.map(category => {
           return (
             <React.Fragment key={category.id}>
-              <Divider style={{ backgroundColor: '#3f51b5' }} />
+              <Divider color="primary" />
               <Link href="/categories/[id]" as={`/categories/${category.id}`}>
                 <ListItem
                   button

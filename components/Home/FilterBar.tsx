@@ -94,6 +94,7 @@ const FilterBar = ({ width }) => {
         type="submit"
         style={{
           flexGrow: 1,
+          color: 'white',
         }}
       >
         Search

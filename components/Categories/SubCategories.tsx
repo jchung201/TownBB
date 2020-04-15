@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   FormControl,
   InputLabel,
@@ -13,7 +14,15 @@ import {
 import { setType } from '../../store/home/homeActions';
 import { SUB_CATEGORY_NAMES } from '../../utilities/categories';
 
+const useStyles = makeStyles(theme => ({
+  cardSubHeader: {
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
+  },
+}));
+
 const TopCategories = () => {
+  const classes = useStyles();
   const router = useRouter();
   const {
     query: { id },
@@ -24,9 +33,13 @@ const TopCategories = () => {
     <div style={{ width: '90%' }}>
       <Card>
         <CardHeader
-          subheader={'Filter Emplyment Type'}
-          subheaderTypographyProps={{ align: 'center', color: 'inherit' }}
-          style={{ backgroundColor: '#3f51b5', color: 'white' }}
+          subheader={'Filter Employment Type'}
+          subheaderTypographyProps={{
+            align: 'center',
+            color: 'inherit',
+            backgroundColor: 'primary',
+          }}
+          className={classes.cardSubHeader}
         />
         <CardContent>
           <FormControl fullWidth>
