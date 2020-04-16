@@ -243,6 +243,7 @@ class CreateContainer extends Component<OwnProps | any> {
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Category</InputLabel>
               <Select
+                required
                 labelId="demo-simple-select-label"
                 name="category"
                 onChange={this.onChange}
@@ -283,7 +284,6 @@ class CreateContainer extends Component<OwnProps | any> {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
-              required
               label="Company"
               name="company"
               value={company}
@@ -303,7 +303,6 @@ class CreateContainer extends Component<OwnProps | any> {
           </Grid>
           <Grid item xs={12}>
             <TextField
-              required
               name="value"
               label="Wage (e.g. $20/Hour)"
               onChange={this.onChange}
@@ -345,9 +344,9 @@ class CreateContainer extends Component<OwnProps | any> {
           </Grid>
           <Grid item xs={12}>
             <Description
+              required
               type="text"
               placeholder="Description"
-              required=""
               onChange={this.onChange}
               value={description}
               name="description"
