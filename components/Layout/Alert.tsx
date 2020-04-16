@@ -28,10 +28,14 @@ export default function TransitionAlerts() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   let margin = '1.2em auto 1.2em auto';
-  if (!open) margin = '0 0 0 0';
+  let border = '0.15em solid #e99832';
+  if (!open) {
+    margin = '0 0 0 0';
+    border = 'none';
+  }
 
   return (
-    <div className={classes.root} style={{ margin }}>
+    <div className={classes.root} style={{ margin, border }}>
       <Collapse in={open}>
         <Alert
           severity="warning"
