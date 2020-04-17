@@ -46,7 +46,7 @@ export class AdsService {
     const foundAd = await this.adRepository.findOne({ id, hash });
     if (!foundAd)
       throw new UnauthorizedException(
-        `You do not have authorization for this posting!`,
+        `You do not have authorization for this post!`,
       );
     return foundAd;
   }

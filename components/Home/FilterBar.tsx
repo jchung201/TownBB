@@ -97,7 +97,7 @@ const FilterBar = ({ width }) => {
           color: 'white',
         }}
       >
-        Search
+        Search Jobs
       </Button>
     </form>
   );

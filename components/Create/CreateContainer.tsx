@@ -215,13 +215,13 @@ class CreateContainer extends Component<OwnProps | any> {
     return (
       <Wrapper onSubmit={this.onSubmit}>
         <Typography variant="h6" gutterBottom>
-          Create a Post
+          Create a Job Post
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              label="Title"
+              label="Title (e.g. Experienced Chef Needed!)"
               name="title"
               value={title}
               onChange={this.onChange}
@@ -231,7 +231,7 @@ class CreateContainer extends Component<OwnProps | any> {
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              label="Location"
+              label="Location (e.g. City, Zip)"
               name="location"
               value={location}
               fullWidth
@@ -241,7 +241,9 @@ class CreateContainer extends Component<OwnProps | any> {
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Category</InputLabel>
+              <InputLabel id="demo-simple-select-label">
+                Job Category
+              </InputLabel>
               <Select
                 required
                 labelId="demo-simple-select-label"
@@ -284,7 +286,7 @@ class CreateContainer extends Component<OwnProps | any> {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
-              label="Company"
+              label="Company/Employer"
               name="company"
               value={company}
               onChange={this.onChange}
@@ -346,7 +348,7 @@ class CreateContainer extends Component<OwnProps | any> {
             <Description
               required
               type="text"
-              placeholder="Description"
+              placeholder="Description of Job"
               onChange={this.onChange}
               value={description}
               name="description"
@@ -375,7 +377,7 @@ class CreateContainer extends Component<OwnProps | any> {
               }}
               disabled={disabled}
             >
-              {foundPost ? 'Edit' : 'Create'} Posting
+              {foundPost ? 'Edit' : 'Create'} Job Post
             </Button>
             {foundPost && (
               <Button
@@ -393,7 +395,7 @@ class CreateContainer extends Component<OwnProps | any> {
                 }}
                 disabled={disabled}
               >
-                Delete Posting
+                Delete Post
               </Button>
             )}
           </Grid>

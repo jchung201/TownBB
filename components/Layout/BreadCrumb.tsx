@@ -18,7 +18,7 @@ const BreadCrumb = () => {
         </LinkB>
       </Link>
       {router.pathname.startsWith('/create') && (
-        <Typography color="textPrimary">Create Posting</Typography>
+        <Typography color="textPrimary">Create Job Post</Typography>
       )}
       {router.pathname.startsWith('/edit') && (
         <Typography color="textPrimary">

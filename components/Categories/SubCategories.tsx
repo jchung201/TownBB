@@ -37,7 +37,6 @@ const TopCategories = () => {
           subheaderTypographyProps={{
             align: 'center',
             color: 'inherit',
-            backgroundColor: 'primary',
           }}
           className={classes.cardSubHeader}
         />

@@ -84,7 +84,7 @@ const Layout: React.FC = ({ children }) => {
           </div>
           <Link href="/create">
             <LinkA href="/create">
-              <Button className={classes.navCreate}>Create a Posting</Button>
+              <Button className={classes.navCreate}>Create a Job Post</Button>
             </LinkA>
           </Link>
         </Toolbar>
