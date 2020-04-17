@@ -1,7 +1,7 @@
 {
   "name": "TownBB Local Jobs",
   "short_name": "TownBB",
-  "theme_color": "#478674",
+  "theme_color": "#458f7f",
   "background_color": "#ffffff",
   "display": "browser",
   "Scope": "/",
