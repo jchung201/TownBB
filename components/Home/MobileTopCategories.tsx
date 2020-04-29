@@ -5,10 +5,6 @@ import { CATEGORY_NAMES } from '../../utilities/categories';
 
 const TopCategories = () => {
   const router = useRouter();
-  const [category, setCategory] = useState('');
-  if (category) {
-    router.push(`/categories/${category}`);
-  }
 
   return (
     <FormControl fullWidth>
@@ -19,9 +15,8 @@ const TopCategories = () => {
           const {
             target: { value },
           } = e;
-          setCategory(String(value));
+          router.push('/categories/[id]', `/categories/${value}`);
         }}
-        value={category}
       >
         {CATEGORY_NAMES.map(category => {
           return (

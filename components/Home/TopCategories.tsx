@@ -54,6 +54,7 @@ const TopCategories = () => {
               <Link href="/categories/[id]" as={`/categories/${category.id}`}>
                 <ListItem
                   button
+                  // pass href look documentation
                   href={`/categories/${category.id}`}
                   component="a"
                   className={classes.categoryItem}
