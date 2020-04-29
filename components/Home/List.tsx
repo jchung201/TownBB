@@ -14,7 +14,7 @@ import {
 import BusinessIcon from '@material-ui/icons/Business';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   listImage: {
     width: '12em',
     margin: '1em',
@@ -71,8 +71,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const List = ({ width }) => {
-  const posts = useSelector(state => state.home.posts);
-  const type = useSelector(state => state.home.type);
+  const posts = useSelector((state) => state.home.posts);
+  const type = useSelector((state) => state.home.type);
   const classes = useStyles();
 
   let descriptionWidth = 35;
@@ -85,7 +85,7 @@ const List = ({ width }) => {
   }
   let finalPosts;
   if (type && type !== 'All') {
-    finalPosts = posts.filter(post => {
+    finalPosts = posts.filter((post) => {
       return post.type === type;
     });
   } else {
@@ -93,7 +93,7 @@ const List = ({ width }) => {
   }
   return (
     <Fragment>
-      {finalPosts.map(post => {
+      {finalPosts.map((post) => {
         return (
           <Link href="/posts/[id]" as={`/posts/${post.id}`} key={post.id}>
             <a
@@ -156,10 +156,7 @@ const List = ({ width }) => {
                     className={classes.listDate}
                   >
                     Last updated:{' '}
-                    {moment
-                      .utc(post.updated)
-                      .local()
-                      .format('lll')}
+                    {moment.utc(post.updated).local().format('lll')}
                   </Typography>
                 </CardContent>
               </Card>
@@ -167,7 +164,7 @@ const List = ({ width }) => {
           </Link>
         );
       })}
-      {posts.length <= 0 && (
+      {finalPosts.length <= 0 && (
         <Typography
           style={{ marginTop: '2em' }}
           color="secondary"
