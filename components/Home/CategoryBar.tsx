@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const TopCategories = () => {
+const CategoryBar = () => {
   const classes = useStyles();
 
   return (
@@ -79,4 +79,4 @@ const TopCategories = () => {
   );
 };
 
-export default TopCategories;
+export default CategoryBar;

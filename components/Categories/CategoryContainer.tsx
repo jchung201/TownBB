@@ -5,8 +5,8 @@ import { Grid, Hidden } from '@material-ui/core';
 import FilterBar from '../Home/FilterBar';
 import List from '../Home/List';
 import Subscribe from './Subscribe';
-import MobileSubCategories from './MobileSubCategories';
-import SubCategories from './SubCategories';
+import MobileFilters from './MobileFilters';
+import Filters from './Filters';
 
 const CategoryContainer = () => {
   const router = useRouter();
@@ -16,14 +16,14 @@ const CategoryContainer = () => {
   return (
     <Grid container spacing={3} direction="row">
       <Grid item xs={12}>
-        <Hidden smUp>{id && <MobileSubCategories />}</Hidden>
+        <Hidden smUp>{id && <MobileFilters />}</Hidden>
       </Grid>
       <Grid item sm={9} xs={12}>
         <FilterBar />
         <List />
       </Grid>
       <Grid item sm={3} xs={12}>
-        <Hidden xsDown>{id && <SubCategories />}</Hidden>
+        <Hidden xsDown>{id && <Filters />}</Hidden>
         <Subscribe />
       </Grid>
     </Grid>

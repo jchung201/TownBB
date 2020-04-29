@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { CATEGORY_NAMES } from '../../utilities/categories';
 
-const TopCategories = () => {
+const MobileCategoryBar = () => {
   const router = useRouter();
 
   return (
@@ -17,7 +17,9 @@ const TopCategories = () => {
           } = e;
           router.push('/categories/[id]', `/categories/${value}`);
         }}
+        value="null"
       >
+        <MenuItem value="null"></MenuItem>
         {CATEGORY_NAMES.map(category => {
           return (
             <MenuItem key={category.id} value={category.id}>
@@ -30,4 +32,4 @@ const TopCategories = () => {
   );
 };
 
-export default TopCategories;
+export default MobileCategoryBar;

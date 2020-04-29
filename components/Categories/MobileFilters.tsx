@@ -5,7 +5,7 @@ import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { setType } from '../../store/home/homeActions';
 import { SUB_CATEGORY_NAMES } from '../../utilities/categories';
 
-const TopCategories = () => {
+const MobileFilters = () => {
   const router = useRouter();
   const {
     query: { id },
@@ -36,4 +36,4 @@ const TopCategories = () => {
   );
 };
 
-export default TopCategories;
+export default MobileFilters;

@@ -1,8 +1,8 @@
 import React from 'react';
 import FilterBar from './FilterBar';
 import List from './List';
-import TopCategories from './TopCategories';
-import MobileTopCategories from './MobileTopCategories';
+import CategoryBar from './CategoryBar';
+import MobileCategoryBar from './MobileCategoryBar';
 import { Grid, Hidden } from '@material-ui/core';
 
 const HomeContainer = () => {
@@ -10,17 +10,16 @@ const HomeContainer = () => {
     <Grid container spacing={3} direction="row">
       <Grid item xs={12}>
         <Hidden smUp>
-          <MobileTopCategories />
+          <MobileCategoryBar />
         </Hidden>
       </Grid>
       <Grid item xs={12} sm={9}>
         <FilterBar />
         <List />
       </Grid>
-
       <Grid item sm={3}>
         <Hidden xsDown>
-          <TopCategories />
+          <CategoryBar />
         </Hidden>
       </Grid>
     </Grid>

@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const TopCategories = () => {
+const Filters = () => {
   const classes = useStyles();
   const router = useRouter();
   const {
@@ -67,4 +67,4 @@ const TopCategories = () => {
   );
 };
 
-export default TopCategories;
+export default Filters;
