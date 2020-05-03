@@ -87,11 +87,11 @@ class CreateContainer extends Component<OwnProps | any> {
       this.setState({
         location: '',
       });
-      notify('error', error.response.data.message);
+      notify('error', 'Error saving location!');
     }
   };
   fileInputRef = React.createRef();
-  onSelectFile = async e => {
+  onSelectFile = async (e) => {
     try {
       const formData = new FormData();
       formData.append('image', e.target.files[0]);
@@ -112,7 +112,7 @@ class CreateContainer extends Component<OwnProps | any> {
     }
   };
 
-  onSubmit = async e => {
+  onSubmit = async (e) => {
     e.preventDefault();
     this.setState({ disabled: true });
     const {
@@ -168,11 +168,12 @@ class CreateContainer extends Component<OwnProps | any> {
       Router.push('/posts/[pid]', `/posts/${request.data.id}`);
     } catch (error) {
       notify('error', 'Missing fields!');
+      console.error(error);
       this.setState({ disabled: false });
     }
   };
 
-  delete = async e => {
+  delete = async (e) => {
     e.preventDefault();
     this.setState({ disabled: true });
 
@@ -194,7 +195,7 @@ class CreateContainer extends Component<OwnProps | any> {
     }
   };
 
-  onChange = event => {
+  onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -251,7 +252,7 @@ class CreateContainer extends Component<OwnProps | any> {
                 onChange={this.onChange}
                 value={category}
               >
-                {CATEGORY_NAMES.map(category => {
+                {CATEGORY_NAMES.map((category) => {
                   return (
                     <MenuItem key={category.name} value={category.id}>
                       {category.name}
@@ -273,7 +274,7 @@ class CreateContainer extends Component<OwnProps | any> {
                   value={type}
                   onChange={this.onChange}
                 >
-                  {SUB_CATEGORY_NAMES[category].map(category => {
+                  {SUB_CATEGORY_NAMES[category].map((category) => {
                     return (
                       <MenuItem key={category.name} value={category.id}>
                         {category.name}
