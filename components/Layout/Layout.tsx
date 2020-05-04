@@ -14,7 +14,7 @@ import BreadCrumb from './BreadCrumb';
 import Copyright from './Copyright';
 import Alert from './Alert';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   navLogo: {
     width: '20em',
     [theme.breakpoints.down('sm')]: {
@@ -26,8 +26,8 @@ const useStyles = makeStyles(theme => ({
   },
   navCreate: {
     fontSize: '1.5em',
-    backgroundColor: theme.palette.primary.main,
     color: 'white',
+    boxShadow: '0 0.1rem 0.3rem rgba(0, 0, 0, 0.5)',
     [theme.breakpoints.down('sm')]: {
       fontSize: '1.2em',
     },
@@ -82,11 +82,6 @@ const Layout: React.FC = ({ children }) => {
               </LinkA>
             </Link>
           </div>
-          <Link href="/create">
-            <LinkA href="/create">
-              <Button className={classes.navCreate}>Create a Job Post</Button>
-            </LinkA>
-          </Link>
         </Toolbar>
       </AppBar>
       <main className={classes.main}>
