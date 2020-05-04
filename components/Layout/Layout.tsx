@@ -9,6 +9,7 @@ import {
   Toolbar,
   Container,
   Typography,
+  Hidden,
 } from '@material-ui/core';
 import BreadCrumb from './BreadCrumb';
 import Copyright from './Copyright';
@@ -27,11 +28,17 @@ const useStyles = makeStyles((theme) => ({
   navCreate: {
     fontSize: '1.5em',
     color: 'white',
-    boxShadow: '0 0.1rem 0.3rem rgba(0, 0, 0, 0.5)',
+    visibility: 'hidden',
+    border: '0.1em solid white',
+    '&:hover': {
+      backgroundColor: 'white',
+      color: theme.palette.primary.main,
+    },
     [theme.breakpoints.down('sm')]: {
       fontSize: '1.2em',
     },
     [theme.breakpoints.down('xs')]: {
+      visibility: 'visible',
       fontSize: '0.8em',
     },
   },
@@ -82,6 +89,11 @@ const Layout: React.FC = ({ children }) => {
               </LinkA>
             </Link>
           </div>
+          <Link href="/create">
+            <LinkA href="/create">
+              <Button className={classes.navCreate}>Post Job</Button>
+            </LinkA>
+          </Link>
         </Toolbar>
       </AppBar>
       <main className={classes.main}>
