@@ -75,7 +75,7 @@ const Layout: React.FC = ({ children }) => {
   return (
     <div className={classes.layoutContainer}>
       <CssBaseline />
-      <Alert />
+      {/* <Alert /> */}
       <AppBar position="relative" color="primary">
         <Toolbar>
           <div style={{ flexGrow: 1, padding: '0.2em' }}>
