@@ -9,6 +9,7 @@ import {
   Divider,
   Button,
 } from '@material-ui/core';
+
 import { CATEGORY_NAMES } from '../../utilities/categories';
 
 const useStyles = makeStyles((theme) => ({
