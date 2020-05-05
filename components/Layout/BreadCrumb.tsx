@@ -24,7 +24,11 @@ const BreadCrumb = () => {
           color="primary"
           style={{ marginRight: '1em' }}
           onClick={() => {
-            router.back();
+            if (document.referrer == '') {
+              router.push('/');
+            } else {
+              router.back();
+            }
           }}
         >
           <ArrowBackIosIcon />
