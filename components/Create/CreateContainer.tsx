@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Router from 'next/router';
 import axios from 'axios';
 import { API_URL } from '../../utilities/envUrl';
-import notify from '../../utilities/notify';
+import { toast } from 'react-toastify';
 import {
   Grid,
   Typography,
@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core';
 import { CATEGORY_NAMES, SUB_CATEGORY_NAMES } from '../../utilities/categories';
 import { Wrapper, Description, ImageRender } from './createContainerStyled';
+import validateCreate from './validateCreate';
 
 interface OwnProps {
   foundPost?: any;
@@ -87,7 +88,7 @@ class CreateContainer extends Component<OwnProps | any> {
       this.setState({
         location: '',
       });
-      notify('error', 'Error saving location!');
+      toast.error('Error saving location!');
     }
   };
   fileInputRef = React.createRef();
@@ -108,66 +109,32 @@ class CreateContainer extends Component<OwnProps | any> {
       this.setState({ images: [res.data.Location] });
     } catch (error) {
       console.error(error);
-      notify('error', error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
 
   onSubmit = async (e) => {
     e.preventDefault();
     this.setState({ disabled: true });
-    const {
-      title,
-      description,
-      location,
-      longitude,
-      latitude,
-      value,
-      category,
-      company,
-      type,
-      images,
-      contactEmail,
-    } = this.state;
     const { foundPost } = this.props;
     try {
       let request;
       if (foundPost) {
         request = await axios.patch(
           `${API_URL}/rest/ads/${foundPost.id}?hash=${foundPost.hash}`,
-          {
-            title,
-            description,
-            location,
-            longitude,
-            latitude,
-            company,
-            value,
-            category,
-            type,
-            images,
-            contactEmail,
-          },
+          validateCreate(this.state),
         );
-        notify('success', 'Post Edited!');
+        toast('Post Edited!');
       } else {
-        request = await axios.post(`${API_URL}/rest/ads`, {
-          title,
-          description,
-          location,
-          longitude,
-          latitude,
-          company,
-          value,
-          category,
-          type,
-          images,
-          contactEmail,
-        });
-        notify('success', 'Post Created!');
+        request = await axios.post(
+          `${API_URL}/rest/ads`,
+          validateCreate(this.state),
+        );
+        toast('Post Created!');
       }
       Router.push('/posts/[pid]', `/posts/${request.data.id}`);
     } catch (error) {
-      notify('error', 'Missing fields!');
+      toast.error('Missing fields!');
       console.error(error);
       this.setState({ disabled: false });
     }
@@ -176,22 +143,21 @@ class CreateContainer extends Component<OwnProps | any> {
   delete = async (e) => {
     e.preventDefault();
     this.setState({ disabled: true });
-
     const { foundPost } = this.props;
     try {
       if (foundPost) {
         await axios.delete(
           `${API_URL}/rest/ads/${foundPost.id}?hash=${foundPost.hash}`,
         );
-        notify('success', 'Post Deleted!');
+        toast('Post Deleted!');
       } else {
         this.setState({ disabled: false });
-        return notify('error', 'Cannot delete Post!');
+        return toast.error('Cannot delete Post!');
       }
       Router.push('/');
     } catch (error) {
       this.setState({ disabled: false });
-      notify('error', 'Issue deleting Post!');
+      toast.error('Issue deleting Post!');
     }
   };
 

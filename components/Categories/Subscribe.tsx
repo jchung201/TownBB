@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { API_URL } from '../../utilities/envUrl';
-import notify from '../../utilities/notify';
+import { toast } from 'react-toastify';
 import {
   Card,
   CardContent,
@@ -12,7 +12,7 @@ import {
   TextField,
 } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   cardHeader: {
     width: '90%',
     color: 'white',
@@ -33,17 +33,17 @@ const Subscribe = () => {
   const {
     query: { id },
   } = router;
-  const onSubmit = async event => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     try {
       await axios.post(`${API_URL}/rest/subs`, {
         email,
         category: id,
       });
-      notify('success', 'Email subscribed!');
+      toast('Email subscribed!');
       setEmail('');
     } catch (error) {
-      notify('error', 'Issue with subscription!');
+      toast.error('Issue with subscription!');
       console.error(error);
     }
   };
@@ -52,9 +52,7 @@ const Subscribe = () => {
       <Card className={classes.cardHeader}>
         <CardHeader
           title="Subscribe"
-          subheader={`to ${String(id)
-            .split('_')
-            .join(' ')}`}
+          subheader={`to ${String(id).split('_').join(' ')}`}
           titleTypographyProps={{ align: 'center' }}
           subheaderTypographyProps={{
             align: 'center',
@@ -77,7 +75,7 @@ const Subscribe = () => {
             }}
           >
             <TextField
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               id="standard-basic"
               label="Email"
               value={email}
