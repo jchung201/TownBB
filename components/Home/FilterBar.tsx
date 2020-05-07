@@ -97,7 +97,7 @@ const FilterBar = ({ width }) => {
           color: 'white',
         }}
       >
-        Search {isWidthUp('md', width) ? ', Jobs' : ''}
+        Search {isWidthUp('md', width) ? 'Jobs' : ''}
       </Button>
     </form>
   );
