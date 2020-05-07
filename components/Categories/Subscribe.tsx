@@ -13,6 +13,15 @@ import {
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+  subscribe: {
+    marginTop: '2em',
+    width: '100%',
+    [theme.breakpoints.down('xs')]: {
+      width: '50%',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
   cardHeader: {
     width: '90%',
     color: 'white',
@@ -48,7 +57,7 @@ const Subscribe = () => {
     }
   };
   return (
-    <div style={{ marginTop: '2em', width: '100%' }}>
+    <div className={classes.subscribe}>
       <Card className={classes.cardHeader}>
         <CardHeader
           title="Subscribe"
