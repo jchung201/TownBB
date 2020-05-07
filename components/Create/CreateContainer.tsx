@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Router from 'next/router';
 import axios from 'axios';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { API_URL } from '../../utilities/envUrl';
 import { toast } from 'react-toastify';
 import {
@@ -179,6 +180,7 @@ class CreateContainer extends Component<OwnProps | any> {
       disabled,
     } = this.state;
     const { foundPost } = this.props;
+    console.log(this.props.width);
     return (
       <Wrapper onSubmit={this.onSubmit}>
         <Typography variant="h6" gutterBottom>
@@ -188,7 +190,11 @@ class CreateContainer extends Component<OwnProps | any> {
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              label="Title (e.g. Experienced Chef Needed!)"
+              label={`Title${
+                isWidthUp('md', this.props.width)
+                  ? ' (e.g. Experienced Chef Needed!)'
+                  : ' (e.g. Chef Needed!)'
+              }`}
               name="title"
               value={title}
               onChange={this.onChange}
@@ -371,4 +377,4 @@ class CreateContainer extends Component<OwnProps | any> {
     );
   }
 }
-export default CreateContainer;
+export default withWidth()(CreateContainer);

@@ -71,9 +71,9 @@ const FilterBar = ({ width }) => {
         }}
       />
       <TextField
-        label={`Location (e.g. City${
-          isWidthUp('md', width) ? ', Zip Code' : ''
-        })`}
+        label={`Location${
+          isWidthUp('md', width) ? ' (e.g. City, Zip Code)' : ''
+        }`}
         onChange={(e) => setLocation(e.target.value)}
         className={classes.locationInput}
         InputProps={{
