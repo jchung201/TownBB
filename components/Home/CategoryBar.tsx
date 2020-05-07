@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
   },
   listHeader: {
     width: '90%',
-    maxWidth: 360,
     backgroundColor: theme.palette.primary.main,
     color: 'white',
     textAlign: 'center',

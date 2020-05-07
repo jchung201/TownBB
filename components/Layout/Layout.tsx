@@ -62,6 +62,10 @@ const useStyles = makeStyles((theme) => ({
   },
   main: {
     marginBottom: '5em',
+    padding: '3.5em',
+    [theme.breakpoints.down('xs')]: {
+      padding: '1.5em',
+    },
   },
   layoutContainer: {
     minHeight: '100vh',
@@ -97,10 +101,8 @@ const Layout: React.FC = ({ children }) => {
         </Toolbar>
       </AppBar>
       <main className={classes.main}>
-        <Container style={{ flexGrow: 1, marginTop: '2em' }}>
-          <BreadCrumb />
-          {children}
-        </Container>
+        <BreadCrumb />
+        {children}
       </main>
       <footer className={classes.footer}>
         <Container maxWidth="sm">
