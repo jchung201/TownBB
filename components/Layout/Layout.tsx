@@ -101,8 +101,10 @@ const Layout: React.FC = ({ children }) => {
         </Toolbar>
       </AppBar>
       <main className={classes.main}>
-        <BreadCrumb />
-        {children}
+        <Container>
+          <BreadCrumb />
+          {children}
+        </Container>
       </main>
       <footer className={classes.footer}>
         <Container maxWidth="sm">
