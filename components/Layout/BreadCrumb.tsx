@@ -22,7 +22,7 @@ const BreadCrumb = () => {
           variant="extended"
           size="small"
           color="primary"
-          style={{ marginRight: '1em' }}
+          style={{ marginRight: '1em', color: 'white' }}
           onClick={() => {
             if (document.referrer == '') {
               router.push('/');
